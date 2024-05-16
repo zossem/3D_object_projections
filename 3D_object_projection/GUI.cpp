@@ -34,8 +34,9 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText211->Wrap( -1 );
 	bSizer9->Add( m_staticText211, 0, wxALL, 5 );
 
-	wxArrayString m_choice_projection_1Choices;
-	m_choice_projection_1 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_1Choices, 0 );
+	wxString m_choice_projection_1Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("axonometryczny (dowolny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ukośny (dowolny)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
+	int m_choice_projection_1NChoices = sizeof( m_choice_projection_1Choices ) / sizeof( wxString );
+	m_choice_projection_1 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_1NChoices, m_choice_projection_1Choices, 0 );
 	m_choice_projection_1->SetSelection( 0 );
 	bSizer9->Add( m_choice_projection_1, 0, wxALL, 5 );
 
@@ -67,52 +68,52 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText34->Wrap( -1 );
 	fgSizer3->Add( m_staticText34, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_x_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VRP_x_1, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_y_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VRP_y_1, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_z_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_z_1 = new wxTextCtrl( this, wxID_ANY, _("2.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VRP_z_1, 0, wxALL, 5 );
 
 	m_staticText351 = new wxStaticText( this, wxID_ANY, _("VPN"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText351->Wrap( -1 );
 	fgSizer3->Add( m_staticText351, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_x_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VPN_x_1, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_y_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VPN_y_1, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_z_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_z_1 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VPN_z_1, 0, wxALL, 5 );
 
 	m_staticText36 = new wxStaticText( this, wxID_ANY, _("VUP"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText36->Wrap( -1 );
 	fgSizer3->Add( m_staticText36, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_x_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VUP_x_1, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_y_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_y_1 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VUP_y_1, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_z_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_z_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VUP_z_1, 0, wxALL, 5 );
 
 	m_staticText37 = new wxStaticText( this, wxID_ANY, _("PRP"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText37->Wrap( -1 );
 	fgSizer3->Add( m_staticText37, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_x_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_PRP_x_1, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_y_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_PRP_y_1, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_z_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_z_1 = new wxTextCtrl( this, wxID_ANY, _("2.2"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_PRP_z_1, 0, wxALL, 5 );
 
 
@@ -125,16 +126,16 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer22;
 	bSizer22 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_textCtrl_window_u_start_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_u_start_1 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	bSizer22->Add( m_textCtrl_window_u_start_1, 0, wxALL, 5 );
 
-	m_textCtrl_window_u_stop_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_u_stop_1 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	bSizer22->Add( m_textCtrl_window_u_stop_1, 0, wxALL, 5 );
 
-	m_textCtrl_window_v_start_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_v_start_1 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	bSizer22->Add( m_textCtrl_window_v_start_1, 0, wxALL, 5 );
 
-	m_textCtrl_window_v_stop_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_v_stop_1 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
 	bSizer22->Add( m_textCtrl_window_v_stop_1, 0, wxALL, 5 );
 
 
@@ -147,7 +148,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText39->Wrap( -1 );
 	bSizer23->Add( m_staticText39, 0, wxALL, 5 );
 
-	m_textCtrl_Front_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl_Front_1 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer23->Add( m_textCtrl_Front_1, 0, wxALL, 5 );
 
 
@@ -160,7 +161,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText40->Wrap( -1 );
 	bSizer24->Add( m_staticText40, 0, wxALL, 5 );
 
-	m_textCtrl_Back_1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl_Back_1 = new wxTextCtrl( this, wxID_ANY, _("-3.0"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer24->Add( m_textCtrl_Back_1, 0, wxALL, 5 );
 
 
@@ -184,9 +185,10 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText271->Wrap( -1 );
 	bSizer10->Add( m_staticText271, 0, wxALL, 5 );
 
-	wxArrayString m_choice_projection_2Choices;
-	m_choice_projection_2 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_2Choices, 0 );
-	m_choice_projection_2->SetSelection( 0 );
+	wxString m_choice_projection_2Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("axonometryczny (dowolny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ukośny (dowolny)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
+	int m_choice_projection_2NChoices = sizeof( m_choice_projection_2Choices ) / sizeof( wxString );
+	m_choice_projection_2 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_2NChoices, m_choice_projection_2Choices, 0 );
+	m_choice_projection_2->SetSelection( 1 );
 	bSizer10->Add( m_choice_projection_2, 0, wxALL, 5 );
 
 
@@ -334,9 +336,10 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText28->Wrap( -1 );
 	bSizer11->Add( m_staticText28, 0, wxALL, 5 );
 
-	wxArrayString m_choice_projection_3Choices;
-	m_choice_projection_3 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_3Choices, 0 );
-	m_choice_projection_3->SetSelection( 0 );
+	wxString m_choice_projection_3Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("axonometryczny (dowolny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ukośny (dowolny)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
+	int m_choice_projection_3NChoices = sizeof( m_choice_projection_3Choices ) / sizeof( wxString );
+	m_choice_projection_3 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_3NChoices, m_choice_projection_3Choices, 0 );
+	m_choice_projection_3->SetSelection( 3 );
 	bSizer11->Add( m_choice_projection_3, 0, wxALL, 5 );
 
 
@@ -670,8 +673,65 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	// Connect Events
 	m_panel_1->Connect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::WxPanel_Repaint ), NULL, this );
+	m_choice_projection_1->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::Choice_Projection_1 ), NULL, this );
+	m_textCtrl_VRP_x_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VRP_y_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VRP_z_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VPN_x_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VPN_y_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VPN_z_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VUP_x_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VUP_y_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VUP_z_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_PRP_x_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_PRP_y_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_PRP_z_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_window_u_start_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_window_u_stop_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_window_v_start_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_window_v_stop_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_Front_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_Back_1->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
 	m_panel_2->Connect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::WxPanel_Repaint ), NULL, this );
+	m_choice_projection_2->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::Choice_Projection_2 ), NULL, this );
+	m_textCtrl_VRP_x_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VRP_y_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VRP_z_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VPN_x_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VPN_y_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VPN_z_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VUP_x_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VUP_y_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VUP_z_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_PRP_x_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_PRP_y_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_PRP_z_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_window_u_start_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_window_u_stop_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_window_v_start_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_window_v_stop_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_Front_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_Back_2->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
 	m_panel_3->Connect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::WxPanel_Repaint ), NULL, this );
+	m_choice_projection_3->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::Choice_Projection_3 ), NULL, this );
+	m_textCtrl_VRP_x_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VRP_y_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VRP_z_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VPN_x_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VPN_y_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VPN_z_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VUP_x_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VUP_y_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VUP_z_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_PRP_x_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_PRP_y_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_PRP_z_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_window_u_start_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_window_u_stop_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_window_v_start_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_window_v_stop_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_Front_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_Back_3->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
 	m_button_load_geometry->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::m_button_load_geometry_click ), NULL, this );
 	WxSB_TranslationX->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MyFrame1::Scrolls_Updated ), NULL, this );
 	WxSB_TranslationX->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MyFrame1::Scrolls_Updated ), NULL, this );
@@ -760,8 +820,65 @@ MyFrame1::~MyFrame1()
 {
 	// Disconnect Events
 	m_panel_1->Disconnect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::WxPanel_Repaint ), NULL, this );
+	m_choice_projection_1->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::Choice_Projection_1 ), NULL, this );
+	m_textCtrl_VRP_x_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VRP_y_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VRP_z_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VPN_x_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VPN_y_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VPN_z_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VUP_x_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VUP_y_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_VUP_z_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_PRP_x_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_PRP_y_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_PRP_z_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_window_u_start_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_window_u_stop_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_window_v_start_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_window_v_stop_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_Front_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
+	m_textCtrl_Back_1->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_1 ), NULL, this );
 	m_panel_2->Disconnect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::WxPanel_Repaint ), NULL, this );
+	m_choice_projection_2->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::Choice_Projection_2 ), NULL, this );
+	m_textCtrl_VRP_x_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VRP_y_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VRP_z_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VPN_x_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VPN_y_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VPN_z_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VUP_x_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VUP_y_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_VUP_z_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_PRP_x_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_PRP_y_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_PRP_z_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_window_u_start_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_window_u_stop_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_window_v_start_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_window_v_stop_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_Front_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
+	m_textCtrl_Back_2->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_2 ), NULL, this );
 	m_panel_3->Disconnect( wxEVT_UPDATE_UI, wxUpdateUIEventHandler( MyFrame1::WxPanel_Repaint ), NULL, this );
+	m_choice_projection_3->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::Choice_Projection_3 ), NULL, this );
+	m_textCtrl_VRP_x_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VRP_y_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VRP_z_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VPN_x_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VPN_y_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VPN_z_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VUP_x_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VUP_y_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_VUP_z_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_PRP_x_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_PRP_y_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_PRP_z_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_window_u_start_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_window_u_stop_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_window_v_start_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_window_v_stop_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_Front_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
+	m_textCtrl_Back_3->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1::Text_Update_3 ), NULL, this );
 	m_button_load_geometry->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::m_button_load_geometry_click ), NULL, this );
 	WxSB_TranslationX->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MyFrame1::Scrolls_Updated ), NULL, this );
 	WxSB_TranslationX->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MyFrame1::Scrolls_Updated ), NULL, this );

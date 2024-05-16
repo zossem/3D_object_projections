@@ -140,6 +140,12 @@ class MyFrame1 : public wxFrame
 
 		// Virtual event handlers, override them in your derived class
 		virtual void WxPanel_Repaint( wxUpdateUIEvent& event ) { event.Skip(); }
+		virtual void Choice_Projection_1( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Text_Update_1( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Choice_Projection_2( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Text_Update_2( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Choice_Projection_3( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Text_Update_3( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_button_load_geometry_click( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Scrolls_Updated( wxScrollEvent& event ) { event.Skip(); }
 
@@ -171,8 +177,9 @@ class MyFrame1 : public wxFrame
 		wxStaticText* WxST_ScaleZ;
 		wxSlider* WxSB_ScaleZ;
 
-		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("GFK Projekt 39"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 896,718 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("GFK Projekt 39"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 951,718 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~MyFrame1();
 
 };
+

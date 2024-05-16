@@ -1,4 +1,4 @@
-//Extremely simple vector and matrix classes by Janusz Malinowski. 
+﻿//Extremely simple vector and matrix classes by Janusz Malinowski. 
 #include <stdio.h>
 #pragma once
 class Vector4

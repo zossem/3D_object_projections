@@ -1,4 +1,4 @@
-#include "vecmat.h"
+﻿#include "vecmat.h"
 
 Vector4::Vector4()
 {
