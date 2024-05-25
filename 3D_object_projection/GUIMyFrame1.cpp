@@ -29,7 +29,36 @@ void GUIMyFrame1::Choice_Projection_1( wxCommandEvent& event )
 
 void GUIMyFrame1::Text_Update_1( wxCommandEvent& event )
 {
-// TODO: Implement Text_Update_1
+    double coor_x, coor_y, coor_z;
+    m_textCtrl_VRP_x_1->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VRP_y_1->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VRP_z_1->GetValue().ToDouble(&coor_z);
+    projection_1.vec_VRP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VPN_x_1->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VPN_y_1->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VPN_z_1->GetValue().ToDouble(&coor_z);
+    projection_1.vec_VPN.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VUP_x_1->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VUP_y_1->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VUP_z_1->GetValue().ToDouble(&coor_z);
+    projection_1.vec_VUP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_PRP_x_1->GetValue().ToDouble(&coor_x);
+    m_textCtrl_PRP_y_1->GetValue().ToDouble(&coor_y);
+    m_textCtrl_PRP_z_1->GetValue().ToDouble(&coor_z);
+    projection_1.vec_PRP.Set(coor_x, coor_y, coor_z);
+
+
+    m_textCtrl_window_u_start_1->GetValue().ToDouble(&projection_1.window_size.x_begin);
+    m_textCtrl_window_u_stop_1->GetValue().ToDouble(&projection_1.window_size.x_end);
+    m_textCtrl_window_v_start_1->GetValue().ToDouble(&projection_1.window_size.y_begin);
+    m_textCtrl_window_v_stop_1->GetValue().ToDouble(&projection_1.window_size.y_end);
+    
+
+    m_textCtrl_Front_1->GetValue().ToDouble(&projection_1.front);
+    m_textCtrl_Back_1->GetValue().ToDouble(&projection_1.back);
 }
 
 void GUIMyFrame1::Choice_Projection_2( wxCommandEvent& event )
@@ -171,8 +200,10 @@ void GUIMyFrame1::RefreshPoints()
         v_end.Set(data[i].end.x, data[i].end.y, data[i].end.z);    
 
 
-        v_begin = Rot_Z_matrix * Rot_Y_matrix * Rot_X_matrix * scale_matrix_to_window* Scale_matrix * v_begin;
-        v_end = Rot_Z_matrix * Rot_Y_matrix * Rot_X_matrix * scale_matrix_to_window* Scale_matrix * v_end;
+        v_begin = scale_matrix_to_window * Scale_matrix * Rot_Z_matrix * Rot_Y_matrix * Rot_X_matrix * v_begin;
+        v_end = scale_matrix_to_window * Scale_matrix * Rot_Z_matrix * Rot_Y_matrix * Rot_X_matrix *  v_end;
+
+
 
         v_begin.Set(v_begin.GetX() + Tx, v_begin.GetY() + Ty, v_begin.GetZ() + Tz);
         v_end.Set(v_end.GetX() + Tx, v_end.GetY() + Ty, v_end.GetZ() + Tz);
@@ -216,11 +247,13 @@ void GUIMyFrame1::Repaint1()
     Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
     Matrix4 MVP_matrix;
     double panel_x = m_panel_1->GetSize().x, panel_y = m_panel_1->GetSize().y;
-    double alfa = (M_PI) / 2.0, a_r = panel_x / panel_y, n = 0.1, f = 100.0; //tu powinno być sprawdzenie jakie są parametry rzutu i odpowiednia macierz - to jest dla testu prespektywiczny
-    set_matrix_v_1.Set(1 / (a_r * tan(alfa / 2.0)), 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 1 / tan(alfa / 2.0), 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, -1.0 * (f + n) / (f - n));
-    set_matrix_v_4.Set(0.0, 0.0, -2.0 * f * n / (f - n));
+
+    set_matrix_v_1.Set(2.0*projection_1.GetNear()/(projection_1.GetRight()- projection_1.GetLeft()), 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 2.0 * projection_1.GetNear() / (projection_1.GetTop() - projection_1.GetBottom()), 0.0);
+    set_matrix_v_3.Set((projection_1.GetRight() + projection_1.GetLeft()) / (projection_1.GetRight() - projection_1.GetLeft()),
+                        (projection_1.GetTop() + projection_1.GetBottom())/ (projection_1.GetTop() - projection_1.GetBottom()), 
+                        (projection_1.GetFar() + projection_1.GetNear())/ (projection_1.GetNear() - projection_1.GetFar()));
+    set_matrix_v_4.Set(0.0, 0.0, 2.0 * projection_1.GetNear() * projection_1.GetFar() /(projection_1.GetNear() - projection_1.GetFar()));
     SetMatrix(MVP_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
     MVP_matrix.data[3][2] = -1.0;
     MVP_matrix.data[3][3] = 0.0;
@@ -234,7 +267,7 @@ void GUIMyFrame1::Repaint1()
         color_line = wxColor(data_transformed[i].color.R, data_transformed[i].color.G, data_transformed[i].color.B);
         dc.SetPen(color_line);
 
-        double barier = 0.1;
+        double barier = projection_1.GetNear();
         if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
         {
         }
