@@ -15,6 +15,10 @@ MyFrame1( parent )
     WxSB_ScaleX->SetRange(1, 200); WxSB_ScaleX->SetValue(100);
     WxSB_ScaleY->SetRange(1, 200); WxSB_ScaleY->SetValue(100);
     WxSB_ScaleZ->SetRange(1, 200); WxSB_ScaleZ->SetValue(100);
+
+    ReadProjectionData1();
+    ReadProjectionData2();
+    ReadProjectionData3();
 }
 
 void GUIMyFrame1::WxPanel_Repaint( wxUpdateUIEvent& event )
@@ -28,6 +32,11 @@ void GUIMyFrame1::Choice_Projection_1( wxCommandEvent& event )
 }
 
 void GUIMyFrame1::Text_Update_1( wxCommandEvent& event )
+{
+    ReadProjectionData1();
+}
+
+void GUIMyFrame1::ReadProjectionData1()
 {
     double coor_x, coor_y, coor_z;
     m_textCtrl_VRP_x_1->GetValue().ToDouble(&coor_x);
@@ -55,11 +64,12 @@ void GUIMyFrame1::Text_Update_1( wxCommandEvent& event )
     m_textCtrl_window_u_stop_1->GetValue().ToDouble(&projection_1.window_size.x_end);
     m_textCtrl_window_v_start_1->GetValue().ToDouble(&projection_1.window_size.y_begin);
     m_textCtrl_window_v_stop_1->GetValue().ToDouble(&projection_1.window_size.y_end);
-    
+
 
     m_textCtrl_Front_1->GetValue().ToDouble(&projection_1.front);
     m_textCtrl_Back_1->GetValue().ToDouble(&projection_1.back);
 }
+
 
 void GUIMyFrame1::Choice_Projection_2( wxCommandEvent& event )
 {
@@ -68,17 +78,87 @@ void GUIMyFrame1::Choice_Projection_2( wxCommandEvent& event )
 
 void GUIMyFrame1::Text_Update_2( wxCommandEvent& event )
 {
-// TODO: Implement Text_Update_2
+    ReadProjectionData2();
 }
+
+
+void GUIMyFrame1::ReadProjectionData2()
+{
+    double coor_x, coor_y, coor_z;
+    m_textCtrl_VRP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VRP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VRP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VRP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VPN_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VPN_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VPN_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VPN.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VUP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VUP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VUP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VUP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_PRP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_PRP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_PRP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_PRP.Set(coor_x, coor_y, coor_z);
+
+
+    m_textCtrl_window_u_start_2->GetValue().ToDouble(&projection_2.window_size.x_begin);
+    m_textCtrl_window_u_stop_2->GetValue().ToDouble(&projection_2.window_size.x_end);
+    m_textCtrl_window_v_start_2->GetValue().ToDouble(&projection_2.window_size.y_begin);
+    m_textCtrl_window_v_stop_2->GetValue().ToDouble(&projection_2.window_size.y_end);
+
+
+    m_textCtrl_Front_2->GetValue().ToDouble(&projection_2.front);
+    m_textCtrl_Back_2->GetValue().ToDouble(&projection_2.back);
+}
+
 
 void GUIMyFrame1::Choice_Projection_3( wxCommandEvent& event )
 {
-// TODO: Implement Choice_Projection_3
+    // TODO: Implement Choice_Projection_3
 }
 
 void GUIMyFrame1::Text_Update_3( wxCommandEvent& event )
 {
-// TODO: Implement Text_Update_3
+    ReadProjectionData3();
+}
+
+void GUIMyFrame1::ReadProjectionData3()
+{
+    double coor_x, coor_y, coor_z;
+    m_textCtrl_VRP_x_3->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VRP_y_3->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VRP_z_3->GetValue().ToDouble(&coor_z);
+    projection_3.vec_VRP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VPN_x_3->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VPN_y_3->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VPN_z_3->GetValue().ToDouble(&coor_z);
+    projection_3.vec_VPN.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VUP_x_3->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VUP_y_3->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VUP_z_3->GetValue().ToDouble(&coor_z);
+    projection_3.vec_VUP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_PRP_x_3->GetValue().ToDouble(&coor_x);
+    m_textCtrl_PRP_y_3->GetValue().ToDouble(&coor_y);
+    m_textCtrl_PRP_z_3->GetValue().ToDouble(&coor_z);
+    projection_3.vec_PRP.Set(coor_x, coor_y, coor_z);
+
+
+    m_textCtrl_window_u_start_3->GetValue().ToDouble(&projection_3.window_size.x_begin);
+    m_textCtrl_window_u_stop_3->GetValue().ToDouble(&projection_3.window_size.x_end);
+    m_textCtrl_window_v_start_3->GetValue().ToDouble(&projection_3.window_size.y_begin);
+    m_textCtrl_window_v_stop_3->GetValue().ToDouble(&projection_3.window_size.y_end);
+
+
+    m_textCtrl_Front_3->GetValue().ToDouble(&projection_3.front);
+    m_textCtrl_Back_3->GetValue().ToDouble(&projection_3.back);
 }
 
 void GUIMyFrame1::m_button_load_geometry_click( wxCommandEvent& event )

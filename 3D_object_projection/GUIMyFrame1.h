@@ -82,6 +82,9 @@ class GUIMyFrame1 : public MyFrame1
 		void Repaint3();
 		void RefreshPoints();
 		void SetMatrix(Matrix4& matrix, Vector4& v_1, Vector4& v_2, Vector4& v_3, Vector4& v_4);//v_1 to v_4 are vertical vectors, this enable to easily set the matrix
+		void ReadProjectionData1();
+		void ReadProjectionData2();
+		void ReadProjectionData3();
 
 		std::vector<Segment> data;
 		std::vector<Segment> data_transformed;
