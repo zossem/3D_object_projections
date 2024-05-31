@@ -68,52 +68,52 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText34->Wrap( -1 );
 	fgSizer3->Add( m_staticText34, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VRP_x_1, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VRP_y_1, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_z_1 = new wxTextCtrl( this, wxID_ANY, _("2.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_z_1 = new wxTextCtrl( this, wxID_ANY, _("2.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VRP_z_1, 0, wxALL, 5 );
 
 	m_staticText351 = new wxStaticText( this, wxID_ANY, _("VPN"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText351->Wrap( -1 );
 	fgSizer3->Add( m_staticText351, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VPN_x_1, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VPN_y_1, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_z_1 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_z_1 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VPN_z_1, 0, wxALL, 5 );
 
 	m_staticText36 = new wxStaticText( this, wxID_ANY, _("VUP"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText36->Wrap( -1 );
 	fgSizer3->Add( m_staticText36, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VUP_x_1, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_y_1 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_y_1 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VUP_y_1, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_z_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_z_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_VUP_z_1, 0, wxALL, 5 );
 
 	m_staticText37 = new wxStaticText( this, wxID_ANY, _("PRP"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText37->Wrap( -1 );
 	fgSizer3->Add( m_staticText37, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_x_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_PRP_x_1, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_y_1 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_PRP_y_1, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_z_1 = new wxTextCtrl( this, wxID_ANY, _("2.2"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_z_1 = new wxTextCtrl( this, wxID_ANY, _("2.2"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer3->Add( m_textCtrl_PRP_z_1, 0, wxALL, 5 );
 
 
@@ -126,16 +126,16 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer22;
 	bSizer22 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_textCtrl_window_u_start_1 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_u_start_1 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer22->Add( m_textCtrl_window_u_start_1, 0, wxALL, 5 );
 
-	m_textCtrl_window_u_stop_1 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_u_stop_1 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer22->Add( m_textCtrl_window_u_stop_1, 0, wxALL, 5 );
 
-	m_textCtrl_window_v_start_1 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_v_start_1 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer22->Add( m_textCtrl_window_v_start_1, 0, wxALL, 5 );
 
-	m_textCtrl_window_v_stop_1 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_v_stop_1 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer22->Add( m_textCtrl_window_v_stop_1, 0, wxALL, 5 );
 
 
@@ -148,7 +148,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText39->Wrap( -1 );
 	bSizer23->Add( m_staticText39, 0, wxALL, 5 );
 
-	m_textCtrl_Front_1 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl_Front_1 = new wxTextCtrl( this, wxID_ANY, _("2.0"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer23->Add( m_textCtrl_Front_1, 0, wxALL, 5 );
 
 
@@ -188,7 +188,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxString m_choice_projection_2Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("axonometryczny (dowolny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ukośny (dowolny)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
 	int m_choice_projection_2NChoices = sizeof( m_choice_projection_2Choices ) / sizeof( wxString );
 	m_choice_projection_2 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_2NChoices, m_choice_projection_2Choices, 0 );
-	m_choice_projection_2->SetSelection( 1 );
+	m_choice_projection_2->SetSelection( 6 );
 	bSizer10->Add( m_choice_projection_2, 0, wxALL, 5 );
 
 
@@ -219,52 +219,52 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText341->Wrap( -1 );
 	fgSizer31->Add( m_staticText341, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_x_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_x_2 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VRP_x_2, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_y_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_y_2 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VRP_y_2, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_z_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_z_2 = new wxTextCtrl( this, wxID_ANY, _("2.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VRP_z_2, 0, wxALL, 5 );
 
 	m_staticText3511 = new wxStaticText( this, wxID_ANY, _("VPN"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText3511->Wrap( -1 );
 	fgSizer31->Add( m_staticText3511, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_x_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_x_2 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VPN_x_2, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_y_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_y_2 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VPN_y_2, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_z_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_z_2 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VPN_z_2, 0, wxALL, 5 );
 
 	m_staticText361 = new wxStaticText( this, wxID_ANY, _("VUP"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText361->Wrap( -1 );
 	fgSizer31->Add( m_staticText361, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_x_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_x_2 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VUP_x_2, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_y_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_y_2 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VUP_y_2, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_z_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_z_2 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_VUP_z_2, 0, wxALL, 5 );
 
 	m_staticText371 = new wxStaticText( this, wxID_ANY, _("PRP"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText371->Wrap( -1 );
 	fgSizer31->Add( m_staticText371, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_x_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_x_2 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_PRP_x_2, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_y_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_y_2 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_PRP_y_2, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_z_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_z_2 = new wxTextCtrl( this, wxID_ANY, _("2.2"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer31->Add( m_textCtrl_PRP_z_2, 0, wxALL, 5 );
 
 
@@ -277,16 +277,16 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer221;
 	bSizer221 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_textCtrl_window_u_start_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_u_start_2 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer221->Add( m_textCtrl_window_u_start_2, 0, wxALL, 5 );
 
-	m_textCtrl_window_u_stop_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_u_stop_2 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer221->Add( m_textCtrl_window_u_stop_2, 0, wxALL, 5 );
 
-	m_textCtrl_window_v_start_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_v_start_2 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer221->Add( m_textCtrl_window_v_start_2, 0, wxALL, 5 );
 
-	m_textCtrl_window_v_stop_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_v_stop_2 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer221->Add( m_textCtrl_window_v_stop_2, 0, wxALL, 5 );
 
 
@@ -299,7 +299,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText391->Wrap( -1 );
 	bSizer231->Add( m_staticText391, 0, wxALL, 5 );
 
-	m_textCtrl_Front_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl_Front_2 = new wxTextCtrl( this, wxID_ANY, _("2.0"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer231->Add( m_textCtrl_Front_2, 0, wxALL, 5 );
 
 
@@ -312,7 +312,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText401->Wrap( -1 );
 	bSizer241->Add( m_staticText401, 0, wxALL, 5 );
 
-	m_textCtrl_Back_2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl_Back_2 = new wxTextCtrl( this, wxID_ANY, _("-3.0"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer241->Add( m_textCtrl_Back_2, 0, wxALL, 5 );
 
 
@@ -339,7 +339,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxString m_choice_projection_3Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("axonometryczny (dowolny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ukośny (dowolny)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
 	int m_choice_projection_3NChoices = sizeof( m_choice_projection_3Choices ) / sizeof( wxString );
 	m_choice_projection_3 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_3NChoices, m_choice_projection_3Choices, 0 );
-	m_choice_projection_3->SetSelection( 3 );
+	m_choice_projection_3->SetSelection( 7 );
 	bSizer11->Add( m_choice_projection_3, 0, wxALL, 5 );
 
 
@@ -370,52 +370,52 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText342->Wrap( -1 );
 	fgSizer32->Add( m_staticText342, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_x_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_x_3 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VRP_x_3, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_y_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_y_3 = new wxTextCtrl( this, wxID_ANY, _("2.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VRP_y_3, 0, wxALL, 5 );
 
-	m_textCtrl_VRP_z_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VRP_z_3 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VRP_z_3, 0, wxALL, 5 );
 
 	m_staticText3512 = new wxStaticText( this, wxID_ANY, _("VPN"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText3512->Wrap( -1 );
 	fgSizer32->Add( m_staticText3512, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_x_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_x_3 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VPN_x_3, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_y_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_y_3 = new wxTextCtrl( this, wxID_ANY, _("1.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VPN_y_3, 0, wxALL, 5 );
 
-	m_textCtrl_VPN_z_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VPN_z_3 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VPN_z_3, 0, wxALL, 5 );
 
 	m_staticText362 = new wxStaticText( this, wxID_ANY, _("VUP"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText362->Wrap( -1 );
 	fgSizer32->Add( m_staticText362, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_x_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_x_3 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VUP_x_3, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_y_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_y_3 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VUP_y_3, 0, wxALL, 5 );
 
-	m_textCtrl_VUP_z_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_VUP_z_3 = new wxTextCtrl( this, wxID_ANY, _("-1.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_VUP_z_3, 0, wxALL, 5 );
 
 	m_staticText372 = new wxStaticText( this, wxID_ANY, _("PRP"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText372->Wrap( -1 );
 	fgSizer32->Add( m_staticText372, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_x_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_x_3 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_PRP_x_3, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_y_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_y_3 = new wxTextCtrl( this, wxID_ANY, _("2.2"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_PRP_y_3, 0, wxALL, 5 );
 
-	m_textCtrl_PRP_z_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_PRP_z_3 = new wxTextCtrl( this, wxID_ANY, _("0.0"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	fgSizer32->Add( m_textCtrl_PRP_z_3, 0, wxALL, 5 );
 
 
@@ -428,16 +428,16 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer222;
 	bSizer222 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_textCtrl_window_u_start_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_u_start_3 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer222->Add( m_textCtrl_window_u_start_3, 0, wxALL, 5 );
 
-	m_textCtrl_window_u_stop_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_u_stop_3 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer222->Add( m_textCtrl_window_u_stop_3, 0, wxALL, 5 );
 
-	m_textCtrl_window_v_start_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_v_start_3 = new wxTextCtrl( this, wxID_ANY, _("-1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer222->Add( m_textCtrl_window_v_start_3, 0, wxALL, 5 );
 
-	m_textCtrl_window_v_stop_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 30,-1 ), 0 );
+	m_textCtrl_window_v_stop_3 = new wxTextCtrl( this, wxID_ANY, _("1.1"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	bSizer222->Add( m_textCtrl_window_v_stop_3, 0, wxALL, 5 );
 
 
@@ -450,7 +450,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText392->Wrap( -1 );
 	bSizer232->Add( m_staticText392, 0, wxALL, 5 );
 
-	m_textCtrl_Front_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl_Front_3 = new wxTextCtrl( this, wxID_ANY, _("2.0"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer232->Add( m_textCtrl_Front_3, 0, wxALL, 5 );
 
 
@@ -463,7 +463,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText402->Wrap( -1 );
 	bSizer242->Add( m_staticText402, 0, wxALL, 5 );
 
-	m_textCtrl_Back_3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_textCtrl_Back_3 = new wxTextCtrl( this, wxID_ANY, _("-3.0"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer242->Add( m_textCtrl_Back_3, 0, wxALL, 5 );
 
 

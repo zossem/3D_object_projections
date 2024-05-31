@@ -182,4 +182,3 @@ class MyFrame1 : public wxFrame
 		~MyFrame1();
 
 };
-

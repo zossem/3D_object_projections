@@ -33,43 +33,8 @@ void GUIMyFrame1::Choice_Projection_1( wxCommandEvent& event )
 
 void GUIMyFrame1::Text_Update_1( wxCommandEvent& event )
 {
-    ReadProjectionData1();
+ReadProjectionData1();
 }
-
-void GUIMyFrame1::ReadProjectionData1()
-{
-    double coor_x, coor_y, coor_z;
-    m_textCtrl_VRP_x_1->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VRP_y_1->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VRP_z_1->GetValue().ToDouble(&coor_z);
-    projection_1.vec_VRP.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_VPN_x_1->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VPN_y_1->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VPN_z_1->GetValue().ToDouble(&coor_z);
-    projection_1.vec_VPN.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_VUP_x_1->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VUP_y_1->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VUP_z_1->GetValue().ToDouble(&coor_z);
-    projection_1.vec_VUP.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_PRP_x_1->GetValue().ToDouble(&coor_x);
-    m_textCtrl_PRP_y_1->GetValue().ToDouble(&coor_y);
-    m_textCtrl_PRP_z_1->GetValue().ToDouble(&coor_z);
-    projection_1.vec_PRP.Set(coor_x, coor_y, coor_z);
-
-
-    m_textCtrl_window_u_start_1->GetValue().ToDouble(&projection_1.window_size.x_begin);
-    m_textCtrl_window_u_stop_1->GetValue().ToDouble(&projection_1.window_size.x_end);
-    m_textCtrl_window_v_start_1->GetValue().ToDouble(&projection_1.window_size.y_begin);
-    m_textCtrl_window_v_stop_1->GetValue().ToDouble(&projection_1.window_size.y_end);
-
-
-    m_textCtrl_Front_1->GetValue().ToDouble(&projection_1.front);
-    m_textCtrl_Back_1->GetValue().ToDouble(&projection_1.back);
-}
-
 
 void GUIMyFrame1::Choice_Projection_2( wxCommandEvent& event )
 {
@@ -78,87 +43,17 @@ void GUIMyFrame1::Choice_Projection_2( wxCommandEvent& event )
 
 void GUIMyFrame1::Text_Update_2( wxCommandEvent& event )
 {
-    ReadProjectionData2();
+ReadProjectionData2();
 }
-
-
-void GUIMyFrame1::ReadProjectionData2()
-{
-    double coor_x, coor_y, coor_z;
-    m_textCtrl_VRP_x_2->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VRP_y_2->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VRP_z_2->GetValue().ToDouble(&coor_z);
-    projection_2.vec_VRP.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_VPN_x_2->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VPN_y_2->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VPN_z_2->GetValue().ToDouble(&coor_z);
-    projection_2.vec_VPN.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_VUP_x_2->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VUP_y_2->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VUP_z_2->GetValue().ToDouble(&coor_z);
-    projection_2.vec_VUP.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_PRP_x_2->GetValue().ToDouble(&coor_x);
-    m_textCtrl_PRP_y_2->GetValue().ToDouble(&coor_y);
-    m_textCtrl_PRP_z_2->GetValue().ToDouble(&coor_z);
-    projection_2.vec_PRP.Set(coor_x, coor_y, coor_z);
-
-
-    m_textCtrl_window_u_start_2->GetValue().ToDouble(&projection_2.window_size.x_begin);
-    m_textCtrl_window_u_stop_2->GetValue().ToDouble(&projection_2.window_size.x_end);
-    m_textCtrl_window_v_start_2->GetValue().ToDouble(&projection_2.window_size.y_begin);
-    m_textCtrl_window_v_stop_2->GetValue().ToDouble(&projection_2.window_size.y_end);
-
-
-    m_textCtrl_Front_2->GetValue().ToDouble(&projection_2.front);
-    m_textCtrl_Back_2->GetValue().ToDouble(&projection_2.back);
-}
-
 
 void GUIMyFrame1::Choice_Projection_3( wxCommandEvent& event )
 {
-    // TODO: Implement Choice_Projection_3
+// TODO: Implement Choice_Projection_3
 }
 
 void GUIMyFrame1::Text_Update_3( wxCommandEvent& event )
 {
-    ReadProjectionData3();
-}
-
-void GUIMyFrame1::ReadProjectionData3()
-{
-    double coor_x, coor_y, coor_z;
-    m_textCtrl_VRP_x_3->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VRP_y_3->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VRP_z_3->GetValue().ToDouble(&coor_z);
-    projection_3.vec_VRP.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_VPN_x_3->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VPN_y_3->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VPN_z_3->GetValue().ToDouble(&coor_z);
-    projection_3.vec_VPN.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_VUP_x_3->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VUP_y_3->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VUP_z_3->GetValue().ToDouble(&coor_z);
-    projection_3.vec_VUP.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_PRP_x_3->GetValue().ToDouble(&coor_x);
-    m_textCtrl_PRP_y_3->GetValue().ToDouble(&coor_y);
-    m_textCtrl_PRP_z_3->GetValue().ToDouble(&coor_z);
-    projection_3.vec_PRP.Set(coor_x, coor_y, coor_z);
-
-
-    m_textCtrl_window_u_start_3->GetValue().ToDouble(&projection_3.window_size.x_begin);
-    m_textCtrl_window_u_stop_3->GetValue().ToDouble(&projection_3.window_size.x_end);
-    m_textCtrl_window_v_start_3->GetValue().ToDouble(&projection_3.window_size.y_begin);
-    m_textCtrl_window_v_stop_3->GetValue().ToDouble(&projection_3.window_size.y_end);
-
-
-    m_textCtrl_Front_3->GetValue().ToDouble(&projection_3.front);
-    m_textCtrl_Back_3->GetValue().ToDouble(&projection_3.back);
+ReadProjectionData3();
 }
 
 void GUIMyFrame1::m_button_load_geometry_click( wxCommandEvent& event )
@@ -203,22 +98,102 @@ RefreshPoints();
 }
 
 
-void GUIMyFrame1::Repaint2()
+Matrix4  GUIMyFrame1::PerspectiveProjection()
 {
-    wxClientDC dc1(m_panel_2);
-    wxBufferedDC dc(&dc1);
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    Matrix4 MVP_matrix;
 
-    dc.SetBackground(wxBrush(RGB(255, 255, 255)));
-    dc.Clear();
+    set_matrix_v_1.Set(2.0 * projection_1.GetNear() / (projection_1.GetRight() - projection_1.GetLeft()), 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 2.0 * projection_1.GetNear() / (projection_1.GetTop() - projection_1.GetBottom()), 0.0);
+    set_matrix_v_3.Set( (projection_1.GetRight() + projection_1.GetLeft()) / (projection_1.GetRight() - projection_1.GetLeft()),
+                        (projection_1.GetTop() + projection_1.GetBottom()) / (projection_1.GetTop() - projection_1.GetBottom()),
+                        (projection_1.GetFar() + projection_1.GetNear()) / (projection_1.GetNear() - projection_1.GetFar()));
+    set_matrix_v_4.Set(0.0, 0.0, 2.0 * projection_1.GetNear() * projection_1.GetFar() / (projection_1.GetNear() - projection_1.GetFar()));
+    SetMatrix(MVP_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+    MVP_matrix.data[3][2] = -1.0;
+    MVP_matrix.data[3][3] = 0.0;
+
+    return MVP_matrix;
 }
 
-void GUIMyFrame1::Repaint3()
+void GUIMyFrame1::Repaint1()
 {
-    wxClientDC dc1(m_panel_3);
+    wxClientDC dc1(m_panel_1);
     wxBufferedDC dc(&dc1);
 
     dc.SetBackground(wxBrush(RGB(255, 255, 255)));
     dc.Clear();
+
+
+    Matrix4 projection_matrix= PerspectiveProjection();
+    
+    
+    
+    Vector4 v_begin, v_end;
+    wxColor color_line;
+    for (int i = 0; i < data_transformed.size(); i++)
+    {
+        v_begin.Set(data_transformed[i].begin.x, data_transformed[i].begin.y, data_transformed[i].begin.z);
+        v_end.Set(data_transformed[i].end.x, data_transformed[i].end.y, data_transformed[i].end.z);
+
+        color_line = wxColor(data_transformed[i].color.R, data_transformed[i].color.G, data_transformed[i].color.B);
+        dc.SetPen(color_line);
+
+        double barier = projection_1.GetNear();
+        if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
+        {
+        }
+        else
+        {
+            if ((v_begin.GetZ() > barier && v_end.GetZ() <= barier) || (v_end.GetZ() > barier && v_begin.GetZ() <= barier))
+            {
+                Vector4 v_in, v_out;
+                if (v_end.GetZ() <= barier)
+                {
+                    v_in = v_begin;
+                    v_out = v_end;
+                }
+                else
+                {
+                    v_in = v_end;
+                    v_out = v_begin;
+                }
+                double length = fabs((barier - v_out.GetZ() / (v_in.GetZ() - v_out.GetZ())));
+                v_out.Set(v_in.GetX() - v_out.GetX() * length + v_out.GetX(), v_in.GetY() - v_out.GetY() * length + v_out.GetY(), barier);
+
+                v_begin = v_out;
+                v_end = v_in;
+            }
+
+
+            v_begin = projection_matrix * v_begin;
+            v_end = projection_matrix * v_end;
+
+            v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
+            v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
+
+
+            dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
+                v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
+        }
+    }
+}
+
+void GUIMyFrame1::SetMatrix(Matrix4& matrix, Vector4& v_1, Vector4& v_2, Vector4& v_3, Vector4& v_4)//v_1 to v_4 are vertical vectors, this enable to easily set the matrix
+{
+    matrix.data[0][0] = v_1.GetX();
+    matrix.data[1][0] = v_1.GetY();
+    matrix.data[2][0] = v_1.GetZ();
+    matrix.data[0][1] = v_2.GetX();
+    matrix.data[1][1] = v_2.GetY();
+    matrix.data[2][1] = v_2.GetZ();
+    matrix.data[0][2] = v_3.GetX();
+    matrix.data[1][2] = v_3.GetY();
+    matrix.data[2][2] = v_3.GetZ();
+    matrix.data[0][3] = v_4.GetX();
+    matrix.data[1][3] = v_4.GetY();
+    matrix.data[2][3] = v_4.GetZ();
+    matrix.data[3][3] = 1.0;
 }
 
 void GUIMyFrame1::RefreshPoints()
@@ -299,90 +274,148 @@ void GUIMyFrame1::RefreshPoints()
     Repaint3();
 }
 
-void GUIMyFrame1::SetMatrix(Matrix4& matrix, Vector4& v_1, Vector4& v_2, Vector4& v_3, Vector4& v_4)//v_1 to v_4 are vertical vectors, this enable to easily set the matrix
+void GUIMyFrame1::Repaint3()
 {
-    matrix.data[0][0] = v_1.GetX();
-    matrix.data[1][0] = v_1.GetY();
-    matrix.data[2][0] = v_1.GetZ();
-    matrix.data[0][1] = v_2.GetX();
-    matrix.data[1][1] = v_2.GetY();
-    matrix.data[2][1] = v_2.GetZ();
-    matrix.data[0][2] = v_3.GetX();
-    matrix.data[1][2] = v_3.GetY();
-    matrix.data[2][2] = v_3.GetZ();
-    matrix.data[0][3] = v_4.GetX();
-    matrix.data[1][3] = v_4.GetY();
-    matrix.data[2][3] = v_4.GetZ();
-    matrix.data[3][3] = 1.0;
-}
-
-void GUIMyFrame1::Repaint1()
-{
-    wxClientDC dc1(m_panel_1);
+    wxClientDC dc1(m_panel_3);
     wxBufferedDC dc(&dc1);
 
     dc.SetBackground(wxBrush(RGB(255, 255, 255)));
     dc.Clear();
+}
 
+void GUIMyFrame1::Repaint2()
+{
+    wxClientDC dc1(m_panel_2);
+    wxBufferedDC dc(&dc1);
+
+    dc.SetBackground(wxBrush(RGB(255, 255, 255)));
+    dc.Clear();
+}
+
+Matrix4  GUIMyFrame1::OrthogonalProjection()
+{
     Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
-    Matrix4 MVP_matrix;
-    double panel_x = m_panel_1->GetSize().x, panel_y = m_panel_1->GetSize().y;
+    Matrix4 Orthogonal_matrix;
 
-    set_matrix_v_1.Set(2.0*projection_1.GetNear()/(projection_1.GetRight()- projection_1.GetLeft()), 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 2.0 * projection_1.GetNear() / (projection_1.GetTop() - projection_1.GetBottom()), 0.0);
-    set_matrix_v_3.Set((projection_1.GetRight() + projection_1.GetLeft()) / (projection_1.GetRight() - projection_1.GetLeft()),
-                        (projection_1.GetTop() + projection_1.GetBottom())/ (projection_1.GetTop() - projection_1.GetBottom()), 
-                        (projection_1.GetFar() + projection_1.GetNear())/ (projection_1.GetNear() - projection_1.GetFar()));
-    set_matrix_v_4.Set(0.0, 0.0, 2.0 * projection_1.GetNear() * projection_1.GetFar() /(projection_1.GetNear() - projection_1.GetFar()));
-    SetMatrix(MVP_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-    MVP_matrix.data[3][2] = -1.0;
-    MVP_matrix.data[3][3] = 0.0;
-    Vector4 v_begin, v_end;
-    wxColor color_line;
-    for (int i = 0; i < data_transformed.size(); i++)
-    {
-        v_begin.Set(data_transformed[i].begin.x, data_transformed[i].begin.y, data_transformed[i].begin.z);
-        v_end.Set(data_transformed[i].end.x, data_transformed[i].end.y, data_transformed[i].end.z);
+    set_matrix_v_1.Set(2.0 / (projection_1.GetRight() - projection_1.GetLeft()), 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 2.0 / (projection_1.GetTop() - projection_1.GetBottom()), 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, -2.0 / (projection_1.GetFar() - projection_1.GetNear()));
+    set_matrix_v_4.Set( -1.0*(projection_1.GetRight() + projection_1.GetLeft()) / (projection_1.GetRight() - projection_1.GetLeft()),
+                        -1.0 * (projection_1.GetTop() + projection_1.GetBottom()) / (projection_1.GetTop() - projection_1.GetBottom()),
+                        -1.0 * (projection_1.GetFar() + projection_1.GetNear()) / (projection_1.GetFar() - projection_1.GetNear()));
+    
+    SetMatrix(Orthogonal_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
 
-        color_line = wxColor(data_transformed[i].color.R, data_transformed[i].color.G, data_transformed[i].color.B);
-        dc.SetPen(color_line);
+    return Orthogonal_matrix;
+}
 
-        double barier = projection_1.GetNear();
-        if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
-        {
-        }
-        else
-        {
-            if ((v_begin.GetZ() > barier && v_end.GetZ() <= barier) || (v_end.GetZ() > barier && v_begin.GetZ() <= barier))
-            {
-                Vector4 v_in, v_out;
-                if (v_end.GetZ() <= barier)
-                {
-                    v_in = v_begin;
-                    v_out = v_end;
-                }
-                else
-                {
-                    v_in = v_end;
-                    v_out = v_begin;
-                }
-                double length = fabs((barier - v_out.GetZ() / (v_in.GetZ() - v_out.GetZ())));
-                v_out.Set(v_in.GetX() - v_out.GetX() * length + v_out.GetX(), v_in.GetY() - v_out.GetY() * length + v_out.GetY(), barier);
+Matrix4 GUIMyFrame1::LookAt()
+{
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    Matrix4 Look_at_matrix;
 
-                v_begin = v_out;
-                v_end = v_in;
-            }
+    return Look_at_matrix;
+}
 
 
-            v_begin = MVP_matrix * v_begin;
-            v_end = MVP_matrix * v_end;
+void GUIMyFrame1::ReadProjectionData1()
+{
+    double coor_x, coor_y, coor_z;
+    m_textCtrl_VRP_x_1->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VRP_y_1->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VRP_z_1->GetValue().ToDouble(&coor_z);
+    projection_1.vec_VRP.Set(coor_x, coor_y, coor_z);
 
-            v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
-            v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
+    m_textCtrl_VPN_x_1->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VPN_y_1->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VPN_z_1->GetValue().ToDouble(&coor_z);
+    projection_1.vec_VPN.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VUP_x_1->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VUP_y_1->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VUP_z_1->GetValue().ToDouble(&coor_z);
+    projection_1.vec_VUP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_PRP_x_1->GetValue().ToDouble(&coor_x);
+    m_textCtrl_PRP_y_1->GetValue().ToDouble(&coor_y);
+    m_textCtrl_PRP_z_1->GetValue().ToDouble(&coor_z);
+    projection_1.vec_PRP.Set(coor_x, coor_y, coor_z);
 
 
-            dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
-                v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
-        }
-    }
+    m_textCtrl_window_u_start_1->GetValue().ToDouble(&projection_1.window_size.x_begin);
+    m_textCtrl_window_u_stop_1->GetValue().ToDouble(&projection_1.window_size.x_end);
+    m_textCtrl_window_v_start_1->GetValue().ToDouble(&projection_1.window_size.y_begin);
+    m_textCtrl_window_v_stop_1->GetValue().ToDouble(&projection_1.window_size.y_end);
+
+
+    m_textCtrl_Front_1->GetValue().ToDouble(&projection_1.front);
+    m_textCtrl_Back_1->GetValue().ToDouble(&projection_1.back);
+}
+
+void GUIMyFrame1::ReadProjectionData2()
+{
+    double coor_x, coor_y, coor_z;
+    m_textCtrl_VRP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VRP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VRP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VRP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VPN_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VPN_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VPN_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VPN.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VUP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VUP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VUP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VUP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_PRP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_PRP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_PRP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_PRP.Set(coor_x, coor_y, coor_z);
+
+
+    m_textCtrl_window_u_start_2->GetValue().ToDouble(&projection_2.window_size.x_begin);
+    m_textCtrl_window_u_stop_2->GetValue().ToDouble(&projection_2.window_size.x_end);
+    m_textCtrl_window_v_start_2->GetValue().ToDouble(&projection_2.window_size.y_begin);
+    m_textCtrl_window_v_stop_2->GetValue().ToDouble(&projection_2.window_size.y_end);
+
+
+    m_textCtrl_Front_2->GetValue().ToDouble(&projection_2.front);
+    m_textCtrl_Back_2->GetValue().ToDouble(&projection_2.back);
+}
+
+void GUIMyFrame1::ReadProjectionData3()
+{
+    double coor_x, coor_y, coor_z;
+    m_textCtrl_VRP_x_3->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VRP_y_3->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VRP_z_3->GetValue().ToDouble(&coor_z);
+    projection_3.vec_VRP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VPN_x_3->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VPN_y_3->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VPN_z_3->GetValue().ToDouble(&coor_z);
+    projection_3.vec_VPN.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_VUP_x_3->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VUP_y_3->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VUP_z_3->GetValue().ToDouble(&coor_z);
+    projection_3.vec_VUP.Set(coor_x, coor_y, coor_z);
+
+    m_textCtrl_PRP_x_3->GetValue().ToDouble(&coor_x);
+    m_textCtrl_PRP_y_3->GetValue().ToDouble(&coor_y);
+    m_textCtrl_PRP_z_3->GetValue().ToDouble(&coor_z);
+    projection_3.vec_PRP.Set(coor_x, coor_y, coor_z);
+
+
+    m_textCtrl_window_u_start_3->GetValue().ToDouble(&projection_3.window_size.x_begin);
+    m_textCtrl_window_u_stop_3->GetValue().ToDouble(&projection_3.window_size.x_end);
+    m_textCtrl_window_v_start_3->GetValue().ToDouble(&projection_3.window_size.y_begin);
+    m_textCtrl_window_v_stop_3->GetValue().ToDouble(&projection_3.window_size.y_end);
+
+
+    m_textCtrl_Front_3->GetValue().ToDouble(&projection_3.front);
+    m_textCtrl_Back_3->GetValue().ToDouble(&projection_3.back);
 }
