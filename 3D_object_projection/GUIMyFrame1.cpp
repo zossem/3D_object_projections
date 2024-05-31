@@ -98,17 +98,17 @@ RefreshPoints();
 }
 
 
-Matrix4  GUIMyFrame1::PerspectiveProjection()
+Matrix4  GUIMyFrame1::PerspectiveProjection(const ProjectionParameters& projection)
 {
     Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
     Matrix4 MVP_matrix;
 
-    set_matrix_v_1.Set(2.0 * projection_1.GetNear() / (projection_1.GetRight() - projection_1.GetLeft()), 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 2.0 * projection_1.GetNear() / (projection_1.GetTop() - projection_1.GetBottom()), 0.0);
-    set_matrix_v_3.Set( (projection_1.GetRight() + projection_1.GetLeft()) / (projection_1.GetRight() - projection_1.GetLeft()),
-                        (projection_1.GetTop() + projection_1.GetBottom()) / (projection_1.GetTop() - projection_1.GetBottom()),
-                        (projection_1.GetFar() + projection_1.GetNear()) / (projection_1.GetNear() - projection_1.GetFar()));
-    set_matrix_v_4.Set(0.0, 0.0, 2.0 * projection_1.GetNear() * projection_1.GetFar() / (projection_1.GetNear() - projection_1.GetFar()));
+    set_matrix_v_1.Set(2.0 * projection.GetNear() / (projection.GetRight() - projection.GetLeft()), 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 2.0 * projection.GetNear() / (projection.GetTop() - projection.GetBottom()), 0.0);
+    set_matrix_v_3.Set( (projection.GetRight() + projection.GetLeft()) / (projection.GetRight() - projection.GetLeft()),
+                        (projection.GetTop() + projection.GetBottom()) / (projection.GetTop() - projection.GetBottom()),
+                        (projection.GetFar() + projection.GetNear()) / (projection.GetNear() - projection.GetFar()));
+    set_matrix_v_4.Set(0.0, 0.0, 2.0 * projection.GetNear() * projection.GetFar() / (projection.GetNear() - projection.GetFar()));
     SetMatrix(MVP_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
     MVP_matrix.data[3][2] = -1.0;
     MVP_matrix.data[3][3] = 0.0;
@@ -125,7 +125,7 @@ void GUIMyFrame1::Repaint1()
     dc.Clear();
 
 
-    Matrix4 projection_matrix= PerspectiveProjection();
+    Matrix4 projection_matrix= PerspectiveProjection(projection_1);
     
     
     
@@ -292,26 +292,27 @@ void GUIMyFrame1::Repaint2()
     dc.Clear();
 }
 
-Matrix4  GUIMyFrame1::OrthogonalProjection()
+Matrix4  GUIMyFrame1::OrthogonalProjection(const ProjectionParameters& projection)
 {
     Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
     Matrix4 Orthogonal_matrix;
 
-    set_matrix_v_1.Set(2.0 / (projection_1.GetRight() - projection_1.GetLeft()), 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 2.0 / (projection_1.GetTop() - projection_1.GetBottom()), 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, -2.0 / (projection_1.GetFar() - projection_1.GetNear()));
-    set_matrix_v_4.Set( -1.0*(projection_1.GetRight() + projection_1.GetLeft()) / (projection_1.GetRight() - projection_1.GetLeft()),
-                        -1.0 * (projection_1.GetTop() + projection_1.GetBottom()) / (projection_1.GetTop() - projection_1.GetBottom()),
-                        -1.0 * (projection_1.GetFar() + projection_1.GetNear()) / (projection_1.GetFar() - projection_1.GetNear()));
+    set_matrix_v_1.Set(2.0 / (projection.GetRight() - projection.GetLeft()), 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 2.0 / (projection.GetTop() - projection.GetBottom()), 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, -2.0 / (projection.GetFar() - projection.GetNear()));
+    set_matrix_v_4.Set( -1.0*(projection.GetRight() + projection.GetLeft()) / (projection.GetRight() - projection.GetLeft()),
+                        -1.0 * (projection.GetTop() + projection.GetBottom()) / (projection.GetTop() - projection.GetBottom()),
+                        -1.0 * (projection.GetFar() + projection.GetNear()) / (projection.GetFar() - projection.GetNear()));
     
     SetMatrix(Orthogonal_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
 
     return Orthogonal_matrix;
 }
 
-Matrix4 GUIMyFrame1::LookAt()
+Matrix4 GUIMyFrame1::LookAt(const ProjectionParameters& projection)
 {
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    Vector4 eye = projection.vec_PRP;
+    Vector4 v_X, v_Y, v_Z, v_W; //vectors to set matrix
     Matrix4 Look_at_matrix;
 
     return Look_at_matrix;

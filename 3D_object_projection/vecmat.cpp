@@ -10,17 +10,17 @@ void Vector4::Set(double x,double y,double z)
  data[0]=x; data[1]=y; data[2]=z;
 }
 
-double Vector4::GetX()
+double Vector4::GetX() const
 {
 	return data[0];
 }
 
-double Vector4::GetY()
+double Vector4::GetY() const
 {
 	return data[1];
 }
 
-double Vector4::GetZ()
+double Vector4::GetZ() const
 {
 	return data[2];
 }

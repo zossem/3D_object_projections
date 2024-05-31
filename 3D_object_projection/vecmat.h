@@ -7,9 +7,9 @@ class Vector4
  double data[4];
  Vector4();
  void Set(double x,double y,double z);
- double GetX();
- double GetY();
- double GetZ();
+ double GetX() const;
+ double GetY() const;
+ double GetZ() const;
  Vector4 operator-(const Vector4 &);
  friend Vector4 operator*(const Vector4 &,double);
 };

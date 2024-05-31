@@ -50,12 +50,12 @@ double front;
 double back;
 Window window_size;
 
-double GetRight() { return window_size.x_end - vec_VRP.GetX(); }
-double GetLeft() { return window_size.x_begin - vec_VRP.GetX(); }
-double GetTop() { return window_size.y_end - vec_VRP.GetY(); }
-double GetBottom() { return window_size.y_begin - vec_VRP.GetY(); }
-double GetNear() { return vec_PRP.GetZ() - vec_VRP.GetZ() - front; }
-double GetFar() { return vec_PRP.GetZ() - vec_VRP.GetZ() - back; }
+double GetRight() const { return window_size.x_end - vec_VRP.GetX(); }
+double GetLeft() const { return window_size.x_begin - vec_VRP.GetX(); }
+double GetTop() const { return window_size.y_end - vec_VRP.GetY(); }
+double GetBottom() const { return window_size.y_begin - vec_VRP.GetY(); }
+double GetNear() const { return vec_PRP.GetZ() - vec_VRP.GetZ() - front; }
+double GetFar() const { return vec_PRP.GetZ() - vec_VRP.GetZ() - back; }
 };
 
 
@@ -86,9 +86,9 @@ class GUIMyFrame1 : public MyFrame1
 		void ReadProjectionData2();
 		void ReadProjectionData3();
 
-		Matrix4 PerspectiveProjection();
-		Matrix4 OrthogonalProjection();
-		Matrix4 LookAt();
+		Matrix4 PerspectiveProjection(const ProjectionParameters & projection);
+		Matrix4 OrthogonalProjection(const ProjectionParameters & projection);
+		Matrix4 LookAt(const ProjectionParameters& projection);
 
 		std::vector<Segment> data;
 		std::vector<Segment> data_transformed;
