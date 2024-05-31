@@ -1,4 +1,5 @@
 ﻿#include "vecmat.h"
+#include <cmath>
 
 Vector4::Vector4()
 {
@@ -23,6 +24,30 @@ double Vector4::GetY() const
 double Vector4::GetZ() const
 {
 	return data[2];
+}
+
+double Vector4::GetLength() const
+{
+    return sqrt(GetX() * GetX() + GetY() * GetY() + GetZ() * GetZ());
+}
+
+void  Vector4::Normalize()
+{
+    Set(GetX() / GetLength(), GetY() / GetLength(), GetZ() / GetLength());
+}
+
+double Vector4::ScalarMultiplication(const Vector4& vec_b) const
+{
+    double product;
+    product = (GetX() * vec_b.GetX() + GetY() * vec_b.GetY() + GetZ() * vec_b.GetZ());
+    return product;
+}
+
+Vector4 Vector4::VectorMultiplication(const Vector4& vec_b) const
+{
+    Vector4 product;
+    product.Set(GetY() * vec_b.GetZ() - GetZ() * vec_b.GetY(), GetZ() * vec_b.GetX() - GetX() * vec_b.GetZ(), GetX() * vec_b.GetY() - GetY() * vec_b.GetX());
+    return product;
 }
 
 Vector4 Vector4::operator- (const Vector4 &gVector)

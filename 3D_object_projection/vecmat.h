@@ -10,6 +10,10 @@ class Vector4
  double GetX() const;
  double GetY() const;
  double GetZ() const;
+ double GetLength() const;
+ void Normalize();
+ double ScalarMultiplication(const Vector4& vec_b) const;
+ Vector4 VectorMultiplication(const Vector4& vec_b) const;
  Vector4 operator-(const Vector4 &);
  friend Vector4 operator*(const Vector4 &,double);
 };
