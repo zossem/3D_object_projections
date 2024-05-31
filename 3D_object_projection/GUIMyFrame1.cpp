@@ -126,7 +126,7 @@ void GUIMyFrame1::Repaint1()
 
 
     Matrix4 projection_matrix= PerspectiveProjection(projection_1);
-    
+    //Matrix4 view_matrix = LookAt(projection_1);
     
     
     Vector4 v_begin, v_end;
@@ -165,9 +165,14 @@ void GUIMyFrame1::Repaint1()
                 v_end = v_in;
             }
 
+            
+            //v_begin = view_matrix * v_begin;
+            //v_end = view_matrix * v_end;
 
             v_begin = projection_matrix * v_begin;
             v_end = projection_matrix * v_end;
+
+            
 
             v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
             v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
@@ -311,9 +316,26 @@ Matrix4  GUIMyFrame1::OrthogonalProjection(const ProjectionParameters& projectio
 
 Matrix4 GUIMyFrame1::LookAt(const ProjectionParameters& projection)
 {
-    Vector4 eye = projection.vec_PRP;
     Vector4 v_X, v_Y, v_Z, v_W; //vectors to set matrix
     Matrix4 Look_at_matrix;
+
+    v_Z = projection.vec_VPN;
+    v_Y = projection.vec_VUP;
+
+    v_Z.Normalize();
+
+    v_X = v_Y.VectorMultiplication(v_Z);
+    v_Y = v_Z.VectorMultiplication(v_X);
+
+    v_X.Normalize();
+    v_Y.Normalize();
+    v_W.Set(0.0, 0.0, 0.0);
+    SetMatrix(Look_at_matrix, v_X, v_Y, v_Z, v_W);
+
+
+    Look_at_matrix.data[3][0] = -1.0 * v_X.ScalarMultiplication(projection.vec_PRP);
+    Look_at_matrix.data[3][1] = -1.0 * v_Y.ScalarMultiplication(projection.vec_PRP);
+    Look_at_matrix.data[3][2] = -1.0 * v_Z.ScalarMultiplication(projection.vec_PRP);
 
     return Look_at_matrix;
 }
