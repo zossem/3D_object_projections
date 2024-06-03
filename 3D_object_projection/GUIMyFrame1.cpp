@@ -373,6 +373,18 @@ void GUIMyFrame1::ReadProjectionData1()
 
     m_textCtrl_Front_1->GetValue().ToDouble(&projection_1.front);
     m_textCtrl_Back_1->GetValue().ToDouble(&projection_1.back);
+
+
+    if (!projection_1.SetCenter(this))
+    {
+        m_textCtrl_VPN_x_1->SetValue("1.0");
+        m_textCtrl_VPN_y_1->SetValue("1.0");
+        m_textCtrl_VPN_z_1->SetValue("1.0");
+
+        projection_1.vec_VPN.Set(1.0, 1.0, 1.0);
+
+        projection_1.SetCenter(this);
+    }
 }
 
 void GUIMyFrame1::ReadProjectionData2()
@@ -407,6 +419,17 @@ void GUIMyFrame1::ReadProjectionData2()
 
     m_textCtrl_Front_2->GetValue().ToDouble(&projection_2.front);
     m_textCtrl_Back_2->GetValue().ToDouble(&projection_2.back);
+
+    if (!projection_2.SetCenter(this))
+    {
+        m_textCtrl_VPN_x_2->SetValue("1.0");
+        m_textCtrl_VPN_y_2->SetValue("1.0");
+        m_textCtrl_VPN_z_2->SetValue("1.0");
+
+        projection_2.vec_VPN.Set(1.0, 1.0, 1.0);
+
+        projection_2.SetCenter(this);
+    }
 }
 
 void GUIMyFrame1::ReadProjectionData3()
@@ -441,4 +464,73 @@ void GUIMyFrame1::ReadProjectionData3()
 
     m_textCtrl_Front_3->GetValue().ToDouble(&projection_3.front);
     m_textCtrl_Back_3->GetValue().ToDouble(&projection_3.back);
+
+    if (!projection_3.SetCenter(this))
+    {
+        m_textCtrl_VPN_x_3->SetValue("1.0");
+        m_textCtrl_VPN_y_3->SetValue("1.0");
+        m_textCtrl_VPN_z_3->SetValue("1.0");
+
+        projection_3.vec_VPN.Set(1.0, 1.0, 1.0);
+
+        projection_3.SetCenter(this);
+    }
+}
+
+
+bool ProjectionParameters::SetCenter(GUIMyFrame1 * frame)
+{
+    double divisor = vec_VPN.ScalarMultiplication(vec_VPN);
+    if (divisor == 0)
+    {
+        wxString error_message = wxString::Format(_(wxT("Nie można ustawić zerowego wketora decydującego o kierunku rzutowania.")));
+        wxMessageBox(error_message, _("GFK projekt 39 Error"), wxOK | wxICON_ERROR, frame);
+        return false;
+    }
+    else
+    {
+        double par_D = -1.0 * (vec_VPN.ScalarMultiplication(vec_VRP));
+        double par_E = vec_VPN.ScalarMultiplication(vec_PRP);
+        double par_t = -1.0 * (par_D + par_E) / (divisor);
+
+        double center_x = vec_PRP.GetX() + vec_VPN.GetX() * par_t;
+        double center_y = vec_PRP.GetY() + vec_VPN.GetY() * par_t;
+        double center_z = vec_PRP.GetZ() + vec_VPN.GetZ() * par_t;
+        
+
+        vec_center_camera.Set(center_x, center_y, center_z);
+
+        return true;
+    }   
+    
+}
+
+double ProjectionParameters::GetRight() const
+{ 
+    return window_size.x_end - vec_VRP.GetX(); 
+}
+
+double ProjectionParameters::GetLeft() const 
+{ 
+    return window_size.x_begin - vec_VRP.GetX(); 
+}
+
+double ProjectionParameters::GetTop() const 
+{ 
+    return window_size.y_end - vec_VRP.GetY(); 
+}
+
+double ProjectionParameters::GetBottom() const 
+{ 
+    return window_size.y_begin - vec_VRP.GetY(); 
+}
+
+double ProjectionParameters::GetNear() const 
+{ 
+    return vec_PRP.GetZ() - vec_VRP.GetZ() - front; 
+}
+
+double ProjectionParameters::GetFar() const 
+{ 
+    return vec_PRP.GetZ() - vec_VRP.GetZ() - back; 
 }
