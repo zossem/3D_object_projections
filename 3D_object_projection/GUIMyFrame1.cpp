@@ -253,6 +253,7 @@ void GUIMyFrame1::RefreshPoints()
     double Tz = 1.0 + ((WxSB_TranslationZ->GetValue() - 100.0) / 50.0);
 
     Vector4 v_begin, v_end;
+    //obcinanie linii
     data_transformed.clear();
     for (int i = 0; i < data.size(); i++)
     {
