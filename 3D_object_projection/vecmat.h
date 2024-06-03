@@ -14,7 +14,7 @@ class Vector4
  void Normalize();
  double ScalarMultiplication(const Vector4& vec_b) const;
  Vector4 VectorMultiplication(const Vector4& vec_b) const;
- Vector4 operator-(const Vector4 &);
+ Vector4 operator-(const Vector4 &) const;
  friend Vector4 operator*(const Vector4 &,double);
 };
 

@@ -54,7 +54,7 @@ double back;
 Window window_size;
 Vector4 vec_center_camera;
 
-bool SetCenter(GUIMyFrame1* frame);
+bool SetCenter(GUIMyFrame1* frame); //returns true if center is succesfully counted
 double GetRight() const;
 double GetLeft() const;
 double GetTop() const;

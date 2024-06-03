@@ -218,7 +218,7 @@ void GUIMyFrame1::RefreshPoints()
     Matrix4 scale_matrix_to_window;
     scale_matrix_to_window.data[0][0] = m_panel_1->GetSize().x / 2.0;
     scale_matrix_to_window.data[1][1] = m_panel_1->GetSize().y / 2.0;
-    scale_matrix_to_window.data[2][2] = 1.0;
+    scale_matrix_to_window.data[2][2] = 0.8;
     scale_matrix_to_window.data[3][3] = 1.0;
 
 
@@ -507,30 +507,60 @@ bool ProjectionParameters::SetCenter(GUIMyFrame1 * frame)
 
 double ProjectionParameters::GetRight() const
 { 
-    return window_size.x_end - vec_VRP.GetX(); 
+    Vector4 vec_up = vec_VUP;
+    vec_up.Normalize();
+
+    Vector4 vec_VRP_center = vec_center_camera - vec_VRP;
+
+    double move_right = vec_VRP_center.ScalarMultiplication(vec_up);
+
+    return window_size.x_end - move_right;
+
 }
 
 double ProjectionParameters::GetLeft() const 
 { 
-    return window_size.x_begin - vec_VRP.GetX(); 
+    Vector4 vec_up = vec_VUP;
+    vec_up.Normalize();
+
+    Vector4 vec_VRP_center = vec_center_camera - vec_VRP;
+
+    double move_right = vec_VRP_center.ScalarMultiplication(vec_up);
+
+    return -1.0 * (move_right - window_size.x_begin);
 }
 
 double ProjectionParameters::GetTop() const 
 { 
-    return window_size.y_end - vec_VRP.GetY(); 
+    Vector4 vec_right = vec_VUP.VectorMultiplication(vec_VPN);
+    vec_right.Normalize();
+
+    Vector4 vec_VRP_center = vec_center_camera - vec_VRP;
+
+    double move_up = vec_VRP_center.ScalarMultiplication(vec_right);
+
+    return window_size.y_end - move_up;
 }
 
 double ProjectionParameters::GetBottom() const 
 { 
-    return window_size.y_begin - vec_VRP.GetY(); 
+    Vector4 vec_right = vec_VUP.VectorMultiplication(vec_VPN);
+    vec_right.Normalize();
+
+    Vector4 vec_VRP_center = vec_center_camera - vec_VRP;
+
+    double move_up = vec_VRP_center.ScalarMultiplication(vec_right);
+
+    return -1.0 * (move_up - window_size.y_begin);
 }
 
 double ProjectionParameters::GetNear() const 
 { 
-    return vec_PRP.GetZ() - vec_VRP.GetZ() - front; 
+    Vector4 window_camera = vec_PRP - vec_center_camera;
+    return window_camera.GetLength();
 }
 
 double ProjectionParameters::GetFar() const 
-{ 
-    return vec_PRP.GetZ() - vec_VRP.GetZ() - back; 
+{
+    return GetNear() - back;
 }

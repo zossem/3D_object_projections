@@ -50,7 +50,7 @@ Vector4 Vector4::VectorMultiplication(const Vector4& vec_b) const
     return product;
 }
 
-Vector4 Vector4::operator- (const Vector4 &gVector)
+Vector4 Vector4::operator- (const Vector4 &gVector) const
 {
  unsigned int i;
  Vector4 Result;
