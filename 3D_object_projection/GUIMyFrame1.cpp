@@ -29,6 +29,30 @@ RefreshPoints();
 void GUIMyFrame1::Choice_Projection_1( wxCommandEvent& event )
 {
 // TODO: Implement Choice_Projection_1
+    int selection = m_choice_projection_1->GetSelection();
+    switch (selection)
+    {
+    case 0:
+        PerspectiveProjection(projection_1);
+        break;
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    case 6:
+        OrthogonalProjection(projection_1);
+        break;
+    case 7:
+        break;
+    case 8:
+        break;
+    }
 }
 
 void GUIMyFrame1::Text_Update_1( wxCommandEvent& event )
@@ -253,7 +277,6 @@ void GUIMyFrame1::RefreshPoints()
     double Tz = 1.0 + ((WxSB_TranslationZ->GetValue() - 100.0) / 50.0);
 
     Vector4 v_begin, v_end;
-    //obcinanie linii
     data_transformed.clear();
     for (int i = 0; i < data.size(); i++)
     {
