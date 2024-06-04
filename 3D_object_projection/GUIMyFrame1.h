@@ -73,6 +73,7 @@ class GUIMyFrame1 : public MyFrame1
 		void Text_Update_3( wxCommandEvent& event );
 		void m_button_load_geometry_click( wxCommandEvent& event );
 		void Scrolls_Updated( wxScrollEvent& event );
+		
 	public:
 		/** Constructor */
 		GUIMyFrame1( wxWindow* parent );
@@ -96,6 +97,8 @@ class GUIMyFrame1 : public MyFrame1
 		ProjectionParameters projection_1;
 		ProjectionParameters projection_2;
 		ProjectionParameters projection_3;
+
+
 
 
 };

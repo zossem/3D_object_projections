@@ -26,33 +26,10 @@ void GUIMyFrame1::WxPanel_Repaint( wxUpdateUIEvent& event )
 RefreshPoints();
 }
 
+
 void GUIMyFrame1::Choice_Projection_1( wxCommandEvent& event )
 {
-// TODO: Implement Choice_Projection_1
-    int selection = m_choice_projection_1->GetSelection();
-    switch (selection)
-    {
-    case 0:
-        PerspectiveProjection(projection_1);
-        break;
-    case 1:
-        break;
-    case 2:
-        break;
-    case 3:
-        break;
-    case 4:
-        break;
-    case 5:
-        break;
-    case 6:
-        OrthogonalProjection(projection_1);
-        break;
-    case 7:
-        break;
-    case 8:
-        break;
-    }
+
 }
 
 void GUIMyFrame1::Text_Update_1( wxCommandEvent& event )
@@ -62,7 +39,6 @@ ReadProjectionData1();
 
 void GUIMyFrame1::Choice_Projection_2( wxCommandEvent& event )
 {
-// TODO: Implement Choice_Projection_2
 }
 
 void GUIMyFrame1::Text_Update_2( wxCommandEvent& event )
@@ -72,7 +48,6 @@ ReadProjectionData2();
 
 void GUIMyFrame1::Choice_Projection_3( wxCommandEvent& event )
 {
-// TODO: Implement Choice_Projection_3
 }
 
 void GUIMyFrame1::Text_Update_3( wxCommandEvent& event )
@@ -149,7 +124,33 @@ void GUIMyFrame1::Repaint1()
     dc.Clear();
 
 
-    Matrix4 projection_matrix= PerspectiveProjection(projection_1);
+    Matrix4 projection_matrix;
+
+    int selection = m_choice_projection_1->GetSelection();
+    switch (selection)
+    {
+    case 0:
+        projection_matrix = PerspectiveProjection(projection_1);
+        break;
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    case 6:
+        projection_matrix = OrthogonalProjection(projection_1);
+        break;
+    case 7:
+        break;
+    case 8:
+        break;
+    }
+
     //Matrix4 view_matrix = LookAt(projection_1);
     
     
