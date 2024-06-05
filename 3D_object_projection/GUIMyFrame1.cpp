@@ -314,6 +314,46 @@ Matrix4  GUIMyFrame1::OrthogonalProjection(const ProjectionParameters& projectio
     return Orthogonal_matrix;
 }
 
+Matrix4 GUIMyFrame1::AxonometricProjection(const ProjectionParameters& projection)
+{
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    Matrix4 Axonometric_matrix;
+
+
+    set_matrix_v_1.Set((projection.GetRight() - projection.GetLeft()) / 2.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, (projection.GetTop() - projection.GetBottom()) / 2.0, 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, (projection.GetFar() - projection.GetNear()) / -1.0);
+    set_matrix_v_4.Set((projection.GetRight() + projection.GetLeft()) / 2.0,
+        (projection.GetTop() + projection.GetBottom()) / 2.0,
+        -4.0 * (projection.GetFar() - 10.0 + projection.GetNear()) / 1.0);
+
+    SetMatrix(Axonometric_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    //rotate
+    double Rx = -30.0 * M_PI / 180.0;
+    double Ry = -45.0 * M_PI / 180.0;
+
+    Matrix4 rotation_X, rotation_Y;
+
+    set_matrix_v_1.Set(1.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, cos(Rx), sin(Rx));
+    set_matrix_v_3.Set(0.0, -sin(Rx), cos(Rx));
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(rotation_X, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    set_matrix_v_1.Set(cos(Ry), 0.0, -sin(Ry));
+    set_matrix_v_2.Set(0.0, 1.0, 0.0);
+    set_matrix_v_3.Set(sin(Ry), 0.0, cos(Ry));
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(rotation_Y, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    Matrix4 t = rotation_X * rotation_Y;
+
+    Axonometric_matrix = t * Axonometric_matrix;
+
+    return Axonometric_matrix;
+}
+
 Matrix4 GUIMyFrame1::LookAt(const ProjectionParameters& projection)
 {
     Vector4 v_X, v_Y, v_Z, v_W; //vectors to set matrix
