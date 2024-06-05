@@ -93,6 +93,9 @@ class GUIMyFrame1 : public MyFrame1
 
 		Matrix4 PerspectiveProjection(const ProjectionParameters & projection);
 		Matrix4 OrthogonalProjection(const ProjectionParameters & projection);
+		Matrix4 OrthogonalProjectionUp(const ProjectionParameters& projection);
+		Matrix4 OrthogonalProjectionDown(const ProjectionParameters& projection);
+		Matrix4 OrthogonalProjectionFront(const ProjectionParameters& projection);
 		Matrix4 LookAt(const ProjectionParameters& projection);
 
 		std::vector<Segment> data;

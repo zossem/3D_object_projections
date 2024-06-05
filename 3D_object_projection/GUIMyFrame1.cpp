@@ -125,7 +125,8 @@ void GUIMyFrame1::Repaint1()
     dc.Clear();
 
 
-    Matrix4 projection_matrix= PerspectiveProjection(projection_1);
+    //Matrix4 projection_matrix= PerspectiveProjection(projection_1);
+    Matrix4 projection_matrix = OrthogonalProjectionDown(projection_1);
     //Matrix4 view_matrix = LookAt(projection_1);
     
     
@@ -314,6 +315,90 @@ Matrix4  GUIMyFrame1::OrthogonalProjection(const ProjectionParameters& projectio
     SetMatrix(Orthogonal_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
 
     return Orthogonal_matrix;
+}
+
+Matrix4 GUIMyFrame1::OrthogonalProjectionUp(const ProjectionParameters& projection)
+{
+    Matrix4 Orthogonal_matrix = OrthogonalProjection(projection);
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    double Rx = 90.0 / 180.0 * M_PI;
+    Matrix4 Rot_X_matrix;
+    set_matrix_v_1.Set(1.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, cos(Rx), sin(Rx));
+    set_matrix_v_3.Set(0.0, -sin(Rx), cos(Rx));
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Rot_X_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+
+    double Sz = m_panel_1->GetSize().y / 2.0;
+    Matrix4 Scale_matrix;
+    set_matrix_v_1.Set(1.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 1.0, 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, Sz);
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Scale_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    double Rz = 180.0 / 180.0 * M_PI;
+    Matrix4 Rot_Z_matrix;
+    set_matrix_v_1.Set(cos(Rz), sin(Rz), 0.0);
+    set_matrix_v_2.Set(-sin(Rz), cos(Rz), 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, 1.0);
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Rot_Z_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    Matrix4 Orthogonal_matrix_up =  Rot_X_matrix * Rot_Z_matrix * Orthogonal_matrix * Scale_matrix;
+
+    return Orthogonal_matrix_up;
+}
+Matrix4 GUIMyFrame1::OrthogonalProjectionDown(const ProjectionParameters& projection)
+{
+    Matrix4 Orthogonal_matrix = OrthogonalProjection(projection);
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    double Rx = -90.0 / 180.0 * M_PI;
+    Matrix4 Rot_X_matrix;
+    set_matrix_v_1.Set(1.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, cos(Rx), sin(Rx));
+    set_matrix_v_3.Set(0.0, -sin(Rx), cos(Rx));
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Rot_X_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+
+    double Sz = m_panel_1->GetSize().y / 2.0;
+    Matrix4 Scale_matrix;
+    set_matrix_v_1.Set(1.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 1.0, 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, Sz);
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Scale_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    double Rz = 180.0 / 180.0 * M_PI;
+    Matrix4 Rot_Z_matrix;
+    set_matrix_v_1.Set(cos(Rz), sin(Rz), 0.0);
+    set_matrix_v_2.Set(-sin(Rz), cos(Rz), 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, 1.0);
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Rot_Z_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    Matrix4 Orthogonal_matrix_down = Rot_X_matrix * Rot_Z_matrix * Orthogonal_matrix * Scale_matrix;
+
+    return Orthogonal_matrix_down;
+}
+Matrix4 GUIMyFrame1::OrthogonalProjectionFront(const ProjectionParameters& projection)
+{
+    Matrix4 Orthogonal_matrix = OrthogonalProjection(projection);
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+
+    double Rz = 180.0 / 180.0 * M_PI;
+    Matrix4 Rot_Z_matrix;
+    set_matrix_v_1.Set(cos(Rz), sin(Rz), 0.0);
+    set_matrix_v_2.Set(-sin(Rz), cos(Rz), 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, 1.0);
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Rot_Z_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    Matrix4 Orthogonal_matrix_front = Rot_Z_matrix * Orthogonal_matrix;
+
+    return Orthogonal_matrix_front;
 }
 
 Matrix4 GUIMyFrame1::LookAt(const ProjectionParameters& projection)
