@@ -156,6 +156,7 @@ void GUIMyFrame1::Repaint1()
     
     Vector4 v_begin, v_end;
     wxColor color_line;
+
     for (int i = 0; i < data_transformed.size(); i++)
     {
         v_begin.Set(data_transformed[i].begin.x, data_transformed[i].begin.y, data_transformed[i].begin.z);
@@ -164,9 +165,10 @@ void GUIMyFrame1::Repaint1()
         color_line = wxColor(data_transformed[i].color.R, data_transformed[i].color.G, data_transformed[i].color.B);
         dc.SetPen(color_line);
 
-        double barier = projection_1.GetNear();
+        double barier = 0;
         if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
         {
+            continue;
         }
         else
         {
