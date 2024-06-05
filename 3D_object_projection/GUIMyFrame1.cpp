@@ -28,7 +28,34 @@ RefreshPoints();
 
 void GUIMyFrame1::Choice_Projection_1( wxCommandEvent& event )
 {
-// TODO: Implement Choice_Projection_1
+    EnableProjectionData1();
+    projection_type selected_typ = static_cast<projection_type> (m_choice_projection_1->GetSelection());
+    switch (selected_typ)
+    {
+    case perspective:
+        break;
+    case axonometric_izo:
+        break;
+    case axonometric_any:
+        break;
+    case oblique_cabinet:
+        break;
+    case oblique_cavalier:
+        break;
+    case oblique_any:
+        break;
+    case ortogonal_front:
+        SetOrtogonalProjectionFrontData1();
+        break;
+    case ortogonal_up:
+        SetOrtogonalProjectionUpData1();
+        break;
+    case ortogonal_down:
+        SetOrtogonalProjectionDownData1();
+        break;
+    }
+
+    ReadProjectionData1();
 }
 
 void GUIMyFrame1::Text_Update_1( wxCommandEvent& event )
@@ -38,7 +65,34 @@ ReadProjectionData1();
 
 void GUIMyFrame1::Choice_Projection_2( wxCommandEvent& event )
 {
-// TODO: Implement Choice_Projection_2
+    EnableProjectionData2();
+    projection_type selected_typ = static_cast<projection_type> (m_choice_projection_2->GetSelection());
+    switch (selected_typ)
+    {
+    case perspective:
+        break;
+    case axonometric_izo:
+        break;
+    case axonometric_any:
+        break;
+    case oblique_cabinet:
+        break;
+    case oblique_cavalier:
+        break;
+    case oblique_any:
+        break;
+    case ortogonal_front:
+        SetOrtogonalProjectionFrontData2();
+        break;
+    case ortogonal_up:
+        SetOrtogonalProjectionUpData2();
+        break;
+    case ortogonal_down:
+        SetOrtogonalProjectionDownData2();
+        break;
+    }
+
+    ReadProjectionData2();
 }
 
 void GUIMyFrame1::Text_Update_2( wxCommandEvent& event )
@@ -48,7 +102,34 @@ ReadProjectionData2();
 
 void GUIMyFrame1::Choice_Projection_3( wxCommandEvent& event )
 {
-// TODO: Implement Choice_Projection_3
+    EnableProjectionData3();
+    projection_type selected_typ = static_cast<projection_type> (m_choice_projection_3->GetSelection());
+    switch (selected_typ)
+    {
+    case perspective:
+        break;
+    case axonometric_izo:
+        break;
+    case axonometric_any:
+        break;
+    case oblique_cabinet:
+        break;
+    case oblique_cavalier:
+        break;
+    case oblique_any:
+        break;
+    case ortogonal_front:
+        SetOrtogonalProjectionFrontData3();
+        break;
+    case ortogonal_up:
+        SetOrtogonalProjectionUpData3();
+        break;
+    case ortogonal_down:
+        SetOrtogonalProjectionDownData3();
+        break;
+    }
+
+    ReadProjectionData3();
 }
 
 void GUIMyFrame1::Text_Update_3( wxCommandEvent& event )
@@ -562,6 +643,401 @@ void GUIMyFrame1::ReadProjectionData3()
 
         projection_3.SetCenter(this);
     }
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionUpData1()
+{
+    m_textCtrl_VRP_x_1->SetValue("0.0");
+    m_textCtrl_VRP_x_1->Disable();
+    m_textCtrl_VRP_y_1->SetValue("1.0");
+    m_textCtrl_VRP_y_1->Disable();
+    m_textCtrl_VRP_z_1->SetValue("0.0");
+    m_textCtrl_VRP_z_1->Disable();
+    
+
+    m_textCtrl_VPN_y_1->SetValue("1.0");
+    m_textCtrl_VPN_y_1->Disable();
+    m_textCtrl_VPN_x_1->SetValue("0.0");
+    m_textCtrl_VPN_x_1->Disable();    
+    m_textCtrl_VPN_z_1->SetValue("0.0");
+    m_textCtrl_VPN_z_1->Disable();
+
+
+    m_textCtrl_VUP_x_1->SetValue("0.0");
+    m_textCtrl_VUP_x_1->Disable();
+    m_textCtrl_VUP_y_1->SetValue("0.0");
+    m_textCtrl_VUP_y_1->Disable();
+    m_textCtrl_VUP_z_1->SetValue("-1.0");
+    m_textCtrl_VUP_z_1->Disable();
+    
+
+    m_textCtrl_PRP_x_1->SetValue("0.0");
+    m_textCtrl_PRP_x_1->Disable();
+    m_textCtrl_PRP_y_1->SetValue("1.2");
+    m_textCtrl_PRP_y_1->Disable();
+    m_textCtrl_PRP_z_1->SetValue("1.0");
+    m_textCtrl_PRP_z_1->Disable();
+}
+void GUIMyFrame1::SetOrtogonalProjectionUpData2()
+{
+    m_textCtrl_VRP_x_2->SetValue("0.0");
+    m_textCtrl_VRP_x_2->Disable();
+    m_textCtrl_VRP_y_2->SetValue("1.0");
+    m_textCtrl_VRP_y_2->Disable();
+    m_textCtrl_VRP_z_2->SetValue("0.0");
+    m_textCtrl_VRP_z_2->Disable();
+
+
+    m_textCtrl_VPN_y_2->SetValue("1.0");
+    m_textCtrl_VPN_y_2->Disable();
+    m_textCtrl_VPN_x_2->SetValue("0.0");
+    m_textCtrl_VPN_x_2->Disable();    
+    m_textCtrl_VPN_z_2->SetValue("0.0");
+    m_textCtrl_VPN_z_2->Disable();
+
+
+    m_textCtrl_VUP_x_2->SetValue("0.0");
+    m_textCtrl_VUP_x_2->Disable();
+    m_textCtrl_VUP_y_2->SetValue("0.0");
+    m_textCtrl_VUP_y_2->Disable();
+    m_textCtrl_VUP_z_2->SetValue("-1.0");
+    m_textCtrl_VUP_z_2->Disable();
+
+
+    m_textCtrl_PRP_x_2->SetValue("0.0");
+    m_textCtrl_PRP_x_2->Disable();
+    m_textCtrl_PRP_y_2->SetValue("1.2");
+    m_textCtrl_PRP_y_2->Disable();
+    m_textCtrl_PRP_z_2->SetValue("1.0");
+    m_textCtrl_PRP_z_2->Disable();
+}
+void GUIMyFrame1::SetOrtogonalProjectionUpData3()
+{
+    m_textCtrl_VRP_x_3->SetValue("0.0");
+    m_textCtrl_VRP_x_3->Disable();
+    m_textCtrl_VRP_y_3->SetValue("1.0");
+    m_textCtrl_VRP_y_3->Disable();
+    m_textCtrl_VRP_z_3->SetValue("0.0");
+    m_textCtrl_VRP_z_3->Disable();
+
+    m_textCtrl_VPN_y_3->SetValue("1.0");
+    m_textCtrl_VPN_y_3->Disable();
+    m_textCtrl_VPN_x_3->SetValue("0.0");
+    m_textCtrl_VPN_x_3->Disable();    
+    m_textCtrl_VPN_z_3->SetValue("0.0");
+    m_textCtrl_VPN_z_3->Disable();
+
+
+    m_textCtrl_VUP_x_3->SetValue("0.0");
+    m_textCtrl_VUP_x_3->Disable();
+    m_textCtrl_VUP_y_3->SetValue("0.0");
+    m_textCtrl_VUP_y_3->Disable();
+    m_textCtrl_VUP_z_3->SetValue("-1.0");
+    m_textCtrl_VUP_z_3->Disable();
+
+
+    m_textCtrl_PRP_x_3->SetValue("0.0");
+    m_textCtrl_PRP_x_3->Disable();
+    m_textCtrl_PRP_y_3->SetValue("1.2");
+    m_textCtrl_PRP_y_3->Disable();
+    m_textCtrl_PRP_z_3->SetValue("1.0");
+    m_textCtrl_PRP_z_3->Disable();
+}
+void GUIMyFrame1::SetOrtogonalProjectionDownData1()
+{
+    m_textCtrl_VRP_x_1->SetValue("0.0");
+    m_textCtrl_VRP_x_1->Disable();
+    m_textCtrl_VRP_y_1->SetValue("-1.0");
+    m_textCtrl_VRP_y_1->Disable();
+    m_textCtrl_VRP_z_1->SetValue("0.0");
+    m_textCtrl_VRP_z_1->Disable();
+
+
+    m_textCtrl_VPN_y_1->SetValue("-1.0");
+    m_textCtrl_VPN_y_1->Disable();
+    m_textCtrl_VPN_x_1->SetValue("0.0");
+    m_textCtrl_VPN_x_1->Disable();
+    m_textCtrl_VPN_z_1->SetValue("0.0");
+    m_textCtrl_VPN_z_1->Disable();
+
+
+    m_textCtrl_VUP_x_1->SetValue("0.0");
+    m_textCtrl_VUP_x_1->Disable();
+    m_textCtrl_VUP_y_1->SetValue("0.0");
+    m_textCtrl_VUP_y_1->Disable();
+    m_textCtrl_VUP_z_1->SetValue("1.0");
+    m_textCtrl_VUP_z_1->Disable();
+
+
+    m_textCtrl_PRP_x_1->SetValue("0.0");
+    m_textCtrl_PRP_x_1->Disable();
+    m_textCtrl_PRP_y_1->SetValue("-1.2");
+    m_textCtrl_PRP_y_1->Disable();
+    m_textCtrl_PRP_z_1->SetValue("1.0");
+    m_textCtrl_PRP_z_1->Disable();
+}
+void GUIMyFrame1::SetOrtogonalProjectionDownData2()
+{
+    m_textCtrl_VRP_x_2->SetValue("0.0");
+    m_textCtrl_VRP_x_2->Disable();
+    m_textCtrl_VRP_y_2->SetValue("-1.0");
+    m_textCtrl_VRP_y_2->Disable();
+    m_textCtrl_VRP_z_2->SetValue("0.0");
+    m_textCtrl_VRP_z_2->Disable();
+
+
+    m_textCtrl_VPN_y_2->SetValue("-1.0");
+    m_textCtrl_VPN_y_2->Disable();
+    m_textCtrl_VPN_x_2->SetValue("0.0");
+    m_textCtrl_VPN_x_2->Disable();
+    m_textCtrl_VPN_z_2->SetValue("0.0");
+    m_textCtrl_VPN_z_2->Disable();
+
+
+    m_textCtrl_VUP_x_2->SetValue("0.0");
+    m_textCtrl_VUP_x_2->Disable();
+    m_textCtrl_VUP_y_2->SetValue("0.0");
+    m_textCtrl_VUP_y_2->Disable();
+    m_textCtrl_VUP_z_2->SetValue("1.0");
+    m_textCtrl_VUP_z_2->Disable();
+
+
+    m_textCtrl_PRP_x_2->SetValue("0.0");
+    m_textCtrl_PRP_x_2->Disable();
+    m_textCtrl_PRP_y_2->SetValue("-1.2");
+    m_textCtrl_PRP_y_2->Disable();
+    m_textCtrl_PRP_z_2->SetValue("1.0");
+    m_textCtrl_PRP_z_2->Disable();
+}
+void GUIMyFrame1::SetOrtogonalProjectionDownData3()
+{
+    m_textCtrl_VRP_x_3->SetValue("0.0");
+    m_textCtrl_VRP_x_3->Disable();
+    m_textCtrl_VRP_y_3->SetValue("-1.0");
+    m_textCtrl_VRP_y_3->Disable();
+    m_textCtrl_VRP_z_3->SetValue("0.0");
+    m_textCtrl_VRP_z_3->Disable();
+
+
+    m_textCtrl_VPN_y_3->SetValue("-1.0");
+    m_textCtrl_VPN_y_3->Disable();
+    m_textCtrl_VPN_x_3->SetValue("0.0");
+    m_textCtrl_VPN_x_3->Disable();    
+    m_textCtrl_VPN_z_3->SetValue("0.0");
+    m_textCtrl_VPN_z_3->Disable();
+
+
+    m_textCtrl_VUP_x_3->SetValue("0.0");
+    m_textCtrl_VUP_x_3->Disable();
+    m_textCtrl_VUP_y_3->SetValue("0.0");
+    m_textCtrl_VUP_y_3->Disable();
+    m_textCtrl_VUP_z_3->SetValue("1.0");
+    m_textCtrl_VUP_z_3->Disable();
+
+
+    m_textCtrl_PRP_x_3->SetValue("0.0");
+    m_textCtrl_PRP_x_3->Disable();
+    m_textCtrl_PRP_y_3->SetValue("-1.2");
+    m_textCtrl_PRP_y_3->Disable();
+    m_textCtrl_PRP_z_3->SetValue("1.0");
+    m_textCtrl_PRP_z_3->Disable();
+}
+void GUIMyFrame1::SetOrtogonalProjectionFrontData1()
+{
+    m_textCtrl_VRP_x_1->SetValue("0.0");
+    m_textCtrl_VRP_x_1->Disable();
+    m_textCtrl_VRP_y_1->SetValue("0.0");
+    m_textCtrl_VRP_y_1->Disable();
+    m_textCtrl_VRP_z_1->SetValue("2.0");
+    m_textCtrl_VRP_z_1->Disable();
+
+
+    m_textCtrl_VPN_z_1->SetValue("1.0");
+    m_textCtrl_VPN_z_1->Disable();
+    m_textCtrl_VPN_x_1->SetValue("0.0");
+    m_textCtrl_VPN_x_1->Disable();
+    m_textCtrl_VPN_y_1->SetValue("0.0");
+    m_textCtrl_VPN_y_1->Disable();
+    
+
+
+    m_textCtrl_VUP_x_1->SetValue("0.0");
+    m_textCtrl_VUP_x_1->Disable();
+    m_textCtrl_VUP_y_1->SetValue("1.0");
+    m_textCtrl_VUP_y_1->Disable();
+    m_textCtrl_VUP_z_1->SetValue("0.0");
+    m_textCtrl_VUP_z_1->Disable();
+
+
+    m_textCtrl_PRP_x_1->SetValue("0.0");
+    m_textCtrl_PRP_x_1->Disable();
+    m_textCtrl_PRP_y_1->SetValue("0.0");
+    m_textCtrl_PRP_y_1->Disable();
+    m_textCtrl_PRP_z_1->SetValue("2.2");
+    m_textCtrl_PRP_z_1->Disable();
+}
+void GUIMyFrame1::SetOrtogonalProjectionFrontData2()
+{
+    m_textCtrl_VRP_x_2->SetValue("0.0");
+    m_textCtrl_VRP_x_2->Disable();
+    m_textCtrl_VRP_y_2->SetValue("0.0");
+    m_textCtrl_VRP_y_2->Disable();
+    m_textCtrl_VRP_z_2->SetValue("2.0");
+    m_textCtrl_VRP_z_2->Disable();
+
+
+    m_textCtrl_VPN_z_2->SetValue("1.0");
+    m_textCtrl_VPN_z_2->Disable();
+    m_textCtrl_VPN_x_2->SetValue("0.0");
+    m_textCtrl_VPN_x_2->Disable();
+    m_textCtrl_VPN_y_2->SetValue("0.0");
+    m_textCtrl_VPN_y_2->Disable();
+    
+
+
+    m_textCtrl_VUP_x_2->SetValue("0.0");
+    m_textCtrl_VUP_x_2->Disable();
+    m_textCtrl_VUP_y_2->SetValue("1.0");
+    m_textCtrl_VUP_y_2->Disable();
+    m_textCtrl_VUP_z_2->SetValue("0.0");
+    m_textCtrl_VUP_z_2->Disable();
+
+
+    m_textCtrl_PRP_x_2->SetValue("0.0");
+    m_textCtrl_PRP_x_2->Disable();
+    m_textCtrl_PRP_y_2->SetValue("0.0");
+    m_textCtrl_PRP_y_2->Disable();
+    m_textCtrl_PRP_z_2->SetValue("2.2");
+    m_textCtrl_PRP_z_2->Disable();
+}
+void GUIMyFrame1::SetOrtogonalProjectionFrontData3()
+{
+    m_textCtrl_VRP_x_3->SetValue("0.0");
+    m_textCtrl_VRP_x_3->Disable();
+    m_textCtrl_VRP_y_3->SetValue("0.0");
+    m_textCtrl_VRP_y_3->Disable();
+    m_textCtrl_VRP_z_3->SetValue("2.0");
+    m_textCtrl_VRP_z_3->Disable();
+
+
+    m_textCtrl_VPN_z_3->SetValue("1.0");
+    m_textCtrl_VPN_z_3->Disable();
+    m_textCtrl_VPN_x_3->SetValue("0.0");
+    m_textCtrl_VPN_x_3->Disable();
+    m_textCtrl_VPN_y_3->SetValue("0.0");
+    m_textCtrl_VPN_y_3->Disable();
+    
+
+
+    m_textCtrl_VUP_x_3->SetValue("0.0");
+    m_textCtrl_VUP_x_3->Disable();
+    m_textCtrl_VUP_y_3->SetValue("1.0");
+    m_textCtrl_VUP_y_3->Disable();
+    m_textCtrl_VUP_z_3->SetValue("0.0");
+    m_textCtrl_VUP_z_3->Disable();
+
+
+    m_textCtrl_PRP_x_3->SetValue("0.0");
+    m_textCtrl_PRP_x_3->Disable();
+    m_textCtrl_PRP_y_3->SetValue("0.0");
+    m_textCtrl_PRP_y_3->Disable();
+    m_textCtrl_PRP_z_3->SetValue("2.2");
+    m_textCtrl_PRP_z_3->Disable();
+}
+
+
+void GUIMyFrame1::EnableProjectionData1()
+{
+    m_textCtrl_VRP_x_1->Enable();
+    m_textCtrl_VRP_y_1->Enable();
+    m_textCtrl_VRP_z_1->Enable();
+
+
+    m_textCtrl_VPN_x_1->Enable();
+    m_textCtrl_VPN_y_1->Enable();
+    m_textCtrl_VPN_z_1->Enable();
+
+
+    m_textCtrl_VUP_x_1->Enable();
+    m_textCtrl_VUP_y_1->Enable();
+    m_textCtrl_VUP_z_1->Enable();
+
+
+    m_textCtrl_PRP_x_1->Enable();
+    m_textCtrl_PRP_y_1->Enable();
+    m_textCtrl_PRP_z_1->Enable();
+
+
+    m_textCtrl_window_u_start_1->Enable();
+    m_textCtrl_window_u_stop_1->Enable();
+    m_textCtrl_window_v_start_1->Enable();
+    m_textCtrl_window_v_stop_1->Enable();
+
+
+    m_textCtrl_Front_1->Enable();
+    m_textCtrl_Back_1->Enable();
+}
+void GUIMyFrame1::EnableProjectionData2()
+{
+    m_textCtrl_VRP_x_2->Enable();
+    m_textCtrl_VRP_y_2->Enable();
+    m_textCtrl_VRP_z_2->Enable();
+
+
+    m_textCtrl_VPN_x_2->Enable();
+    m_textCtrl_VPN_y_2->Enable();
+    m_textCtrl_VPN_z_2->Enable();
+
+
+    m_textCtrl_VUP_x_2->Enable();
+    m_textCtrl_VUP_y_2->Enable();
+    m_textCtrl_VUP_z_2->Enable();
+
+
+    m_textCtrl_PRP_x_2->Enable();
+    m_textCtrl_PRP_y_2->Enable();
+    m_textCtrl_PRP_z_2->Enable();
+
+
+    m_textCtrl_window_u_start_2->Enable();
+    m_textCtrl_window_u_stop_2->Enable();
+    m_textCtrl_window_v_start_2->Enable();
+    m_textCtrl_window_v_stop_2->Enable();
+
+
+    m_textCtrl_Front_2->Enable();
+    m_textCtrl_Back_2->Enable();
+}
+void GUIMyFrame1::EnableProjectionData3()
+{
+    m_textCtrl_VRP_x_3->Enable();
+    m_textCtrl_VRP_y_3->Enable();
+    m_textCtrl_VRP_z_3->Enable();
+    
+
+    m_textCtrl_VPN_x_3->Enable();
+    m_textCtrl_VPN_y_3->Enable();
+    m_textCtrl_VPN_z_3->Enable();
+    
+
+    m_textCtrl_VUP_x_3->Enable();
+    m_textCtrl_VUP_y_3->Enable();
+    m_textCtrl_VUP_z_3->Enable();
+    
+
+    m_textCtrl_PRP_x_3->Enable();
+    m_textCtrl_PRP_y_3->Enable();
+    m_textCtrl_PRP_z_3->Enable();
+    
+
+    m_textCtrl_window_u_start_3->Enable();
+    m_textCtrl_window_u_stop_3->Enable();
+    m_textCtrl_window_v_start_3->Enable();
+    m_textCtrl_window_v_stop_3->Enable();
+
+
+    m_textCtrl_Front_3->Enable();
+    m_textCtrl_Back_3->Enable();
 }
 
 

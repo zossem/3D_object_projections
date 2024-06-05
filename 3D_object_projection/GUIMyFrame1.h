@@ -98,12 +98,29 @@ class GUIMyFrame1 : public MyFrame1
 		Matrix4 OrthogonalProjectionFront(const ProjectionParameters& projection);
 		Matrix4 LookAt(const ProjectionParameters& projection);
 
+		void SetOrtogonalProjectionUpData1();
+		void SetOrtogonalProjectionUpData2();
+		void SetOrtogonalProjectionUpData3();
+		void SetOrtogonalProjectionDownData1();
+		void SetOrtogonalProjectionDownData2();
+		void SetOrtogonalProjectionDownData3();
+		void SetOrtogonalProjectionFrontData1();
+		void SetOrtogonalProjectionFrontData2();
+		void SetOrtogonalProjectionFrontData3();
+
+
+		void EnableProjectionData1();
+		void EnableProjectionData2();
+		void EnableProjectionData3();
+
 		std::vector<Segment> data;
 		std::vector<Segment> data_transformed;
 
 		ProjectionParameters projection_1;
 		ProjectionParameters projection_2;
 		ProjectionParameters projection_3;
+
+		enum projection_type {perspective, axonometric_izo, axonometric_any, oblique_cabinet, oblique_cavalier, oblique_any, ortogonal_front,ortogonal_up, ortogonal_down };
 
 
 };
