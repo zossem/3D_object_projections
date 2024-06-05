@@ -164,8 +164,8 @@ void GUIMyFrame1::Repaint1()
 
         color_line = wxColor(data_transformed[i].color.R, data_transformed[i].color.G, data_transformed[i].color.B);
         dc.SetPen(color_line);
-
         double barier = 0;
+        
         if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
         {
             continue;
