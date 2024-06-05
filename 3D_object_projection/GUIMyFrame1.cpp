@@ -139,6 +139,8 @@ void GUIMyFrame1::Repaint1()
         color_line = wxColor(data_transformed[i].color.R, data_transformed[i].color.G, data_transformed[i].color.B);
         dc.SetPen(color_line);
 
+        
+
         double barier = projection_1.GetNear();
         if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
         {
@@ -165,9 +167,9 @@ void GUIMyFrame1::Repaint1()
                 v_end = v_in;
             }
 
-            
             //v_begin = view_matrix * v_begin;
-            //v_end = view_matrix * v_end;
+           // v_end = view_matrix * v_end;
+            
 
             v_begin = projection_matrix * v_begin;
             v_end = projection_matrix * v_end;
@@ -218,7 +220,7 @@ void GUIMyFrame1::RefreshPoints()
     Matrix4 scale_matrix_to_window;
     scale_matrix_to_window.data[0][0] = m_panel_1->GetSize().x / 2.0;
     scale_matrix_to_window.data[1][1] = m_panel_1->GetSize().y / 2.0;
-    scale_matrix_to_window.data[2][2] = 0.8;
+    scale_matrix_to_window.data[2][2] = 1.0;
     scale_matrix_to_window.data[3][3] = 1.0;
 
 
