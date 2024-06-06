@@ -206,8 +206,8 @@ void GUIMyFrame1::Repaint1()
     dc.Clear();
 
 
-    //Matrix4 projection_matrix= PerspectiveProjection(projection_1);
-    Matrix4 projection_matrix = OrthogonalProjectionDown(projection_1);
+    Matrix4 projection_matrix= PerspectiveProjection(projection_1);
+    //Matrix4 projection_matrix = OrthogonalProjectionDown(projection_1);
     //Matrix4 view_matrix = LookAt(projection_1);
     
     
@@ -250,7 +250,7 @@ void GUIMyFrame1::Repaint1()
             }
 
             //v_begin = view_matrix * v_begin;
-           // v_end = view_matrix * v_end;
+            //v_end = view_matrix * v_end;
             
 
             v_begin = projection_matrix * v_begin;
