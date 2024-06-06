@@ -42,20 +42,20 @@ double x_begin, x_end, y_begin, y_end;
 
 struct ProjectionParameters
 {
-Vector4 vec_VRP;
-Vector4 vec_VPN;
-Vector4 vec_VUP;
-Vector4 vec_PRP;
-double front;
-double back;
-Window window_size;
+	Vector4 vec_VRP;
+	Vector4 vec_VPN;
+	Vector4 vec_VUP;
+	Vector4 vec_PRP;
+	double front;
+	double back;
+	Window window_size;
 
-double GetRight() const { return window_size.x_end - vec_VRP.GetX(); }
-double GetLeft() const { return window_size.x_begin - vec_VRP.GetX(); }
-double GetTop() const { return window_size.y_end - vec_VRP.GetY(); }
-double GetBottom() const { return window_size.y_begin - vec_VRP.GetY(); }
-double GetNear() const { return vec_PRP.GetZ() - vec_VRP.GetZ() - front; }
-double GetFar() const { return vec_PRP.GetZ() - vec_VRP.GetZ() - back; }
+	double GetRight() const { return window_size.x_end - vec_VRP.GetX(); }
+	double GetLeft() const { return window_size.x_begin - vec_VRP.GetX(); }
+	double GetTop() const { return window_size.y_end - vec_VRP.GetY(); }
+	double GetBottom() const { return window_size.y_begin - vec_VRP.GetY(); }
+	double GetNear() const { return vec_PRP.GetZ() - vec_VRP.GetZ() - front; }
+	double GetFar() const { return vec_PRP.GetZ() - vec_VRP.GetZ() - back; }
 };
 
 
@@ -77,22 +77,32 @@ class GUIMyFrame1 : public MyFrame1
 		/** Constructor */
 		GUIMyFrame1( wxWindow* parent );
 	//// end generated class members
+		void Repaint(wxPanel* m_panel, int selection, std::vector<Segment> data_transformed);
 		void Repaint1();
 		void Repaint2();
 		void Repaint3();
+
 		void RefreshPoints();
+		void OldRefresh(int selection, std::vector<Segment> &data_transformed);
+
 		void SetMatrix(Matrix4& matrix, Vector4& v_1, Vector4& v_2, Vector4& v_3, Vector4& v_4);//v_1 to v_4 are vertical vectors, this enable to easily set the matrix
 		void ReadProjectionData1();
 		void ReadProjectionData2();
 		void ReadProjectionData3();
 
 		Matrix4 PerspectiveProjection(const ProjectionParameters & projection);
-		Matrix4 OrthogonalProjection(const ProjectionParameters & projection);
+		Matrix4 OrthogonalProjection(const ProjectionParameters& projection);
 		Matrix4 AxonometricProjection(const ProjectionParameters& projection);
 		Matrix4 LookAt(const ProjectionParameters& projection);
 
+		Matrix4 SetTranslationMatrix(double Tx, double Ty, double Tz);
+		Matrix4 SetRotationMatrix(double Rx, double Ry, double Rz);
+		Matrix4 SetScaleMatrix(double Sx, double Sy, double Sz);
+
 		std::vector<Segment> data;
-		std::vector<Segment> data_transformed;
+		std::vector<Segment> data_transformed_1;
+		std::vector<Segment> data_transformed_2;
+		std::vector<Segment> data_transformed_3;
 
 		ProjectionParameters projection_1;
 		ProjectionParameters projection_2;
