@@ -137,6 +137,7 @@ void GUIMyFrame1::Text_Update_3( wxCommandEvent& event )
 ReadProjectionData3();
 }
 
+
 void GUIMyFrame1::m_button_load_geometry_click( wxCommandEvent& event )
 {
 wxFileDialog WxOpenFileDialog(this, wxT("Choose a file"), wxT(""), wxT(""), wxT("Geometry file (*.geo)|*.geo"), wxFD_OPEN | wxFD_FILE_MUST_EXIST);
@@ -178,41 +179,48 @@ WxST_ScaleZ->SetLabel(wxString::Format(wxT("%g"), WxSB_ScaleZ->GetValue() / 100.
 RefreshPoints();
 }
 
-
-Matrix4  GUIMyFrame1::PerspectiveProjection(const ProjectionParameters& projection)
+void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> data_transformed)
 {
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
-    Matrix4 MVP_matrix;
-
-    set_matrix_v_1.Set(2.0 * projection.GetNear() / (projection.GetRight() - projection.GetLeft()), 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 2.0 * projection.GetNear() / (projection.GetTop() - projection.GetBottom()), 0.0);
-    set_matrix_v_3.Set( (projection.GetRight() + projection.GetLeft()) / (projection.GetRight() - projection.GetLeft()),
-                        (projection.GetTop() + projection.GetBottom()) / (projection.GetTop() - projection.GetBottom()),
-                        (projection.GetFar() + projection.GetNear()) / (projection.GetNear() - projection.GetFar()));
-    set_matrix_v_4.Set(0.0, 0.0, 2.0 * projection.GetNear() * projection.GetFar() / (projection.GetNear() - projection.GetFar()));
-    SetMatrix(MVP_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-    MVP_matrix.data[3][2] = -1.0;
-    MVP_matrix.data[3][3] = 0.0;
-
-    return MVP_matrix;
-}
-
-void GUIMyFrame1::Repaint1()
-{
-    wxClientDC dc1(m_panel_1);
+    wxClientDC dc1(m_panel);
     wxBufferedDC dc(&dc1);
 
     dc.SetBackground(wxBrush(RGB(255, 255, 255)));
     dc.Clear();
 
+    Matrix4 projection_matrix, scale_matrix_to_window;
 
-    Matrix4 projection_matrix= PerspectiveProjection(projection_1);
-    //Matrix4 projection_matrix = OrthogonalProjectionDown(projection_1);
-    //Matrix4 view_matrix = LookAt(projection_1);
-    
-    
     Vector4 v_begin, v_end;
     wxColor color_line;
+
+    switch (selection){
+    case 0: //perspective projection
+        projection_matrix = PerspectiveProjection(projection_1);
+        scale_matrix_to_window = SetScaleMatrix(m_panel_1->GetSize().x / 2.0, m_panel_1->GetSize().y / 2.0, 1.0);
+        break;
+
+    case 1:
+    case 2://axonometric projection (isometric / whichever)
+        projection_matrix = AxonometricProjection(projection_1);
+        scale_matrix_to_window = SetScaleMatrix(m_panel_1->GetSize().x / 4.0, m_panel_1->GetSize().y / 4.0, 1.0);
+        break;
+
+    case 3: //cabinet projection
+        break;
+
+    case 4: //cavalier projection
+        break;
+
+    case 5: //whichever projection
+        break;
+
+    case 6:
+    case 7:
+    case 8: //orthogonal projection front / up / down
+        projection_matrix = OrthogonalProjection(projection_1);
+        scale_matrix_to_window = SetScaleMatrix(m_panel_1->GetSize().x / 2.0, m_panel_1->GetSize().y / 2.0, 1.0);
+        break;
+    }
+
     for (int i = 0; i < data_transformed.size(); i++)
     {
         v_begin.Set(data_transformed[i].begin.x, data_transformed[i].begin.y, data_transformed[i].begin.z);
@@ -221,50 +229,17 @@ void GUIMyFrame1::Repaint1()
         color_line = wxColor(data_transformed[i].color.R, data_transformed[i].color.G, data_transformed[i].color.B);
         dc.SetPen(color_line);
 
-        
+        //NIE MA OBCINANIA!! trza by je dodac
 
-        double barier = projection_1.GetNear();
-        if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
-        {
-        }
-        else
-        {
-            if ((v_begin.GetZ() > barier && v_end.GetZ() <= barier) || (v_end.GetZ() > barier && v_begin.GetZ() <= barier))
-            {
-                Vector4 v_in, v_out;
-                if (v_end.GetZ() <= barier)
-                {
-                    v_in = v_begin;
-                    v_out = v_end;
-                }
-                else
-                {
-                    v_in = v_end;
-                    v_out = v_begin;
-                }
-                double length = fabs((barier - v_out.GetZ() / (v_in.GetZ() - v_out.GetZ())));
-                v_out.Set(v_in.GetX() - v_out.GetX() * length + v_out.GetX(), v_in.GetY() - v_out.GetY() * length + v_out.GetY(), barier);
+        v_begin = scale_matrix_to_window * projection_matrix * v_begin;
+        v_end = scale_matrix_to_window * projection_matrix * v_end;
 
-                v_begin = v_out;
-                v_end = v_in;
-            }
+        v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
+        v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
 
-            //v_begin = view_matrix * v_begin;
-            //v_end = view_matrix * v_end;
-            
+        dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
+            v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
 
-            v_begin = projection_matrix * v_begin;
-            v_end = projection_matrix * v_end;
-
-            
-
-            v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
-            v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
-
-
-            dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
-                v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
-        }
     }
 }
 
@@ -285,100 +260,132 @@ void GUIMyFrame1::SetMatrix(Matrix4& matrix, Vector4& v_1, Vector4& v_2, Vector4
     matrix.data[3][3] = 1.0;
 }
 
-void GUIMyFrame1::RefreshPoints()
-{
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
-    //setting scala
-    double Sx = (WxSB_ScaleX->GetValue() / 100.0);
-    double Sy = (WxSB_ScaleY->GetValue() / 100.0);
-    double Sz = (WxSB_ScaleZ->GetValue() / 100.0);
-    Matrix4 Scale_matrix;
-    set_matrix_v_1.Set(Sx, 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, Sy, 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, Sz);
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Scale_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
 
-    Matrix4 scale_matrix_to_window;
-    scale_matrix_to_window.data[0][0] = m_panel_1->GetSize().x / 2.0;
-    scale_matrix_to_window.data[1][1] = m_panel_1->GetSize().y / 2.0;
-    scale_matrix_to_window.data[2][2] = 1.0;
-    scale_matrix_to_window.data[3][3] = 1.0;
+void GUIMyFrame1::RefreshPoints() {
 
-
-    //setting rotation
-    double Rx = (360.0 - (double)WxSB_RotateX->GetValue()) / 180.0 * M_PI;
-    Matrix4 Rot_X_matrix;
-    set_matrix_v_1.Set(1.0, 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, cos(Rx), sin(Rx));
-    set_matrix_v_3.Set(0.0, -sin(Rx), cos(Rx));
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Rot_X_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    double Ry = ((double)WxSB_RotateY->GetValue()) / 180.0 * M_PI;
-    Matrix4 Rot_Y_matrix;
-    set_matrix_v_1.Set(cos(Ry), 0.0, -sin(Ry));
-    set_matrix_v_2.Set(0.0, 1.0, 0.0);
-    set_matrix_v_3.Set(sin(Ry), 0.0, cos(Ry));
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Rot_Y_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    double Rz = (WxSB_RotateZ->GetValue()) / 180.0 * M_PI;
-    Matrix4 Rot_Z_matrix;
-    set_matrix_v_1.Set(cos(Rz), sin(Rz), 0.0);
-    set_matrix_v_2.Set(-sin(Rz), cos(Rz), 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, 1.0);
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Rot_Z_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    //set translation
-    double Tx = -1.0 * ((WxSB_TranslationX->GetValue() - 100.0) / 50.0) * m_panel_1->GetSize().x / 2.0;
-    double Ty = ((WxSB_TranslationY->GetValue() - 100.0) / 50.0) * m_panel_1->GetSize().y / 2.0;
-    double Tz = 1.0 + ((WxSB_TranslationZ->GetValue() - 100.0) / 50.0);
-
-    Vector4 v_begin, v_end;
-    data_transformed.clear();
-    for (int i = 0; i < data.size(); i++)
-    {
-        v_begin.Set(data[i].begin.x, data[i].begin.y, data[i].begin.z);
-        v_end.Set(data[i].end.x, data[i].end.y, data[i].end.z);    
-
-
-        v_begin = scale_matrix_to_window * Scale_matrix * Rot_Z_matrix * Rot_Y_matrix * Rot_X_matrix * v_begin;
-        v_end = scale_matrix_to_window * Scale_matrix * Rot_Z_matrix * Rot_Y_matrix * Rot_X_matrix *  v_end;
-
-
-
-        v_begin.Set(v_begin.GetX() + Tx, v_begin.GetY() + Ty, v_begin.GetZ() + Tz);
-        v_end.Set(v_end.GetX() + Tx, v_end.GetY() + Ty, v_end.GetZ() + Tz);
-
-        
-        data_transformed.push_back(Segment( Point(v_begin.GetX(), v_begin.GetY(), v_begin.GetZ()),
-                                            Point(v_end.GetX(), v_end.GetY(), v_end.GetZ()), 
-                                            Color(data[i].color.R, data[i].color.G, data[i].color.B)));
-    }
+    OldRefresh(m_choice_projection_1->GetSelection(), data_transformed_1);
+    OldRefresh(m_choice_projection_2->GetSelection(), data_transformed_2);
+    OldRefresh(m_choice_projection_3->GetSelection(), data_transformed_3);
 
     Repaint1();
     Repaint2();
     Repaint3();
+
+    return;
+}
+
+void GUIMyFrame1::OldRefresh(int selection, std::vector<Segment> &data_transformed)
+{
+        //setting scala
+        double Sx = (WxSB_ScaleX->GetValue() / 100.0);
+        double Sy = (WxSB_ScaleY->GetValue() / 100.0);
+        double Sz = (WxSB_ScaleZ->GetValue() / 100.0);
+
+        //setting rotation
+        double Rx = (360 - (double)WxSB_RotateX->GetValue()) / 180.0 * M_PI;
+        double Ry = ((double)WxSB_RotateY->GetValue()) / 180.0 * M_PI;
+        double Rz = (180 + (double)WxSB_RotateZ->GetValue()) / 180.0 * M_PI;
+
+        //set translation
+        double Tx = -1.0 * ((WxSB_TranslationX->GetValue() - 100.0) / 50.0);
+        double Ty = ((WxSB_TranslationY->GetValue() - 100.0) / 50.0);
+        double Tz = 1.0 + ((WxSB_TranslationZ->GetValue() - 100.0) / 50.0);
+
+        switch (selection) {
+        case 0:
+            Tx *= -1.0;
+            Ty *= -1.0;
+            break;
+    
+        case 1:
+        case 2:
+            Rx -= 30.0 * M_PI / 180.0;
+            Ry -= 45.0 * M_PI / 180.0;
+            Rz += 22.0 * M_PI / 180.0;
+
+            Tz += ((-2.0 - 100.0) / 50.0); //przesuniecie osi obrotu; hard shoved -2.0 ale przydaloby sie obliczyc na podstawie danych modelu,,
+            break;
+
+        case 6:
+            Tz += ((-2.0 - 100.0) / 50.0); 
+            break;
+
+        case 7:
+            Rx -= 90.0 / 180.0 * M_PI;
+            Tz += ((-1.0 - 100.0) / 50.0);
+            break;
+
+        case 8:
+            Rx += 90.0 / 180.0 * M_PI;
+            Tz += ((-1.0 - 100.0) / 50.0);
+            break;
+        }
+
+        Matrix4 scale_matrix = SetScaleMatrix(Sx, Sy, Sz);
+        Matrix4 rotation_matrix = SetRotationMatrix(Rx, Ry, Rz);
+        Matrix4 translation_matrix = SetTranslationMatrix(Tx, Ty, Tz);
+        Matrix4 t;
+
+        if (!selection) {
+            t = translation_matrix * rotation_matrix * scale_matrix;
+        }
+        else {
+            t = rotation_matrix * translation_matrix * scale_matrix;
+        }
+
+        Vector4 v_begin, v_end;
+        data_transformed.clear();
+
+        for (int i = 0; i < data.size(); i++)
+        {
+            v_begin.Set(data[i].begin.x, data[i].begin.y, data[i].begin.z);
+            v_end.Set(data[i].end.x, data[i].end.y, data[i].end.z);
+
+            v_begin = t * v_begin;
+            v_end = t *  v_end;
+
+            data_transformed.push_back(Segment( Point(v_begin.GetX(), v_begin.GetY(), v_begin.GetZ()),
+                Point(v_end.GetX(), v_end.GetY(), v_end.GetZ()),
+                Color(data[i].color.R, data[i].color.G, data[i].color.B)));
+        }
+
 }
 
 void GUIMyFrame1::Repaint3()
 {
-    wxClientDC dc1(m_panel_3);
-    wxBufferedDC dc(&dc1);
-
-    dc.SetBackground(wxBrush(RGB(255, 255, 255)));
-    dc.Clear();
+    Repaint(m_panel_3, m_choice_projection_3->GetSelection(), data_transformed_3);
+    return;
 }
 
 void GUIMyFrame1::Repaint2()
 {
-    wxClientDC dc1(m_panel_2);
-    wxBufferedDC dc(&dc1);
+    Repaint(m_panel_2, m_choice_projection_2->GetSelection(), data_transformed_2);
+    return;
+}
 
-    dc.SetBackground(wxBrush(RGB(255, 255, 255)));
-    dc.Clear();
+void GUIMyFrame1::Repaint1()
+{
+    Repaint(m_panel_1, m_choice_projection_1->GetSelection(), data_transformed_1);
+    return;
+}
+
+
+Matrix4  GUIMyFrame1::PerspectiveProjection(const ProjectionParameters& projection)
+{
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    Matrix4 MVP_matrix;
+
+    set_matrix_v_1.Set(2.0 * projection.GetNear() / (projection.GetRight() - projection.GetLeft()), 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 2.0 * projection.GetNear() / (projection.GetTop() - projection.GetBottom()), 0.0);
+    set_matrix_v_3.Set((projection.GetRight() + projection.GetLeft()) / (projection.GetRight() - projection.GetLeft()),
+        (projection.GetTop() + projection.GetBottom()) / (projection.GetTop() - projection.GetBottom()),
+        (projection.GetFar() + projection.GetNear()) / (projection.GetNear() - projection.GetFar()));
+    set_matrix_v_4.Set(0.0, 0.0, 2.0 * projection.GetNear() * projection.GetFar() / (projection.GetNear() - projection.GetFar()));
+    SetMatrix(MVP_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+    MVP_matrix.data[3][2] = -1.0;
+    MVP_matrix.data[3][3] = 0.0;
+
+    return MVP_matrix;
 }
 
 Matrix4  GUIMyFrame1::OrthogonalProjection(const ProjectionParameters& projection)
@@ -389,14 +396,15 @@ Matrix4  GUIMyFrame1::OrthogonalProjection(const ProjectionParameters& projectio
     set_matrix_v_1.Set(2.0 / (projection.GetRight() - projection.GetLeft()), 0.0, 0.0);
     set_matrix_v_2.Set(0.0, 2.0 / (projection.GetTop() - projection.GetBottom()), 0.0);
     set_matrix_v_3.Set(0.0, 0.0, -2.0 / (projection.GetFar() - projection.GetNear()));
-    set_matrix_v_4.Set( -1.0*(projection.GetRight() + projection.GetLeft()) / (projection.GetRight() - projection.GetLeft()),
-                        -1.0 * (projection.GetTop() + projection.GetBottom()) / (projection.GetTop() - projection.GetBottom()),
-                        -1.0 * (projection.GetFar() + projection.GetNear()) / (projection.GetFar() - projection.GetNear()));
-    
+    set_matrix_v_4.Set(-1.0 * (projection.GetRight() + projection.GetLeft()) / (projection.GetRight() - projection.GetLeft()),
+        -1.0 * (projection.GetTop() + projection.GetBottom()) / (projection.GetTop() - projection.GetBottom()),
+        -1.0 * (projection.GetFar() + projection.GetNear()) / (projection.GetFar() - projection.GetNear()));
+
     SetMatrix(Orthogonal_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
 
     return Orthogonal_matrix;
 }
+
 
 Matrix4 GUIMyFrame1::OrthogonalProjectionUp(const ProjectionParameters& projection)
 {
@@ -482,6 +490,24 @@ Matrix4 GUIMyFrame1::OrthogonalProjectionFront(const ProjectionParameters& proje
     return Orthogonal_matrix_front;
 }
 
+Matrix4 GUIMyFrame1::AxonometricProjection(const ProjectionParameters& projection)
+{
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    Matrix4 Axonometric_matrix;
+
+    set_matrix_v_1.Set((projection.GetRight() - projection.GetLeft()) / 2.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, (projection.GetTop() - projection.GetBottom()) / 2.0, 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, (projection.GetFar() - projection.GetNear()) / -2.0);
+    set_matrix_v_4.Set((projection.GetRight() + projection.GetLeft()) / 2.0,
+        (projection.GetTop() + projection.GetBottom()) / 2.0,
+        -2.0 * (projection.GetFar() + projection.GetNear()) / 2.0);
+
+    SetMatrix(Axonometric_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    return Axonometric_matrix;
+
+}
+
 Matrix4 GUIMyFrame1::LookAt(const ProjectionParameters& projection)
 {
     Vector4 v_X, v_Y, v_Z, v_W; //vectors to set matrix
@@ -506,6 +532,68 @@ Matrix4 GUIMyFrame1::LookAt(const ProjectionParameters& projection)
     Look_at_matrix.data[3][2] = -1.0 * v_Z.ScalarMultiplication(projection.vec_PRP);
 
     return Look_at_matrix;
+}
+
+
+Matrix4 GUIMyFrame1::SetTranslationMatrix(double Tx, double Ty, double Tz){
+
+    Matrix4 t;
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4;
+
+    set_matrix_v_1.Set(1.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 1.0, 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, 1.0);
+    set_matrix_v_4.Set(Tx, Ty, Tz);
+
+    SetMatrix(t, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    return t;
+}
+
+Matrix4 GUIMyFrame1::SetRotationMatrix(double Rx, double Ry, double Rz){
+
+    Matrix4 t;
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4;
+
+    Matrix4 Rot_X_matrix;
+    set_matrix_v_1.Set(1.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, cos(Rx), sin(Rx));
+    set_matrix_v_3.Set(0.0, -sin(Rx), cos(Rx));
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Rot_X_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    Matrix4 Rot_Y_matrix;
+    set_matrix_v_1.Set(cos(Ry), 0.0, -sin(Ry));
+    set_matrix_v_2.Set(0.0, 1.0, 0.0);
+    set_matrix_v_3.Set(sin(Ry), 0.0, cos(Ry));
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Rot_Y_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    Matrix4 Rot_Z_matrix;
+    set_matrix_v_1.Set(cos(Rz), sin(Rz), 0.0);
+    set_matrix_v_2.Set(-sin(Rz), cos(Rz), 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, 1.0);
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+    SetMatrix(Rot_Z_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    t = Rot_Z_matrix * Rot_Y_matrix * Rot_X_matrix;
+
+    return t;
+}
+
+Matrix4 GUIMyFrame1::SetScaleMatrix(double Sx, double Sy, double Sz){
+
+    Matrix4 t;
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4;
+
+    set_matrix_v_1.Set(Sx, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, Sy, 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, Sz);
+    set_matrix_v_4.Set(0.0, 0.0, 0.0);
+
+    SetMatrix(t, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    return t;
 }
 
 

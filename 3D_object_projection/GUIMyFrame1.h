@@ -82,21 +82,31 @@ class GUIMyFrame1 : public MyFrame1
 		/** Constructor */
 		GUIMyFrame1( wxWindow* parent );
 	//// end generated class members
+		void Repaint(wxPanel* m_panel, int selection, std::vector<Segment> data_transformed);
 		void Repaint1();
 		void Repaint2();
 		void Repaint3();
+
 		void RefreshPoints();
+		void OldRefresh(int selection, std::vector<Segment> &data_transformed);
+
 		void SetMatrix(Matrix4& matrix, Vector4& v_1, Vector4& v_2, Vector4& v_3, Vector4& v_4);//v_1 to v_4 are vertical vectors, this enable to easily set the matrix
 		void ReadProjectionData1();
 		void ReadProjectionData2();
 		void ReadProjectionData3();
 
 		Matrix4 PerspectiveProjection(const ProjectionParameters & projection);
+
 		Matrix4 OrthogonalProjection(const ProjectionParameters & projection);
 		Matrix4 OrthogonalProjectionUp(const ProjectionParameters& projection);
 		Matrix4 OrthogonalProjectionDown(const ProjectionParameters& projection);
 		Matrix4 OrthogonalProjectionFront(const ProjectionParameters& projection);
+		Matrix4 AxonometricProjection(const ProjectionParameters& projection);
 		Matrix4 LookAt(const ProjectionParameters& projection);
+		Matrix4 SetTranslationMatrix(double Tx, double Ty, double Tz);
+		Matrix4 SetRotationMatrix(double Rx, double Ry, double Rz);
+		Matrix4 SetScaleMatrix(double Sx, double Sy, double Sz);
+
 
 		void SetOrtogonalProjectionUpData1();
 		void SetOrtogonalProjectionUpData2();
@@ -113,8 +123,12 @@ class GUIMyFrame1 : public MyFrame1
 		void EnableProjectionData2();
 		void EnableProjectionData3();
 
+
+
 		std::vector<Segment> data;
-		std::vector<Segment> data_transformed;
+		std::vector<Segment> data_transformed_1;
+		std::vector<Segment> data_transformed_2;
+		std::vector<Segment> data_transformed_3;
 
 		ProjectionParameters projection_1;
 		ProjectionParameters projection_2;
