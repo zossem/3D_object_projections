@@ -232,46 +232,65 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
         dc.SetPen(color_line);
 
 
-        v_begin = scale_matrix_to_window  * v_begin;
-        v_end = scale_matrix_to_window  * v_end;
+        v_begin = scale_matrix_to_window * v_begin;
+        v_end = scale_matrix_to_window * v_end;
 
 
-        double barier = 0;
-        
-        if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
-        {
-            continue;
-        }
-        else
-        {
-            if ((v_begin.GetZ() > barier && v_end.GetZ() <= barier) || (v_end.GetZ() > barier && v_begin.GetZ() <= barier))
+
+        if (selection == 0)//perspective projection
+        {        
+            double barier = 0;
+
+            if (v_begin.GetZ() <= barier && v_end.GetZ() <= barier)
             {
-                Vector4 v_in, v_out;
-                if (v_end.GetZ() <= barier)
-                {
-                    v_in = v_begin;
-                    v_out = v_end;
-                }
-                else
-                {
-                    v_in = v_end;
-                    v_out = v_begin;
-                }
-                double length = fabs((barier - v_out.GetZ() / (v_in.GetZ() - v_out.GetZ())));
-                v_out.Set(v_in.GetX() - v_out.GetX() * length + v_out.GetX(), v_in.GetY() - v_out.GetY() * length + v_out.GetY(), barier);
-
-                v_begin = v_out;
-                v_end = v_in;
+                continue;
             }
+            else
+            {
+                if ((v_begin.GetZ() > barier && v_end.GetZ() <= barier) || (v_end.GetZ() > barier && v_begin.GetZ() <= barier))
+                {
+                    Vector4 v_in, v_out;
+                    if (v_end.GetZ() <= barier)
+                    {
+                        v_in = v_begin;
+                        v_out = v_end;
+                    }
+                    else
+                    {
+                        v_in = v_end;
+                        v_out = v_begin;
+                    }
+                    double length = fabs((barier - v_out.GetZ() / (v_in.GetZ() - v_out.GetZ())));
+                    v_out.Set(v_in.GetX() - v_out.GetX() * length + v_out.GetX(), v_in.GetY() - v_out.GetY() * length + v_out.GetY(), barier);
 
-            
-            //v_begin = view_matrix * v_begin;
-            //v_end = view_matrix * v_end;
+                    v_begin = v_out;
+                    v_end = v_in;
+                }
+
+
+                //v_begin = view_matrix * v_begin;
+                //v_end = view_matrix * v_end;
+
+                v_begin = projection_matrix * v_begin;
+                v_end = projection_matrix * v_end;
+
+
+
+                v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
+                v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
+
+
+                dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
+                    v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
+            }
+        }
+        else //all orthogonal projection
+        {
 
             v_begin = projection_matrix * v_begin;
             v_end = projection_matrix * v_end;
 
-            
+
 
             v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
             v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
