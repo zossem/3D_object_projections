@@ -78,6 +78,7 @@ class GUIMyFrame1 : public MyFrame1
 		void Text_Update_3( wxCommandEvent& event );
 		void m_button_load_geometry_click( wxCommandEvent& event );
 		void Scrolls_Updated( wxScrollEvent& event );
+		
 	public:
 		/** Constructor */
 		GUIMyFrame1( wxWindow* parent );
@@ -135,6 +136,8 @@ class GUIMyFrame1 : public MyFrame1
 		ProjectionParameters projection_3;
 
 		enum projection_type {perspective, axonometric_izo, axonometric_any, oblique_cabinet, oblique_cavalier, oblique_any, ortogonal_front,ortogonal_up, ortogonal_down };
+
+
 
 
 };
