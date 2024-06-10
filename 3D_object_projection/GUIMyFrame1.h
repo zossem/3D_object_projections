@@ -96,13 +96,9 @@ class GUIMyFrame1 : public MyFrame1
 		void ReadProjectionData3();
 
 		Matrix4 PerspectiveProjection(const ProjectionParameters& projection);
-
 		Matrix4 OrthogonalProjection(const ProjectionParameters& projection);
-		Matrix4 OrthogonalProjectionUp(const ProjectionParameters& projection);
-		Matrix4 OrthogonalProjectionDown(const ProjectionParameters& projection);
-		Matrix4 OrthogonalProjectionFront(const ProjectionParameters& projection);
 		Matrix4 AxonometricProjection(const ProjectionParameters& projection);
-		Matrix4 LookAt(const ProjectionParameters& projection);
+
 		Matrix4 SetTranslationMatrix(double Tx, double Ty, double Tz);
 		Matrix4 SetRotationMatrix(double Rx, double Ry, double Rz);
 		Matrix4 SetScaleMatrix(double Sx, double Sy, double Sz);

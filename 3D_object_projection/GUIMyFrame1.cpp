@@ -21,10 +21,7 @@ MyFrame1( parent )
     ReadProjectionData3();
 }
 
-void GUIMyFrame1::WxPanel_Repaint( wxUpdateUIEvent& event )
-{
-    RefreshPoints();
-}
+
 
 void GUIMyFrame1::Choice_Projection_1( wxCommandEvent& event )
 {
@@ -51,11 +48,6 @@ void GUIMyFrame1::Choice_Projection_1( wxCommandEvent& event )
         break;
     }
 
-    ReadProjectionData1();
-}
-
-void GUIMyFrame1::Text_Update_1( wxCommandEvent& event )
-{
     ReadProjectionData1();
 }
 
@@ -87,11 +79,6 @@ void GUIMyFrame1::Choice_Projection_2( wxCommandEvent& event )
     ReadProjectionData2();
 }
 
-void GUIMyFrame1::Text_Update_2( wxCommandEvent& event )
-{
-    ReadProjectionData2();
-}
-
 void GUIMyFrame1::Choice_Projection_3( wxCommandEvent& event )
 {
     EnableProjectionData3();
@@ -120,10 +107,22 @@ void GUIMyFrame1::Choice_Projection_3( wxCommandEvent& event )
     ReadProjectionData3();
 }
 
+
+void GUIMyFrame1::Text_Update_1(wxCommandEvent& event)
+{
+    ReadProjectionData1();
+}
+
+void GUIMyFrame1::Text_Update_2(wxCommandEvent& event)
+{
+    ReadProjectionData2();
+}
+
 void GUIMyFrame1::Text_Update_3( wxCommandEvent& event )
 {
     ReadProjectionData3();
 }
+
 
 void GUIMyFrame1::m_button_load_geometry_click( wxCommandEvent& event )
 {
@@ -167,38 +166,16 @@ void GUIMyFrame1::Scrolls_Updated( wxScrollEvent& event )
 }
 
 
-Matrix4 GUIMyFrame1::SetTranslationMatrix(double Tx, double Ty, double Tz)
+
+void GUIMyFrame1::WxPanel_Repaint(wxUpdateUIEvent& event)
 {
-
-    Matrix4 t;
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4;
-
-    set_matrix_v_1.Set(1.0, 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 1.0, 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, 1.0);
-    set_matrix_v_4.Set(Tx, Ty, Tz);
-
-    SetMatrix(t, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    return t;
+    RefreshPoints();
 }
 
-Matrix4 GUIMyFrame1::AxonometricProjection(const ProjectionParameters& projection)
+void GUIMyFrame1::Repaint1()
 {
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
-    Matrix4 Axonometric_matrix;
-
-    set_matrix_v_1.Set((projection.GetRight() - projection.GetLeft()) / 2.0, 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, (projection.GetTop() - projection.GetBottom()) / 2.0, 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, (projection.GetFar() - projection.GetNear()) / -2.0);
-    set_matrix_v_4.Set((projection.GetRight() + projection.GetLeft()) / 2.0,
-        (projection.GetTop() + projection.GetBottom()) / 2.0,
-        -2.0 * (projection.GetFar() + projection.GetNear()) / 2.0);
-
-    SetMatrix(Axonometric_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    return Axonometric_matrix;
-
+    Repaint(m_panel_1, m_choice_projection_1->GetSelection(), data_transformed_1);
+    return;
 }
 
 void GUIMyFrame1::Repaint2()
@@ -207,88 +184,9 @@ void GUIMyFrame1::Repaint2()
     return;
 }
 
-void GUIMyFrame1::ReadProjectionData2()
+void GUIMyFrame1::Repaint3()
 {
-    double coor_x, coor_y, coor_z;
-    m_textCtrl_VRP_x_2->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VRP_y_2->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VRP_z_2->GetValue().ToDouble(&coor_z);
-    projection_2.vec_VRP.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_VPN_x_2->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VPN_y_2->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VPN_z_2->GetValue().ToDouble(&coor_z);
-    projection_2.vec_VPN.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_VUP_x_2->GetValue().ToDouble(&coor_x);
-    m_textCtrl_VUP_y_2->GetValue().ToDouble(&coor_y);
-    m_textCtrl_VUP_z_2->GetValue().ToDouble(&coor_z);
-    projection_2.vec_VUP.Set(coor_x, coor_y, coor_z);
-
-    m_textCtrl_PRP_x_2->GetValue().ToDouble(&coor_x);
-    m_textCtrl_PRP_y_2->GetValue().ToDouble(&coor_y);
-    m_textCtrl_PRP_z_2->GetValue().ToDouble(&coor_z);
-    projection_2.vec_PRP.Set(coor_x, coor_y, coor_z);
-
-
-    m_textCtrl_window_u_start_2->GetValue().ToDouble(&projection_2.window_size.x_begin);
-    m_textCtrl_window_u_stop_2->GetValue().ToDouble(&projection_2.window_size.x_end);
-    m_textCtrl_window_v_start_2->GetValue().ToDouble(&projection_2.window_size.y_begin);
-    m_textCtrl_window_v_stop_2->GetValue().ToDouble(&projection_2.window_size.y_end);
-
-
-    m_textCtrl_Front_2->GetValue().ToDouble(&projection_2.front);
-    m_textCtrl_Back_2->GetValue().ToDouble(&projection_2.back);
-
-    if (!projection_2.SetCenter(this))
-    {
-        m_textCtrl_VPN_x_2->SetValue("1.0");
-        m_textCtrl_VPN_y_2->SetValue("1.0");
-        m_textCtrl_VPN_z_2->SetValue("1.0");
-
-        projection_2.vec_VPN.Set(1.0, 1.0, 1.0);
-
-        projection_2.SetCenter(this);
-    }
-}
-
-Matrix4 GUIMyFrame1::OrthogonalProjectionDown(const ProjectionParameters& projection)
-{
-    Matrix4 Orthogonal_matrix = OrthogonalProjection(projection);
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
-    double Rx = -90.0 / 180.0 * M_PI;
-    Matrix4 Rot_X_matrix;
-    set_matrix_v_1.Set(1.0, 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, cos(Rx), sin(Rx));
-    set_matrix_v_3.Set(0.0, -sin(Rx), cos(Rx));
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Rot_X_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-
-    double Sz = m_panel_1->GetSize().y / 2.0;
-    Matrix4 Scale_matrix;
-    set_matrix_v_1.Set(1.0, 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 1.0, 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, Sz);
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Scale_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    double Rz = 180.0 / 180.0 * M_PI;
-    Matrix4 Rot_Z_matrix;
-    set_matrix_v_1.Set(cos(Rz), sin(Rz), 0.0);
-    set_matrix_v_2.Set(-sin(Rz), cos(Rz), 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, 1.0);
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Rot_Z_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    Matrix4 Orthogonal_matrix_down = Rot_X_matrix * Rot_Z_matrix * Orthogonal_matrix * Scale_matrix;
-
-    return Orthogonal_matrix_down;
-}
-
-void GUIMyFrame1::Repaint1()
-{
-    Repaint(m_panel_1, m_choice_projection_1->GetSelection(), data_transformed_1);
+    Repaint(m_panel_3, m_choice_projection_3->GetSelection(), data_transformed_3);
     return;
 }
 
@@ -376,9 +274,6 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
                 }
 
 
-                //v_begin = view_matrix * v_begin;
-                //v_end = view_matrix * v_end;
-
                 v_begin = projection_matrix * v_begin;
                 v_end = projection_matrix * v_end;
 
@@ -410,126 +305,7 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
     }
 }
 
-void GUIMyFrame1::SetOrtogonalProjectionFrontData1()
-{
-    m_textCtrl_VRP_x_1->SetValue("0.0");
-    m_textCtrl_VRP_x_1->Disable();
-    m_textCtrl_VRP_y_1->SetValue("0.0");
-    m_textCtrl_VRP_y_1->Disable();
-    m_textCtrl_VRP_z_1->SetValue("2.0");
-    m_textCtrl_VRP_z_1->Disable();
 
-
-    m_textCtrl_VPN_z_1->SetValue("1.0");
-    m_textCtrl_VPN_z_1->Disable();
-    m_textCtrl_VPN_x_1->SetValue("0.0");
-    m_textCtrl_VPN_x_1->Disable();
-    m_textCtrl_VPN_y_1->SetValue("0.0");
-    m_textCtrl_VPN_y_1->Disable();
-    
-
-
-    m_textCtrl_VUP_x_1->SetValue("0.0");
-    m_textCtrl_VUP_x_1->Disable();
-    m_textCtrl_VUP_y_1->SetValue("1.0");
-    m_textCtrl_VUP_y_1->Disable();
-    m_textCtrl_VUP_z_1->SetValue("0.0");
-    m_textCtrl_VUP_z_1->Disable();
-
-
-    m_textCtrl_PRP_x_1->SetValue("0.0");
-    m_textCtrl_PRP_x_1->Disable();
-    m_textCtrl_PRP_y_1->SetValue("0.0");
-    m_textCtrl_PRP_y_1->Disable();
-    m_textCtrl_PRP_z_1->SetValue("2.2");
-    m_textCtrl_PRP_z_1->Disable();
-}
-
-Matrix4 GUIMyFrame1::OrthogonalProjectionUp(const ProjectionParameters& projection)
-{
-    Matrix4 Orthogonal_matrix = OrthogonalProjection(projection);
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
-    double Rx = 90.0 / 180.0 * M_PI;
-    Matrix4 Rot_X_matrix;
-    set_matrix_v_1.Set(1.0, 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, cos(Rx), sin(Rx));
-    set_matrix_v_3.Set(0.0, -sin(Rx), cos(Rx));
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Rot_X_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-
-    double Sz = m_panel_1->GetSize().y / 2.0;
-    Matrix4 Scale_matrix;
-    set_matrix_v_1.Set(1.0, 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 1.0, 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, Sz);
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Scale_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    double Rz = 180.0 / 180.0 * M_PI;
-    Matrix4 Rot_Z_matrix;
-    set_matrix_v_1.Set(cos(Rz), sin(Rz), 0.0);
-    set_matrix_v_2.Set(-sin(Rz), cos(Rz), 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, 1.0);
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Rot_Z_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    Matrix4 Orthogonal_matrix_up =  Rot_X_matrix * Rot_Z_matrix * Orthogonal_matrix * Scale_matrix;
-
-    return Orthogonal_matrix_up;
-}
-
-Matrix4 GUIMyFrame1::OrthogonalProjectionFront(const ProjectionParameters& projection)
-{
-    Matrix4 Orthogonal_matrix = OrthogonalProjection(projection);
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
-
-    double Rz = 180.0 / 180.0 * M_PI;
-    Matrix4 Rot_Z_matrix;
-    set_matrix_v_1.Set(cos(Rz), sin(Rz), 0.0);
-    set_matrix_v_2.Set(-sin(Rz), cos(Rz), 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, 1.0);
-    set_matrix_v_4.Set(0.0, 0.0, 0.0);
-    SetMatrix(Rot_Z_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
-
-    Matrix4 Orthogonal_matrix_front = Rot_Z_matrix * Orthogonal_matrix;
-
-    return Orthogonal_matrix_front;
-}
-
-void GUIMyFrame1::SetOrtogonalProjectionDownData2()
-{
-    m_textCtrl_VRP_x_2->SetValue("0.0");
-    m_textCtrl_VRP_x_2->Disable();
-    m_textCtrl_VRP_y_2->SetValue("-1.0");
-    m_textCtrl_VRP_y_2->Disable();
-    m_textCtrl_VRP_z_2->SetValue("0.0");
-    m_textCtrl_VRP_z_2->Disable();
-
-
-    m_textCtrl_VPN_y_2->SetValue("-1.0");
-    m_textCtrl_VPN_y_2->Disable();
-    m_textCtrl_VPN_x_2->SetValue("0.0");
-    m_textCtrl_VPN_x_2->Disable();
-    m_textCtrl_VPN_z_2->SetValue("0.0");
-    m_textCtrl_VPN_z_2->Disable();
-
-
-    m_textCtrl_VUP_x_2->SetValue("0.0");
-    m_textCtrl_VUP_x_2->Disable();
-    m_textCtrl_VUP_y_2->SetValue("0.0");
-    m_textCtrl_VUP_y_2->Disable();
-    m_textCtrl_VUP_z_2->SetValue("1.0");
-    m_textCtrl_VUP_z_2->Disable();
-
-
-    m_textCtrl_PRP_x_2->SetValue("0.0");
-    m_textCtrl_PRP_x_2->Disable();
-    m_textCtrl_PRP_y_2->SetValue("-1.2");
-    m_textCtrl_PRP_y_2->Disable();
-    m_textCtrl_PRP_z_2->SetValue("1.0");
-    m_textCtrl_PRP_z_2->Disable();
-}
 
 void GUIMyFrame1::EnableProjectionData1()
 {
@@ -595,134 +371,39 @@ void GUIMyFrame1::EnableProjectionData2()
     m_textCtrl_Back_2->Enable();
 }
 
-void GUIMyFrame1::SetOrtogonalProjectionDownData3()
+void GUIMyFrame1::EnableProjectionData3()
 {
-    m_textCtrl_VRP_x_3->SetValue("0.0");
-    m_textCtrl_VRP_x_3->Disable();
-    m_textCtrl_VRP_y_3->SetValue("-1.0");
-    m_textCtrl_VRP_y_3->Disable();
-    m_textCtrl_VRP_z_3->SetValue("0.0");
-    m_textCtrl_VRP_z_3->Disable();
+    m_textCtrl_VRP_x_3->Enable();
+    m_textCtrl_VRP_y_3->Enable();
+    m_textCtrl_VRP_z_3->Enable();
 
 
-    m_textCtrl_VPN_y_3->SetValue("-1.0");
-    m_textCtrl_VPN_y_3->Disable();
-    m_textCtrl_VPN_x_3->SetValue("0.0");
-    m_textCtrl_VPN_x_3->Disable();    
-    m_textCtrl_VPN_z_3->SetValue("0.0");
-    m_textCtrl_VPN_z_3->Disable();
+    m_textCtrl_VPN_x_3->Enable();
+    m_textCtrl_VPN_y_3->Enable();
+    m_textCtrl_VPN_z_3->Enable();
 
 
-    m_textCtrl_VUP_x_3->SetValue("0.0");
-    m_textCtrl_VUP_x_3->Disable();
-    m_textCtrl_VUP_y_3->SetValue("0.0");
-    m_textCtrl_VUP_y_3->Disable();
-    m_textCtrl_VUP_z_3->SetValue("1.0");
-    m_textCtrl_VUP_z_3->Disable();
+    m_textCtrl_VUP_x_3->Enable();
+    m_textCtrl_VUP_y_3->Enable();
+    m_textCtrl_VUP_z_3->Enable();
 
 
-    m_textCtrl_PRP_x_3->SetValue("0.0");
-    m_textCtrl_PRP_x_3->Disable();
-    m_textCtrl_PRP_y_3->SetValue("-1.2");
-    m_textCtrl_PRP_y_3->Disable();
-    m_textCtrl_PRP_z_3->SetValue("1.0");
-    m_textCtrl_PRP_z_3->Disable();
+    m_textCtrl_PRP_x_3->Enable();
+    m_textCtrl_PRP_y_3->Enable();
+    m_textCtrl_PRP_z_3->Enable();
+
+
+    m_textCtrl_window_u_start_3->Enable();
+    m_textCtrl_window_u_stop_3->Enable();
+    m_textCtrl_window_v_start_3->Enable();
+    m_textCtrl_window_v_stop_3->Enable();
+
+
+    m_textCtrl_Front_3->Enable();
+    m_textCtrl_Back_3->Enable();
 }
 
-void GUIMyFrame1::SetOrtogonalProjectionFrontData3()
-{
-    m_textCtrl_VRP_x_3->SetValue("0.0");
-    m_textCtrl_VRP_x_3->Disable();
-    m_textCtrl_VRP_y_3->SetValue("0.0");
-    m_textCtrl_VRP_y_3->Disable();
-    m_textCtrl_VRP_z_3->SetValue("2.0");
-    m_textCtrl_VRP_z_3->Disable();
 
-
-    m_textCtrl_VPN_z_3->SetValue("1.0");
-    m_textCtrl_VPN_z_3->Disable();
-    m_textCtrl_VPN_x_3->SetValue("0.0");
-    m_textCtrl_VPN_x_3->Disable();
-    m_textCtrl_VPN_y_3->SetValue("0.0");
-    m_textCtrl_VPN_y_3->Disable();
-    
-
-
-    m_textCtrl_VUP_x_3->SetValue("0.0");
-    m_textCtrl_VUP_x_3->Disable();
-    m_textCtrl_VUP_y_3->SetValue("1.0");
-    m_textCtrl_VUP_y_3->Disable();
-    m_textCtrl_VUP_z_3->SetValue("0.0");
-    m_textCtrl_VUP_z_3->Disable();
-
-
-    m_textCtrl_PRP_x_3->SetValue("0.0");
-    m_textCtrl_PRP_x_3->Disable();
-    m_textCtrl_PRP_y_3->SetValue("0.0");
-    m_textCtrl_PRP_y_3->Disable();
-    m_textCtrl_PRP_z_3->SetValue("2.2");
-    m_textCtrl_PRP_z_3->Disable();
-}
-
-Matrix4 GUIMyFrame1::LookAt(const ProjectionParameters& projection)
-{
-    Vector4 v_X, v_Y, v_Z, v_W; //vectors to set matrix
-    Matrix4 Look_at_matrix;
-
-    v_Z = projection.vec_VPN;
-    v_Y = projection.vec_VUP;
-
-    v_Z.Normalize();
-
-    v_X = v_Y.VectorMultiplication(v_Z);
-    v_Y = v_Z.VectorMultiplication(v_X);
-
-    v_X.Normalize();
-    v_Y.Normalize();
-    v_W.Set(0.0, 0.0, 0.0);
-    SetMatrix(Look_at_matrix, v_X, v_Y, v_Z, v_W);
-
-
-    Look_at_matrix.data[3][0] = -1.0 * v_X.ScalarMultiplication(projection.vec_PRP);
-    Look_at_matrix.data[3][1] = -1.0 * v_Y.ScalarMultiplication(projection.vec_PRP);
-    Look_at_matrix.data[3][2] = -1.0 * v_Z.ScalarMultiplication(projection.vec_PRP);
-
-    return Look_at_matrix;
-}
-
-void GUIMyFrame1::SetOrtogonalProjectionDownData1()
-{
-    m_textCtrl_VRP_x_1->SetValue("0.0");
-    m_textCtrl_VRP_x_1->Disable();
-    m_textCtrl_VRP_y_1->SetValue("-1.0");
-    m_textCtrl_VRP_y_1->Disable();
-    m_textCtrl_VRP_z_1->SetValue("0.0");
-    m_textCtrl_VRP_z_1->Disable();
-
-
-    m_textCtrl_VPN_y_1->SetValue("-1.0");
-    m_textCtrl_VPN_y_1->Disable();
-    m_textCtrl_VPN_x_1->SetValue("0.0");
-    m_textCtrl_VPN_x_1->Disable();
-    m_textCtrl_VPN_z_1->SetValue("0.0");
-    m_textCtrl_VPN_z_1->Disable();
-
-
-    m_textCtrl_VUP_x_1->SetValue("0.0");
-    m_textCtrl_VUP_x_1->Disable();
-    m_textCtrl_VUP_y_1->SetValue("0.0");
-    m_textCtrl_VUP_y_1->Disable();
-    m_textCtrl_VUP_z_1->SetValue("1.0");
-    m_textCtrl_VUP_z_1->Disable();
-
-
-    m_textCtrl_PRP_x_1->SetValue("0.0");
-    m_textCtrl_PRP_x_1->Disable();
-    m_textCtrl_PRP_y_1->SetValue("-1.2");
-    m_textCtrl_PRP_y_1->Disable();
-    m_textCtrl_PRP_z_1->SetValue("1.0");
-    m_textCtrl_PRP_z_1->Disable();
-}
 
 void GUIMyFrame1::ReadProjectionData1()
 {
@@ -770,137 +451,49 @@ void GUIMyFrame1::ReadProjectionData1()
     }
 }
 
-void GUIMyFrame1::SetOrtogonalProjectionUpData3()
+void GUIMyFrame1::ReadProjectionData2()
 {
-    m_textCtrl_VRP_x_3->SetValue("0.0");
-    m_textCtrl_VRP_x_3->Disable();
-    m_textCtrl_VRP_y_3->SetValue("1.0");
-    m_textCtrl_VRP_y_3->Disable();
-    m_textCtrl_VRP_z_3->SetValue("0.0");
-    m_textCtrl_VRP_z_3->Disable();
+    double coor_x, coor_y, coor_z;
+    m_textCtrl_VRP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VRP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VRP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VRP.Set(coor_x, coor_y, coor_z);
 
-    m_textCtrl_VPN_y_3->SetValue("1.0");
-    m_textCtrl_VPN_y_3->Disable();
-    m_textCtrl_VPN_x_3->SetValue("0.0");
-    m_textCtrl_VPN_x_3->Disable();    
-    m_textCtrl_VPN_z_3->SetValue("0.0");
-    m_textCtrl_VPN_z_3->Disable();
+    m_textCtrl_VPN_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VPN_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VPN_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VPN.Set(coor_x, coor_y, coor_z);
 
+    m_textCtrl_VUP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_VUP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_VUP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_VUP.Set(coor_x, coor_y, coor_z);
 
-    m_textCtrl_VUP_x_3->SetValue("0.0");
-    m_textCtrl_VUP_x_3->Disable();
-    m_textCtrl_VUP_y_3->SetValue("0.0");
-    m_textCtrl_VUP_y_3->Disable();
-    m_textCtrl_VUP_z_3->SetValue("-1.0");
-    m_textCtrl_VUP_z_3->Disable();
-
-
-    m_textCtrl_PRP_x_3->SetValue("0.0");
-    m_textCtrl_PRP_x_3->Disable();
-    m_textCtrl_PRP_y_3->SetValue("1.2");
-    m_textCtrl_PRP_y_3->Disable();
-    m_textCtrl_PRP_z_3->SetValue("1.0");
-    m_textCtrl_PRP_z_3->Disable();
-}
-
-void GUIMyFrame1::SetOrtogonalProjectionUpData1()
-{
-    m_textCtrl_VRP_x_1->SetValue("0.0");
-    m_textCtrl_VRP_x_1->Disable();
-    m_textCtrl_VRP_y_1->SetValue("1.0");
-    m_textCtrl_VRP_y_1->Disable();
-    m_textCtrl_VRP_z_1->SetValue("0.0");
-    m_textCtrl_VRP_z_1->Disable();
-    
-
-    m_textCtrl_VPN_y_1->SetValue("1.0");
-    m_textCtrl_VPN_y_1->Disable();
-    m_textCtrl_VPN_x_1->SetValue("0.0");
-    m_textCtrl_VPN_x_1->Disable();    
-    m_textCtrl_VPN_z_1->SetValue("0.0");
-    m_textCtrl_VPN_z_1->Disable();
+    m_textCtrl_PRP_x_2->GetValue().ToDouble(&coor_x);
+    m_textCtrl_PRP_y_2->GetValue().ToDouble(&coor_y);
+    m_textCtrl_PRP_z_2->GetValue().ToDouble(&coor_z);
+    projection_2.vec_PRP.Set(coor_x, coor_y, coor_z);
 
 
-    m_textCtrl_VUP_x_1->SetValue("0.0");
-    m_textCtrl_VUP_x_1->Disable();
-    m_textCtrl_VUP_y_1->SetValue("0.0");
-    m_textCtrl_VUP_y_1->Disable();
-    m_textCtrl_VUP_z_1->SetValue("-1.0");
-    m_textCtrl_VUP_z_1->Disable();
-    
-
-    m_textCtrl_PRP_x_1->SetValue("0.0");
-    m_textCtrl_PRP_x_1->Disable();
-    m_textCtrl_PRP_y_1->SetValue("1.2");
-    m_textCtrl_PRP_y_1->Disable();
-    m_textCtrl_PRP_z_1->SetValue("1.0");
-    m_textCtrl_PRP_z_1->Disable();
-}
-
-void GUIMyFrame1::SetMatrix(Matrix4& matrix, Vector4& v_1, Vector4& v_2, Vector4& v_3, Vector4& v_4)//v_1 to v_4 are vertical vectors, this enable to easily set the matrix
-{
-    matrix.data[0][0] = v_1.GetX();
-    matrix.data[1][0] = v_1.GetY();
-    matrix.data[2][0] = v_1.GetZ();
-    matrix.data[0][1] = v_2.GetX();
-    matrix.data[1][1] = v_2.GetY();
-    matrix.data[2][1] = v_2.GetZ();
-    matrix.data[0][2] = v_3.GetX();
-    matrix.data[1][2] = v_3.GetY();
-    matrix.data[2][2] = v_3.GetZ();
-    matrix.data[0][3] = v_4.GetX();
-    matrix.data[1][3] = v_4.GetY();
-    matrix.data[2][3] = v_4.GetZ();
-    matrix.data[3][3] = 1.0;
-}
-
-void GUIMyFrame1::RefreshPoints() 
-{
-
-    OldRefresh(m_choice_projection_1->GetSelection(), data_transformed_1);
-    OldRefresh(m_choice_projection_2->GetSelection(), data_transformed_2);
-    OldRefresh(m_choice_projection_3->GetSelection(), data_transformed_3);
-
-    Repaint1();
-    Repaint2();
-    Repaint3();
-
-    return;
-}
-
-void GUIMyFrame1::SetOrtogonalProjectionFrontData2()
-{
-    m_textCtrl_VRP_x_2->SetValue("0.0");
-    m_textCtrl_VRP_x_2->Disable();
-    m_textCtrl_VRP_y_2->SetValue("0.0");
-    m_textCtrl_VRP_y_2->Disable();
-    m_textCtrl_VRP_z_2->SetValue("2.0");
-    m_textCtrl_VRP_z_2->Disable();
+    m_textCtrl_window_u_start_2->GetValue().ToDouble(&projection_2.window_size.x_begin);
+    m_textCtrl_window_u_stop_2->GetValue().ToDouble(&projection_2.window_size.x_end);
+    m_textCtrl_window_v_start_2->GetValue().ToDouble(&projection_2.window_size.y_begin);
+    m_textCtrl_window_v_stop_2->GetValue().ToDouble(&projection_2.window_size.y_end);
 
 
-    m_textCtrl_VPN_z_2->SetValue("1.0");
-    m_textCtrl_VPN_z_2->Disable();
-    m_textCtrl_VPN_x_2->SetValue("0.0");
-    m_textCtrl_VPN_x_2->Disable();
-    m_textCtrl_VPN_y_2->SetValue("0.0");
-    m_textCtrl_VPN_y_2->Disable();
-    
+    m_textCtrl_Front_2->GetValue().ToDouble(&projection_2.front);
+    m_textCtrl_Back_2->GetValue().ToDouble(&projection_2.back);
 
+    if (!projection_2.SetCenter(this))
+    {
+        m_textCtrl_VPN_x_2->SetValue("1.0");
+        m_textCtrl_VPN_y_2->SetValue("1.0");
+        m_textCtrl_VPN_z_2->SetValue("1.0");
 
-    m_textCtrl_VUP_x_2->SetValue("0.0");
-    m_textCtrl_VUP_x_2->Disable();
-    m_textCtrl_VUP_y_2->SetValue("1.0");
-    m_textCtrl_VUP_y_2->Disable();
-    m_textCtrl_VUP_z_2->SetValue("0.0");
-    m_textCtrl_VUP_z_2->Disable();
+        projection_2.vec_VPN.Set(1.0, 1.0, 1.0);
 
-
-    m_textCtrl_PRP_x_2->SetValue("0.0");
-    m_textCtrl_PRP_x_2->Disable();
-    m_textCtrl_PRP_y_2->SetValue("0.0");
-    m_textCtrl_PRP_y_2->Disable();
-    m_textCtrl_PRP_z_2->SetValue("2.2");
-    m_textCtrl_PRP_z_2->Disable();
+        projection_2.SetCenter(this);
+    }
 }
 
 void GUIMyFrame1::ReadProjectionData3()
@@ -948,21 +541,330 @@ void GUIMyFrame1::ReadProjectionData3()
     }
 }
 
-Matrix4  GUIMyFrame1::OrthogonalProjection(const ProjectionParameters& projection)
+
+
+void GUIMyFrame1::SetOrtogonalProjectionFrontData1()
 {
-    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
-    Matrix4 Orthogonal_matrix;
+    m_textCtrl_VRP_x_1->SetValue("0.0");
+    m_textCtrl_VRP_x_1->Disable();
+    m_textCtrl_VRP_y_1->SetValue("0.0");
+    m_textCtrl_VRP_y_1->Disable();
+    m_textCtrl_VRP_z_1->SetValue("2.0");
+    m_textCtrl_VRP_z_1->Disable();
 
-    set_matrix_v_1.Set(2.0 / (projection.GetRight() - projection.GetLeft()), 0.0, 0.0);
-    set_matrix_v_2.Set(0.0, 2.0 / (projection.GetTop() - projection.GetBottom()), 0.0);
-    set_matrix_v_3.Set(0.0, 0.0, -2.0 / (projection.GetFar() - projection.GetNear()));
-    set_matrix_v_4.Set(-1.0 * (projection.GetRight() + projection.GetLeft()) / (projection.GetRight() - projection.GetLeft()),
-        -1.0 * (projection.GetTop() + projection.GetBottom()) / (projection.GetTop() - projection.GetBottom()),
-        -1.0 * (projection.GetFar() + projection.GetNear()) / (projection.GetFar() - projection.GetNear()));
 
-    SetMatrix(Orthogonal_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+    m_textCtrl_VPN_z_1->SetValue("1.0");
+    m_textCtrl_VPN_z_1->Disable();
+    m_textCtrl_VPN_x_1->SetValue("0.0");
+    m_textCtrl_VPN_x_1->Disable();
+    m_textCtrl_VPN_y_1->SetValue("0.0");
+    m_textCtrl_VPN_y_1->Disable();
 
-    return Orthogonal_matrix;
+
+
+    m_textCtrl_VUP_x_1->SetValue("0.0");
+    m_textCtrl_VUP_x_1->Disable();
+    m_textCtrl_VUP_y_1->SetValue("1.0");
+    m_textCtrl_VUP_y_1->Disable();
+    m_textCtrl_VUP_z_1->SetValue("0.0");
+    m_textCtrl_VUP_z_1->Disable();
+
+
+    m_textCtrl_PRP_x_1->SetValue("0.0");
+    m_textCtrl_PRP_x_1->Disable();
+    m_textCtrl_PRP_y_1->SetValue("0.0");
+    m_textCtrl_PRP_y_1->Disable();
+    m_textCtrl_PRP_z_1->SetValue("2.2");
+    m_textCtrl_PRP_z_1->Disable();
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionDownData1()
+{
+    m_textCtrl_VRP_x_1->SetValue("0.0");
+    m_textCtrl_VRP_x_1->Disable();
+    m_textCtrl_VRP_y_1->SetValue("-1.0");
+    m_textCtrl_VRP_y_1->Disable();
+    m_textCtrl_VRP_z_1->SetValue("0.0");
+    m_textCtrl_VRP_z_1->Disable();
+
+
+    m_textCtrl_VPN_y_1->SetValue("-1.0");
+    m_textCtrl_VPN_y_1->Disable();
+    m_textCtrl_VPN_x_1->SetValue("0.0");
+    m_textCtrl_VPN_x_1->Disable();
+    m_textCtrl_VPN_z_1->SetValue("0.0");
+    m_textCtrl_VPN_z_1->Disable();
+
+
+    m_textCtrl_VUP_x_1->SetValue("0.0");
+    m_textCtrl_VUP_x_1->Disable();
+    m_textCtrl_VUP_y_1->SetValue("0.0");
+    m_textCtrl_VUP_y_1->Disable();
+    m_textCtrl_VUP_z_1->SetValue("1.0");
+    m_textCtrl_VUP_z_1->Disable();
+
+
+    m_textCtrl_PRP_x_1->SetValue("0.0");
+    m_textCtrl_PRP_x_1->Disable();
+    m_textCtrl_PRP_y_1->SetValue("-1.2");
+    m_textCtrl_PRP_y_1->Disable();
+    m_textCtrl_PRP_z_1->SetValue("1.0");
+    m_textCtrl_PRP_z_1->Disable();
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionUpData1()
+{
+    m_textCtrl_VRP_x_1->SetValue("0.0");
+    m_textCtrl_VRP_x_1->Disable();
+    m_textCtrl_VRP_y_1->SetValue("1.0");
+    m_textCtrl_VRP_y_1->Disable();
+    m_textCtrl_VRP_z_1->SetValue("0.0");
+    m_textCtrl_VRP_z_1->Disable();
+    
+
+    m_textCtrl_VPN_y_1->SetValue("1.0");
+    m_textCtrl_VPN_y_1->Disable();
+    m_textCtrl_VPN_x_1->SetValue("0.0");
+    m_textCtrl_VPN_x_1->Disable();    
+    m_textCtrl_VPN_z_1->SetValue("0.0");
+    m_textCtrl_VPN_z_1->Disable();
+
+
+    m_textCtrl_VUP_x_1->SetValue("0.0");
+    m_textCtrl_VUP_x_1->Disable();
+    m_textCtrl_VUP_y_1->SetValue("0.0");
+    m_textCtrl_VUP_y_1->Disable();
+    m_textCtrl_VUP_z_1->SetValue("-1.0");
+    m_textCtrl_VUP_z_1->Disable();
+    
+
+    m_textCtrl_PRP_x_1->SetValue("0.0");
+    m_textCtrl_PRP_x_1->Disable();
+    m_textCtrl_PRP_y_1->SetValue("1.2");
+    m_textCtrl_PRP_y_1->Disable();
+    m_textCtrl_PRP_z_1->SetValue("1.0");
+    m_textCtrl_PRP_z_1->Disable();
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionUpData2()
+{
+    m_textCtrl_VRP_x_2->SetValue("0.0");
+    m_textCtrl_VRP_x_2->Disable();
+    m_textCtrl_VRP_y_2->SetValue("1.0");
+    m_textCtrl_VRP_y_2->Disable();
+    m_textCtrl_VRP_z_2->SetValue("0.0");
+    m_textCtrl_VRP_z_2->Disable();
+
+
+    m_textCtrl_VPN_y_2->SetValue("1.0");
+    m_textCtrl_VPN_y_2->Disable();
+    m_textCtrl_VPN_x_2->SetValue("0.0");
+    m_textCtrl_VPN_x_2->Disable();
+    m_textCtrl_VPN_z_2->SetValue("0.0");
+    m_textCtrl_VPN_z_2->Disable();
+
+
+    m_textCtrl_VUP_x_2->SetValue("0.0");
+    m_textCtrl_VUP_x_2->Disable();
+    m_textCtrl_VUP_y_2->SetValue("0.0");
+    m_textCtrl_VUP_y_2->Disable();
+    m_textCtrl_VUP_z_2->SetValue("-1.0");
+    m_textCtrl_VUP_z_2->Disable();
+
+
+    m_textCtrl_PRP_x_2->SetValue("0.0");
+    m_textCtrl_PRP_x_2->Disable();
+    m_textCtrl_PRP_y_2->SetValue("1.2");
+    m_textCtrl_PRP_y_2->Disable();
+    m_textCtrl_PRP_z_2->SetValue("1.0");
+    m_textCtrl_PRP_z_2->Disable();
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionFrontData2()
+{
+    m_textCtrl_VRP_x_2->SetValue("0.0");
+    m_textCtrl_VRP_x_2->Disable();
+    m_textCtrl_VRP_y_2->SetValue("0.0");
+    m_textCtrl_VRP_y_2->Disable();
+    m_textCtrl_VRP_z_2->SetValue("2.0");
+    m_textCtrl_VRP_z_2->Disable();
+
+
+    m_textCtrl_VPN_z_2->SetValue("1.0");
+    m_textCtrl_VPN_z_2->Disable();
+    m_textCtrl_VPN_x_2->SetValue("0.0");
+    m_textCtrl_VPN_x_2->Disable();
+    m_textCtrl_VPN_y_2->SetValue("0.0");
+    m_textCtrl_VPN_y_2->Disable();
+
+
+
+    m_textCtrl_VUP_x_2->SetValue("0.0");
+    m_textCtrl_VUP_x_2->Disable();
+    m_textCtrl_VUP_y_2->SetValue("1.0");
+    m_textCtrl_VUP_y_2->Disable();
+    m_textCtrl_VUP_z_2->SetValue("0.0");
+    m_textCtrl_VUP_z_2->Disable();
+
+
+    m_textCtrl_PRP_x_2->SetValue("0.0");
+    m_textCtrl_PRP_x_2->Disable();
+    m_textCtrl_PRP_y_2->SetValue("0.0");
+    m_textCtrl_PRP_y_2->Disable();
+    m_textCtrl_PRP_z_2->SetValue("2.2");
+    m_textCtrl_PRP_z_2->Disable();
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionDownData2()
+{
+    m_textCtrl_VRP_x_2->SetValue("0.0");
+    m_textCtrl_VRP_x_2->Disable();
+    m_textCtrl_VRP_y_2->SetValue("-1.0");
+    m_textCtrl_VRP_y_2->Disable();
+    m_textCtrl_VRP_z_2->SetValue("0.0");
+    m_textCtrl_VRP_z_2->Disable();
+
+
+    m_textCtrl_VPN_y_2->SetValue("-1.0");
+    m_textCtrl_VPN_y_2->Disable();
+    m_textCtrl_VPN_x_2->SetValue("0.0");
+    m_textCtrl_VPN_x_2->Disable();
+    m_textCtrl_VPN_z_2->SetValue("0.0");
+    m_textCtrl_VPN_z_2->Disable();
+
+
+    m_textCtrl_VUP_x_2->SetValue("0.0");
+    m_textCtrl_VUP_x_2->Disable();
+    m_textCtrl_VUP_y_2->SetValue("0.0");
+    m_textCtrl_VUP_y_2->Disable();
+    m_textCtrl_VUP_z_2->SetValue("1.0");
+    m_textCtrl_VUP_z_2->Disable();
+
+
+    m_textCtrl_PRP_x_2->SetValue("0.0");
+    m_textCtrl_PRP_x_2->Disable();
+    m_textCtrl_PRP_y_2->SetValue("-1.2");
+    m_textCtrl_PRP_y_2->Disable();
+    m_textCtrl_PRP_z_2->SetValue("1.0");
+    m_textCtrl_PRP_z_2->Disable();
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionUpData3()
+{
+    m_textCtrl_VRP_x_3->SetValue("0.0");
+    m_textCtrl_VRP_x_3->Disable();
+    m_textCtrl_VRP_y_3->SetValue("1.0");
+    m_textCtrl_VRP_y_3->Disable();
+    m_textCtrl_VRP_z_3->SetValue("0.0");
+    m_textCtrl_VRP_z_3->Disable();
+
+    m_textCtrl_VPN_y_3->SetValue("1.0");
+    m_textCtrl_VPN_y_3->Disable();
+    m_textCtrl_VPN_x_3->SetValue("0.0");
+    m_textCtrl_VPN_x_3->Disable();
+    m_textCtrl_VPN_z_3->SetValue("0.0");
+    m_textCtrl_VPN_z_3->Disable();
+
+
+    m_textCtrl_VUP_x_3->SetValue("0.0");
+    m_textCtrl_VUP_x_3->Disable();
+    m_textCtrl_VUP_y_3->SetValue("0.0");
+    m_textCtrl_VUP_y_3->Disable();
+    m_textCtrl_VUP_z_3->SetValue("-1.0");
+    m_textCtrl_VUP_z_3->Disable();
+
+
+    m_textCtrl_PRP_x_3->SetValue("0.0");
+    m_textCtrl_PRP_x_3->Disable();
+    m_textCtrl_PRP_y_3->SetValue("1.2");
+    m_textCtrl_PRP_y_3->Disable();
+    m_textCtrl_PRP_z_3->SetValue("1.0");
+    m_textCtrl_PRP_z_3->Disable();
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionFrontData3()
+{
+    m_textCtrl_VRP_x_3->SetValue("0.0");
+    m_textCtrl_VRP_x_3->Disable();
+    m_textCtrl_VRP_y_3->SetValue("0.0");
+    m_textCtrl_VRP_y_3->Disable();
+    m_textCtrl_VRP_z_3->SetValue("2.0");
+    m_textCtrl_VRP_z_3->Disable();
+
+
+    m_textCtrl_VPN_z_3->SetValue("1.0");
+    m_textCtrl_VPN_z_3->Disable();
+    m_textCtrl_VPN_x_3->SetValue("0.0");
+    m_textCtrl_VPN_x_3->Disable();
+    m_textCtrl_VPN_y_3->SetValue("0.0");
+    m_textCtrl_VPN_y_3->Disable();
+
+
+
+    m_textCtrl_VUP_x_3->SetValue("0.0");
+    m_textCtrl_VUP_x_3->Disable();
+    m_textCtrl_VUP_y_3->SetValue("1.0");
+    m_textCtrl_VUP_y_3->Disable();
+    m_textCtrl_VUP_z_3->SetValue("0.0");
+    m_textCtrl_VUP_z_3->Disable();
+
+
+    m_textCtrl_PRP_x_3->SetValue("0.0");
+    m_textCtrl_PRP_x_3->Disable();
+    m_textCtrl_PRP_y_3->SetValue("0.0");
+    m_textCtrl_PRP_y_3->Disable();
+    m_textCtrl_PRP_z_3->SetValue("2.2");
+    m_textCtrl_PRP_z_3->Disable();
+}
+
+void GUIMyFrame1::SetOrtogonalProjectionDownData3()
+{
+    m_textCtrl_VRP_x_3->SetValue("0.0");
+    m_textCtrl_VRP_x_3->Disable();
+    m_textCtrl_VRP_y_3->SetValue("-1.0");
+    m_textCtrl_VRP_y_3->Disable();
+    m_textCtrl_VRP_z_3->SetValue("0.0");
+    m_textCtrl_VRP_z_3->Disable();
+
+
+    m_textCtrl_VPN_y_3->SetValue("-1.0");
+    m_textCtrl_VPN_y_3->Disable();
+    m_textCtrl_VPN_x_3->SetValue("0.0");
+    m_textCtrl_VPN_x_3->Disable();
+    m_textCtrl_VPN_z_3->SetValue("0.0");
+    m_textCtrl_VPN_z_3->Disable();
+
+
+    m_textCtrl_VUP_x_3->SetValue("0.0");
+    m_textCtrl_VUP_x_3->Disable();
+    m_textCtrl_VUP_y_3->SetValue("0.0");
+    m_textCtrl_VUP_y_3->Disable();
+    m_textCtrl_VUP_z_3->SetValue("1.0");
+    m_textCtrl_VUP_z_3->Disable();
+
+
+    m_textCtrl_PRP_x_3->SetValue("0.0");
+    m_textCtrl_PRP_x_3->Disable();
+    m_textCtrl_PRP_y_3->SetValue("-1.2");
+    m_textCtrl_PRP_y_3->Disable();
+    m_textCtrl_PRP_z_3->SetValue("1.0");
+    m_textCtrl_PRP_z_3->Disable();
+}
+
+
+
+void GUIMyFrame1::RefreshPoints() 
+{
+
+    OldRefresh(m_choice_projection_1->GetSelection(), data_transformed_1);
+    OldRefresh(m_choice_projection_2->GetSelection(), data_transformed_2);
+    OldRefresh(m_choice_projection_3->GetSelection(), data_transformed_3);
+
+    Repaint1();
+    Repaint2();
+    Repaint3();
+
+    return;
 }
 
 void GUIMyFrame1::OldRefresh(int selection, std::vector<Segment> &data_transformed)
@@ -1048,42 +950,23 @@ void GUIMyFrame1::OldRefresh(int selection, std::vector<Segment> &data_transform
 
 }
 
-void GUIMyFrame1::EnableProjectionData3()
+
+
+Matrix4  GUIMyFrame1::OrthogonalProjection(const ProjectionParameters& projection)
 {
-    m_textCtrl_VRP_x_3->Enable();
-    m_textCtrl_VRP_y_3->Enable();
-    m_textCtrl_VRP_z_3->Enable();
-    
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    Matrix4 Orthogonal_matrix;
 
-    m_textCtrl_VPN_x_3->Enable();
-    m_textCtrl_VPN_y_3->Enable();
-    m_textCtrl_VPN_z_3->Enable();
-    
+    set_matrix_v_1.Set(2.0 / (projection.GetRight() - projection.GetLeft()), 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 2.0 / (projection.GetTop() - projection.GetBottom()), 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, -2.0 / (projection.GetFar() - projection.GetNear()));
+    set_matrix_v_4.Set(-1.0 * (projection.GetRight() + projection.GetLeft()) / (projection.GetRight() - projection.GetLeft()),
+        -1.0 * (projection.GetTop() + projection.GetBottom()) / (projection.GetTop() - projection.GetBottom()),
+        -1.0 * (projection.GetFar() + projection.GetNear()) / (projection.GetFar() - projection.GetNear()));
 
-    m_textCtrl_VUP_x_3->Enable();
-    m_textCtrl_VUP_y_3->Enable();
-    m_textCtrl_VUP_z_3->Enable();
-    
+    SetMatrix(Orthogonal_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
 
-    m_textCtrl_PRP_x_3->Enable();
-    m_textCtrl_PRP_y_3->Enable();
-    m_textCtrl_PRP_z_3->Enable();
-    
-
-    m_textCtrl_window_u_start_3->Enable();
-    m_textCtrl_window_u_stop_3->Enable();
-    m_textCtrl_window_v_start_3->Enable();
-    m_textCtrl_window_v_stop_3->Enable();
-
-
-    m_textCtrl_Front_3->Enable();
-    m_textCtrl_Back_3->Enable();
-}
-
-void GUIMyFrame1::Repaint3()
-{
-    Repaint(m_panel_3, m_choice_projection_3->GetSelection(), data_transformed_3);
-    return;
+    return Orthogonal_matrix;
 }
 
 Matrix4  GUIMyFrame1::PerspectiveProjection(const ProjectionParameters& projection)
@@ -1103,6 +986,25 @@ Matrix4  GUIMyFrame1::PerspectiveProjection(const ProjectionParameters& projecti
 
     return MVP_matrix;
 }
+
+Matrix4 GUIMyFrame1::AxonometricProjection(const ProjectionParameters& projection)
+{
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4; //vectors to set matrix
+    Matrix4 Axonometric_matrix;
+
+    set_matrix_v_1.Set((projection.GetRight() - projection.GetLeft()) / 2.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, (projection.GetTop() - projection.GetBottom()) / 2.0, 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, (projection.GetFar() - projection.GetNear()) / -2.0);
+    set_matrix_v_4.Set((projection.GetRight() + projection.GetLeft()) / 2.0,
+        (projection.GetTop() + projection.GetBottom()) / 2.0,
+        -2.0 * (projection.GetFar() + projection.GetNear()) / 2.0);
+
+    SetMatrix(Axonometric_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    return Axonometric_matrix;
+
+}
+
 
 Matrix4 GUIMyFrame1::SetRotationMatrix(double Rx, double Ry, double Rz)
 {
@@ -1152,38 +1054,38 @@ Matrix4 GUIMyFrame1::SetScaleMatrix(double Sx, double Sy, double Sz)
     return t;
 }
 
-void GUIMyFrame1::SetOrtogonalProjectionUpData2()
+Matrix4 GUIMyFrame1::SetTranslationMatrix(double Tx, double Ty, double Tz)
 {
-    m_textCtrl_VRP_x_2->SetValue("0.0");
-    m_textCtrl_VRP_x_2->Disable();
-    m_textCtrl_VRP_y_2->SetValue("1.0");
-    m_textCtrl_VRP_y_2->Disable();
-    m_textCtrl_VRP_z_2->SetValue("0.0");
-    m_textCtrl_VRP_z_2->Disable();
+
+    Matrix4 t;
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4;
+
+    set_matrix_v_1.Set(1.0, 0.0, 0.0);
+    set_matrix_v_2.Set(0.0, 1.0, 0.0);
+    set_matrix_v_3.Set(0.0, 0.0, 1.0);
+    set_matrix_v_4.Set(Tx, Ty, Tz);
+
+    SetMatrix(t, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
+    return t;
+}
 
 
-    m_textCtrl_VPN_y_2->SetValue("1.0");
-    m_textCtrl_VPN_y_2->Disable();
-    m_textCtrl_VPN_x_2->SetValue("0.0");
-    m_textCtrl_VPN_x_2->Disable();    
-    m_textCtrl_VPN_z_2->SetValue("0.0");
-    m_textCtrl_VPN_z_2->Disable();
-
-
-    m_textCtrl_VUP_x_2->SetValue("0.0");
-    m_textCtrl_VUP_x_2->Disable();
-    m_textCtrl_VUP_y_2->SetValue("0.0");
-    m_textCtrl_VUP_y_2->Disable();
-    m_textCtrl_VUP_z_2->SetValue("-1.0");
-    m_textCtrl_VUP_z_2->Disable();
-
-
-    m_textCtrl_PRP_x_2->SetValue("0.0");
-    m_textCtrl_PRP_x_2->Disable();
-    m_textCtrl_PRP_y_2->SetValue("1.2");
-    m_textCtrl_PRP_y_2->Disable();
-    m_textCtrl_PRP_z_2->SetValue("1.0");
-    m_textCtrl_PRP_z_2->Disable();
+void GUIMyFrame1::SetMatrix(Matrix4& matrix, Vector4& v_1, Vector4& v_2, Vector4& v_3, Vector4& v_4)//v_1 to v_4 are vertical vectors, this enable to easily set the matrix
+{
+    matrix.data[0][0] = v_1.GetX();
+    matrix.data[1][0] = v_1.GetY();
+    matrix.data[2][0] = v_1.GetZ();
+    matrix.data[0][1] = v_2.GetX();
+    matrix.data[1][1] = v_2.GetY();
+    matrix.data[2][1] = v_2.GetZ();
+    matrix.data[0][2] = v_3.GetX();
+    matrix.data[1][2] = v_3.GetY();
+    matrix.data[2][2] = v_3.GetZ();
+    matrix.data[0][3] = v_4.GetX();
+    matrix.data[1][3] = v_4.GetY();
+    matrix.data[2][3] = v_4.GetZ();
+    matrix.data[3][3] = 1.0;
 }
 
 
