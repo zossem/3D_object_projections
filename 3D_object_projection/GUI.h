@@ -177,7 +177,7 @@ class MyFrame1 : public wxFrame
 		wxStaticText* WxST_ScaleZ;
 		wxSlider* WxSB_ScaleZ;
 
-		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("GFK Projekt 39"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 951,718 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("GFK Projekt 39"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~MyFrame1();
 

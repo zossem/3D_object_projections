@@ -45,10 +45,10 @@
       <property name="hidden">0</property>
       <property name="id">wxID_ANY</property>
       <property name="maximum_size"></property>
-      <property name="minimum_size">700,600</property>
+      <property name="minimum_size">1055,720</property>
       <property name="name">MyFrame1</property>
       <property name="pos"></property>
-      <property name="size">951,718</property>
+      <property name="size">-1,-1</property>
       <property name="style">wxDEFAULT_FRAME_STYLE</property>
       <property name="subclass">; forward_declare</property>
       <property name="title">GFK Projekt 39</property>
@@ -229,7 +229,7 @@
                         <property name="caption"></property>
                         <property name="caption_visible">1</property>
                         <property name="center_pane">0</property>
-                        <property name="choices">&quot;perspektywiczny&quot; &quot;axonometryczny (izometryczny)&quot; &quot;axonometryczny (dowolny)&quot; &quot;ukośny (gabinetowy)&quot; &quot;ukośny (kawaleryjski)&quot; &quot;ukośny (dowolny)&quot; &quot;ortogonalny (przód)&quot; &quot;ortogonalny (góra)&quot; &quot;ortogonalny (dół)&quot;</property>
+                        <property name="choices">&quot;perspektywiczny&quot; &quot;axonometryczny (izometryczny)&quot; &quot;ukośny (gabinetowy)&quot; &quot;ukośny (kawaleryjski)&quot; &quot;ortogonalny (przód)&quot; &quot;ortogonalny (góra)&quot; &quot;ortogonalny (dół)&quot;</property>
                         <property name="close_button">1</property>
                         <property name="context_help"></property>
                         <property name="context_menu">1</property>
@@ -2359,7 +2359,7 @@
                         <property name="caption"></property>
                         <property name="caption_visible">1</property>
                         <property name="center_pane">0</property>
-                        <property name="choices">&quot;perspektywiczny&quot; &quot;axonometryczny (izometryczny)&quot; &quot;axonometryczny (dowolny)&quot; &quot;ukośny (gabinetowy)&quot; &quot;ukośny (kawaleryjski)&quot; &quot;ukośny (dowolny)&quot; &quot;ortogonalny (przód)&quot; &quot;ortogonalny (góra)&quot; &quot;ortogonalny (dół)&quot;</property>
+                        <property name="choices">&quot;perspektywiczny&quot; &quot;axonometryczny (izometryczny)&quot; &quot;ukośny (gabinetowy)&quot; &quot;ukośny (kawaleryjski)&quot; &quot;ortogonalny (przód)&quot; &quot;ortogonalny (góra)&quot; &quot;ortogonalny (dół)&quot;</property>
                         <property name="close_button">1</property>
                         <property name="context_help"></property>
                         <property name="context_menu">1</property>
@@ -2390,7 +2390,7 @@
                         <property name="pin_button">1</property>
                         <property name="pos"></property>
                         <property name="resize">Resizable</property>
-                        <property name="selection">6</property>
+                        <property name="selection">4</property>
                         <property name="show">1</property>
                         <property name="size"></property>
                         <property name="style"></property>
@@ -4489,7 +4489,7 @@
                         <property name="caption"></property>
                         <property name="caption_visible">1</property>
                         <property name="center_pane">0</property>
-                        <property name="choices">&quot;perspektywiczny&quot; &quot;axonometryczny (izometryczny)&quot; &quot;axonometryczny (dowolny)&quot; &quot;ukośny (gabinetowy)&quot; &quot;ukośny (kawaleryjski)&quot; &quot;ukośny (dowolny)&quot; &quot;ortogonalny (przód)&quot; &quot;ortogonalny (góra)&quot; &quot;ortogonalny (dół)&quot;</property>
+                        <property name="choices">&quot;perspektywiczny&quot; &quot;axonometryczny (izometryczny)&quot; &quot;ukośny (gabinetowy)&quot; &quot;ukośny (kawaleryjski)&quot; &quot;ortogonalny (przód)&quot; &quot;ortogonalny (góra)&quot; &quot;ortogonalny (dół)&quot;</property>
                         <property name="close_button">1</property>
                         <property name="context_help"></property>
                         <property name="context_menu">1</property>
@@ -4520,7 +4520,7 @@
                         <property name="pin_button">1</property>
                         <property name="pos"></property>
                         <property name="resize">Resizable</property>
-                        <property name="selection">7</property>
+                        <property name="selection">5</property>
                         <property name="show">1</property>
                         <property name="size"></property>
                         <property name="style"></property>

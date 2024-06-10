@@ -11,7 +11,7 @@
 
 MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 700,600 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( 1055,720 ), wxDefaultSize );
 
 	wxBoxSizer* bSizer1;
 	bSizer1 = new wxBoxSizer( wxHORIZONTAL );
@@ -34,7 +34,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText211->Wrap( -1 );
 	bSizer9->Add( m_staticText211, 0, wxALL, 5 );
 
-	wxString m_choice_projection_1Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("axonometryczny (dowolny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ukośny (dowolny)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
+	wxString m_choice_projection_1Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
 	int m_choice_projection_1NChoices = sizeof( m_choice_projection_1Choices ) / sizeof( wxString );
 	m_choice_projection_1 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_1NChoices, m_choice_projection_1Choices, 0 );
 	m_choice_projection_1->SetSelection( 0 );
@@ -185,10 +185,10 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText271->Wrap( -1 );
 	bSizer10->Add( m_staticText271, 0, wxALL, 5 );
 
-	wxString m_choice_projection_2Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("axonometryczny (dowolny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ukośny (dowolny)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
+	wxString m_choice_projection_2Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
 	int m_choice_projection_2NChoices = sizeof( m_choice_projection_2Choices ) / sizeof( wxString );
 	m_choice_projection_2 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_2NChoices, m_choice_projection_2Choices, 0 );
-	m_choice_projection_2->SetSelection( 6 );
+	m_choice_projection_2->SetSelection( 4 );
 	bSizer10->Add( m_choice_projection_2, 0, wxALL, 5 );
 
 
@@ -336,10 +336,10 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText28->Wrap( -1 );
 	bSizer11->Add( m_staticText28, 0, wxALL, 5 );
 
-	wxString m_choice_projection_3Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("axonometryczny (dowolny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ukośny (dowolny)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
+	wxString m_choice_projection_3Choices[] = { _("perspektywiczny"), _("axonometryczny (izometryczny)"), _("ukośny (gabinetowy)"), _("ukośny (kawaleryjski)"), _("ortogonalny (przód)"), _("ortogonalny (góra)"), _("ortogonalny (dół)") };
 	int m_choice_projection_3NChoices = sizeof( m_choice_projection_3Choices ) / sizeof( wxString );
 	m_choice_projection_3 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice_projection_3NChoices, m_choice_projection_3Choices, 0 );
-	m_choice_projection_3->SetSelection( 7 );
+	m_choice_projection_3->SetSelection( 5 );
 	bSizer11->Add( m_choice_projection_3, 0, wxALL, 5 );
 
 
@@ -668,6 +668,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	this->SetSizer( bSizer1 );
 	this->Layout();
+	bSizer1->Fit( this );
 
 	this->Centre( wxBOTH );
 
