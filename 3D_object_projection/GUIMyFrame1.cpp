@@ -201,10 +201,10 @@ Matrix4 GUIMyFrame1::AxonometricProjection(const ProjectionParameters& projectio
 
 }
 
-Matrix4 GUIMyFrame1::ObliqueProjection(const ProjectionParameters& projection)
+Matrix4 GUIMyFrame1::ObliqueCabinetProjection(const ProjectionParameters& projection)
 {
     double alpha = 45.0;
-    double phi = 1.0;
+    double phi = 0.5;
 
 
     Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4;
@@ -217,6 +217,25 @@ Matrix4 GUIMyFrame1::ObliqueProjection(const ProjectionParameters& projection)
 
     SetMatrix(Oblique_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
     
+    return Oblique_matrix;
+}
+
+Matrix4 GUIMyFrame1::ObliqueCavalierProjection(const ProjectionParameters& projection)
+{
+    double alpha = 45.0;
+    double phi = 1.0;
+
+
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4;
+    Matrix4 Oblique_matrix;
+
+    set_matrix_v_1.Set((projection.GetRight() - projection.GetLeft()) / 2.0, 0.0, -cos(alpha * M_PI / 180.0) / phi);
+    set_matrix_v_2.Set(0.0, (projection.GetTop() - projection.GetBottom()) / 2.0, -sin(alpha * M_PI / 180.0) / phi);
+    set_matrix_v_3.Set(0.0, 0.0, (projection.GetFar() - projection.GetNear()) / -2.0);
+    set_matrix_v_4.Set((projection.GetRight() + projection.GetLeft()) / 2.0, (projection.GetTop() + projection.GetBottom()) / 2.0, -2.0 * (projection.GetFar() + projection.GetNear()) / 2.0);
+    
+    SetMatrix(Oblique_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+
     return Oblique_matrix;
 }
 
@@ -336,12 +355,12 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
         break;
 
     case oblique_cabinet: //cabinet projection
-        projection_matrix = ObliqueProjection(projection_1);
+        projection_matrix = ObliqueCabinetProjection(projection_1);
         scale_matrix_to_window = SetScaleMatrix(m_panel_1->GetSize().x / 2.0, m_panel_1->GetSize().y / 2.0, 1.0);
         break;
 
     case oblique_cavalier: //cavalier projection
-        projection_matrix = ObliqueProjection(projection_1);
+        projection_matrix = ObliqueCavalierProjection(projection_1);
         scale_matrix_to_window = SetScaleMatrix(m_panel_1->GetSize().x / 2.0, m_panel_1->GetSize().y / 2.0, 1.0);
         break;
 
