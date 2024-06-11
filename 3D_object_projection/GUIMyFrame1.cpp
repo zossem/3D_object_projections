@@ -336,9 +336,13 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
         break;
 
     case oblique_cabinet: //cabinet projection
+        projection_matrix = ObliqueProjection(projection_1);
+        scale_matrix_to_window = SetScaleMatrix(m_panel_1->GetSize().x / 2.0, m_panel_1->GetSize().y / 2.0, 1.0);
         break;
 
     case oblique_cavalier: //cavalier projection
+        projection_matrix = ObliqueProjection(projection_1);
+        scale_matrix_to_window = SetScaleMatrix(m_panel_1->GetSize().x / 2.0, m_panel_1->GetSize().y / 2.0, 1.0);
         break;
 
     case ortogonal_front:
