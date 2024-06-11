@@ -102,6 +102,7 @@ class GUIMyFrame1 : public MyFrame1
 		Matrix4 OrthogonalProjectionDown(const ProjectionParameters& projection);
 		Matrix4 OrthogonalProjectionFront(const ProjectionParameters& projection);
 		Matrix4 AxonometricProjection(const ProjectionParameters& projection);
+		Matrix4 ObliqueProjection(const ProjectionParameters& projection);
 		Matrix4 LookAt(const ProjectionParameters& projection);
 		Matrix4 SetTranslationMatrix(double Tx, double Ty, double Tz);
 		Matrix4 SetRotationMatrix(double Rx, double Ry, double Rz);

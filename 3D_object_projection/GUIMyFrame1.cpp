@@ -201,6 +201,25 @@ Matrix4 GUIMyFrame1::AxonometricProjection(const ProjectionParameters& projectio
 
 }
 
+Matrix4 GUIMyFrame1::ObliqueProjection(const ProjectionParameters& projection)
+{
+    double alpha = 45.0;
+    double phi = 1.0;
+
+
+    Vector4 set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4;
+    Matrix4 Oblique_matrix;
+
+    set_matrix_v_1.Set((projection.GetRight() - projection.GetLeft()) / 2.0, 0.0, -cos(alpha * M_PI / 180.0) / phi);
+    set_matrix_v_2.Set(0.0, (projection.GetTop() - projection.GetBottom()) / 2.0, -sin(alpha * M_PI / 180.0) / phi);
+    set_matrix_v_3.Set(0.0, 0.0, (projection.GetFar() - projection.GetNear()) / -2.0);
+    set_matrix_v_4.Set((projection.GetRight() + projection.GetLeft()) / 2.0, (projection.GetTop() + projection.GetBottom()) / 2.0, -2.0 * (projection.GetFar() + projection.GetNear()) / 2.0);
+
+    SetMatrix(Oblique_matrix, set_matrix_v_1, set_matrix_v_2, set_matrix_v_3, set_matrix_v_4);
+    
+    return Oblique_matrix;
+}
+
 void GUIMyFrame1::Repaint2()
 {
     Repaint(m_panel_2, m_choice_projection_2->GetSelection(), data_transformed_2);
@@ -368,11 +387,21 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
                         v_in = v_end;
                         v_out = v_begin;
                     }
-                    double length = fabs((barier - v_out.GetZ() / (v_in.GetZ() - v_out.GetZ())));
-                    v_out.Set(v_in.GetX() - v_out.GetX() * length + v_out.GetX(), v_in.GetY() - v_out.GetY() * length + v_out.GetY(), barier);
 
-                    v_begin = v_out;
-                    v_end = v_in;
+                    //distance from segment to barier
+                    double length = (barier - v_out.GetZ()) / (v_in.GetZ() - v_out.GetZ());
+
+                    //New intersection point
+                    v_out.Set(v_out.GetX() + length * (v_in.GetX() - v_out.GetX()), v_in.GetY() + length * (v_in.GetY() - v_out.GetY()), barier);
+
+                    if (v_end.GetZ() <= barier)
+                    {
+                        v_end = v_out;
+                    }
+                    else
+                    {
+                        v_begin = v_out;
+                    }
                 }
 
 
