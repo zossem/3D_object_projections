@@ -14,6 +14,7 @@ IMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit() 
 {
+ wxInitAllImageHandlers();
  SetProcessDPIAware();
  wxFrame *mainFrame = new GUIMyFrame1(NULL);
  mainFrame->Show(true);
