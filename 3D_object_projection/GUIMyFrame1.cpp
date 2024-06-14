@@ -459,16 +459,23 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
     }
     else {
         projection_type selected_typ = static_cast<projection_type> (selection);
+        wxImage scaled_image;
         if (selected_typ == perspective) {
-            wxBitmap bitmap(doggo_1);
+            scaled_image = doggo_1.Copy();
+            scaled_image.Rescale(m_panel_1->GetSize().x, m_panel_1->GetSize().y);
+            wxBitmap bitmap(scaled_image);
             dc.DrawBitmap(bitmap, 0, 0, false);
         }
         else if (selected_typ == ortogonal_front) {
-            wxBitmap bitmap(doggo_2);
+            scaled_image = doggo_2.Copy();
+            scaled_image.Rescale(m_panel_1->GetSize().x, m_panel_1->GetSize().y);
+            wxBitmap bitmap(scaled_image);
             dc.DrawBitmap(bitmap, 0, 0, false);
         }
         else if (selected_typ == ortogonal_up) {
-            wxBitmap bitmap(doggo_3);
+            scaled_image = doggo_3.Copy();
+            scaled_image.Rescale(m_panel_1->GetSize().x, m_panel_1->GetSize().y);
+            wxBitmap bitmap(scaled_image);
             dc.DrawBitmap(bitmap, 0, 0, false);
         }  
     }
