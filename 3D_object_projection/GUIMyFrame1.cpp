@@ -465,7 +465,7 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
         }
         if (selected_typ == ortogonal_up || selected_typ == ortogonal_down)
         {
-            std::sort(to_sort_data.begin(), to_sort_data.end(), my_sort_compare);
+            std::sort(to_sort_data.begin(), to_sort_data.end(), Segment::my_sort_compare);
             for (int i = 0; i < to_sort_data.size(); i++)
             {
                 v_begin.Set(to_sort_data[i].begin.x, to_sort_data[i].begin.y, to_sort_data[i].begin.z);
@@ -1002,7 +1002,7 @@ double ProjectionParameters::GetFar() const
     return GetNear() - back;
 }
 
-bool my_sort_compare(Segment& a, Segment& b)
+bool Segment::my_sort_compare(Segment& a, Segment& b)
 {
     if ((a.begin.z > b.begin.z) && (a.end.z > a.end.z))
         return false;

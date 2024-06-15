@@ -39,10 +39,9 @@ struct Segment {
 Point begin, end;
 Color color;
 Segment(Point _begin, Point _end, Color _color) : begin(_begin), end(_end), color(_color) {}
-
+static bool my_sort_compare(Segment& a, Segment& b);
 };
 
-bool my_sort_compare(Segment& a, Segment& b);
 
 struct Window {
 double x_begin, x_end, y_begin, y_end;
