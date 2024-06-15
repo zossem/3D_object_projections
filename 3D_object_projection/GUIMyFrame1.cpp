@@ -1,5 +1,6 @@
 ﻿#include "GUIMyFrame1.h"
 
+
 GUIMyFrame1::GUIMyFrame1( wxWindow* parent )
 :
 MyFrame1( parent )
@@ -389,6 +390,7 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
             break;
         }
 
+        std::vector<Segment> to_sort_data;
         for (int i = 0; i < data_transformed.size(); i++)
         {
             v_begin.Set(data_transformed[i].begin.x, data_transformed[i].begin.y, data_transformed[i].begin.z);
@@ -434,9 +436,6 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
                     }
 
 
-                    //v_begin = view_matrix * v_begin;
-                    //v_end = view_matrix * v_end;
-
                     v_begin = projection_matrix * v_begin;
                     v_end = projection_matrix * v_end;
 
@@ -452,9 +451,32 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
             v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
             v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
 
+            if (selected_typ == ortogonal_up || selected_typ == ortogonal_down)
+            {
+                to_sort_data.push_back(Segment(Point(v_begin.GetX(), v_begin.GetY(), v_begin.GetZ()),
+                    Point(v_end.GetX(), v_end.GetY(), v_end.GetZ()),
+                    Color(data[i].color.R, data[i].color.G, data[i].color.B)));
+            }
+            else
+            {
+                dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
+                    v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
+            }            
+        }
+        if (selected_typ == ortogonal_up || selected_typ == ortogonal_down)
+        {
+            std::sort(to_sort_data.begin(), to_sort_data.end(), my_sort_compare);
+            for (int i = 0; i < to_sort_data.size(); i++)
+            {
+                v_begin.Set(to_sort_data[i].begin.x, to_sort_data[i].begin.y, to_sort_data[i].begin.z);
+                v_end.Set(to_sort_data[i].end.x, to_sort_data[i].end.y, to_sort_data[i].end.z);
 
-            dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
-                v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
+                color_line = wxColor(to_sort_data[i].color.R, to_sort_data[i].color.G, to_sort_data[i].color.B);
+                dc.SetPen(color_line);
+
+                dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
+                    v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
+            }
         }
     }
     else {
@@ -978,4 +1000,14 @@ double ProjectionParameters::GetNear() const {
 double ProjectionParameters::GetFar() const
 {
     return GetNear() - back;
+}
+
+bool my_sort_compare(Segment& a, Segment& b)
+{
+    if ((a.begin.z > b.begin.z) && (a.end.z > a.end.z))
+        return false;
+    else if ((a.begin.z < b.begin.z) && (a.end.z < a.end.z))
+        return true;
+    else
+        return std::max(a.begin.z, a.end.z) < std::max(b.begin.z, b.end.z);
 }
