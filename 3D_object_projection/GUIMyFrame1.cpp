@@ -451,32 +451,24 @@ void GUIMyFrame1::Repaint(wxPanel* m_panel, int selection, std::vector<Segment> 
             v_begin.Set(v_begin.GetX() / v_begin.data[3], v_begin.GetY() / v_begin.data[3], v_begin.GetZ() / v_begin.data[3]);
             v_end.Set(v_end.GetX() / v_end.data[3], v_end.GetY() / v_end.data[3], v_end.GetZ() / v_end.data[3]);
 
-            if (selected_typ == ortogonal_up || selected_typ == ortogonal_down)
-            {
-                to_sort_data.push_back(Segment(Point(v_begin.GetX(), v_begin.GetY(), v_begin.GetZ()),
+          
+            to_sort_data.push_back(Segment(Point(v_begin.GetX(), v_begin.GetY(), v_begin.GetZ()),
                     Point(v_end.GetX(), v_end.GetY(), v_end.GetZ()),
                     Color(data[i].color.R, data[i].color.G, data[i].color.B)));
-            }
-            else
-            {
-                dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
-                    v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
-            }            
+                      
         }
-        if (selected_typ == ortogonal_up || selected_typ == ortogonal_down)
+     
+        std::sort(to_sort_data.begin(), to_sort_data.end(), Segment::my_sort_compare);
+        for (int i = 0; i < to_sort_data.size(); i++)
         {
-            std::sort(to_sort_data.begin(), to_sort_data.end(), Segment::my_sort_compare);
-            for (int i = 0; i < to_sort_data.size(); i++)
-            {
-                v_begin.Set(to_sort_data[i].begin.x, to_sort_data[i].begin.y, to_sort_data[i].begin.z);
-                v_end.Set(to_sort_data[i].end.x, to_sort_data[i].end.y, to_sort_data[i].end.z);
+            v_begin.Set(to_sort_data[i].begin.x, to_sort_data[i].begin.y, to_sort_data[i].begin.z);
+            v_end.Set(to_sort_data[i].end.x, to_sort_data[i].end.y, to_sort_data[i].end.z);
 
-                color_line = wxColor(to_sort_data[i].color.R, to_sort_data[i].color.G, to_sort_data[i].color.B);
-                dc.SetPen(color_line);
+            color_line = wxColor(to_sort_data[i].color.R, to_sort_data[i].color.G, to_sort_data[i].color.B);
+            dc.SetPen(color_line);
 
-                dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
+            dc.DrawLine(v_begin.GetX() + m_panel_1->GetSize().x / 2.0, v_begin.GetY() + m_panel_1->GetSize().y / 2.0,
                     v_end.GetX() + m_panel_1->GetSize().x / 2.0, v_end.GetY() + m_panel_1->GetSize().y / 2.0);
-            }
         }
     }
     else {
